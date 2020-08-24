@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <base href="<%=basePath%>">
+    <meta charset="UTF-8">
+    <title>我的哔哩哔哩-用户信息</title>
+
+    <link th:href="@{User_Data_Update/css/jiazaitoubu.css}" rel="stylesheet"/>
+    <link th:href="@{User_Data_Update/css/css.css}" rel="stylesheet"/>
+    <link th:href="@{User_Data_Update/css/center.css}" rel="stylesheet"/>
+    <link th:href="@{User_Data_Update/city/city.css}" rel="stylesheet"/>
+    <link th:href="@{User_Data_Update/css/shangchuan.css}" rel="stylesheet"/>
+
+    <script th:src="@{User_Data_Update/js/jquery-1.8.3.min.js}"></script>
+    <script th:src="@{User_Data_Update/js/index2.js}"></script>
+
+    <script th:inline="javascript">
+        jQuery(document).ready(function () {
+
+            var echo = [[${PassWordErro}]];
+            //alert(echo);
+            if (String(echo) != "null") {
+                alert(echo);
+            }
+        });
+
+    </script>
+
+    <script type="text/javascript">
+        //显示灰色 jQuery 遮罩层
+        function showBg() {
+            var bh = $("body").height();
+            var bw = $("body").width();
+            $("#fullbg").css({
+                height: bh,
+                width: bw,
+                display: "block"
+            });
+            $("#dialog").show();
+        }
+
+        //关闭灰色 jQuery 遮罩
+        function closeBg() {
+            $("#fullbg,#dialog").hide();
+        }
+    </script>
+
+    <script type="text/javascript">
+        //显示灰色 jQuery 遮罩层
+        function showBg2() {
+            var bh = $("body").height();
+            var bw = $("body").width();
+            $("#fullbg").css({
+                height: bh,
+                width: bw,
+                display: "block"
+            });
+            $("#dialog2").show();
+        }
+
+        //关闭灰色 jQuery 遮罩
+        function closeBg2() {
+            $("#fullbg,#dialog2").hide();
+        }
+    </script>
+
+    <script type="text/javascript">
+        //显示灰色 jQuery 遮罩层
+        function showBg3() {
+            var bh = $("body").height();
+            var bw = $("body").width();
+            $("#fullbg").css({
+                height: bh,
+                width: bw,
+                display: "block"
+            });
+            $("#box1").show();
+        }
+
+        //关闭灰色 jQuery 遮罩
+        function closeBg3() {
+            $("#fullbg,#box1").hide();
+        }
+    </script>
+
+    <script type="text/javascript">
+        function imgPreview(fileDom) {
+            //判断是否支持FileReader
+            if (window.FileReader) {
+                var reader = new FileReader();
+            } else {
+                alert("您的设备不支持图片预览功能，如需该功能请升级您的设备！");
+            }
+            //获取文件
+            var file = fileDom.files[0];
+            var imageType = /^image\//;
+            //是否是图片
+            if (!imageType.test(file.type)) {
+                alert("请选择图片！");
+                return;
+            }
+            //读取完成
+            reader.onload = function (e) {
+                //获取图片dom
+                var img = document.getElementById("preview");
+
+                var imgHand = document.getElementById("imgHand");
+                //图片路径设置为读取的图片
+                img.src = e.target.result;
+                imgHand.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        $(document).ready(function () {
+            $('#preview').click(function () {
+                $('#file').click();
+            });
+
+        });
+    </script>
+
+    <style type="text/css">
+        .file {
+            position: relative;
+            display: inline-block;
+            background: #D0EEFF;
+            border: 1px solid #99D3F5;
+            border-radius: 4px;
+            padding: 4px 12px;
+            overflow: hidden;
+            color: #1E88C7;
+            text-decoration: none;
+            text-indent: 0;
+            line-height: 20px;
+            left: 32%;
+        }
+
+        .file input {
+            position: absolute;
+            font-size: 14px;
+            right: 0;
+            top: 0;
+            opacity: 0;
+        }
+
+        .file:hover {
+            background: #AADFFD;
+            border-color: #78C3F3;
+            color: #004974;
+            text-decoration: none;
+        }
+
+        .submit {
+            position: relative;
+            display: inline-block;
+            background: #D0EEFF;
+            border: 1px solid #99D3F5;
+            border-radius: 4px;
+            padding: 4px 12px;
+            overflow: hidden;
+            color: #1E88C7;
+            text-decoration: none;
+            text-indent: 0;
+            line-height: 20px;
+            left: 34%;
+        }
+
+        .submit input {
+            position: absolute;
+            font-size: 14px;
+            width: 50px;
+            height: 30px;
+            right: 0;
+            top: 0;
+            opacity: 0;
+        }
+
+        .submit:hover {
+            background: #AADFFD;
+            border-color: #78C3F3;
+            color: #004974;
+            text-decoration: none;
+        }
+
+
+    </style>
+
+</head>
+<body>
+<!-- 这里是上传头像界面 -->
+<div id="dialog">
+    <p class="close">
+        <a onclick="closeBg();" style="cursor: pointer">关闭</a>
+    </p>
+    <!-- <div>正在加载，请稍后....</div> -->
+    <!--/*@thymesVar id="uploadStatus" type="java"*/-->
+    <div th:if="${uploadStatus}" style="color: red" th:text="${uploadStatus}">上传成功</div>
+
+
+    <div>
+        <img id="preview" src="userHand_Top/upload/1.png"
+             style="position:relative;left:27%;width: 175px;height: 175px;margin-bottom: 25px"/>
+        <form method="post" th:action="@{/uploadAvatar}"
+              enctype="multipart/form-data">
+            <a href="javascript:" class="file">选择文件
+                <input type="file" id="file" name="file" onchange="imgPreview(this)"/>
+            </a>
+            <a href="javascript:" class="submit">上传
+                <input type="submit" id="submit" value="上传"/>
+            </a>
+
+        </form>
+    </div>
+</div>
+
+<!-- 这里是信息资料界面 -->
+<div class="public_m1" id="dialog2">
+    <p class="close">
+        <a onclick="closeBg2();" style="cursor: pointer">关闭</a>
+    </p>
+
+    <div class="public_m2">用户全部信息资料</div>
+    <!--提示信息-->
+    <div class="tip_notem">
+        <ul>
+            <li>1.请牢记支付密码</li>
+            <li>2.如果丢失密码，可以通过绑定的手机或邮箱找到</li>
+        </ul>
+    </div>
+    <div class="public_m4">
+        <p>
+            <em>用户姓名：</em>
+            <input type="text"
+                   style="height: 23px; border: 1px solid #eaeaea; width: 240px"
+                   th:value="${user.userMingzi}">
+        </p>
+        <p>
+            <em>用户地址：</em>
+            <input type="text"
+                   style="height: 23px; border: 1px solid #eaeaea; width: 240px"
+                   th:value="${user.userAddress}">
+        </p>
+        <p>
+            <em>用户手机号：</em>
+            <input type="text"
+                   style="height: 23px; border: 1px solid #eaeaea; width: 240px"
+                   th:value="${user.userPhone}">
+        </p>
+        <p>
+            <em>用户QQ号：</em>
+            <input type="text"
+                   style="height: 23px; border: 1px solid #eaeaea; width: 240px"
+                   th:value="${user.userQQ}">
+        </p>
+        <p>
+            <em>用户邮箱：</em>
+            <input type="text"
+                   style="height: 23px; border: 1px solid #eaeaea; width: 240px"
+                   th:value="${user.userEmial}">
+        </p>
+        <p>
+            <em>用户状态：</em>
+            <input type="text"
+                   style="height: 23px; border: 1px solid #eaeaea; width: 240px"
+                   th:value="${user.userState}">
+        </p>
+
+        <a href="Update_userInformation" class="public_m3" style="position:absolute;left: 20%">确定</a>
+    </div>
+</div>
+
+
+
+<!--这里是修改密码界面-->
+
+
+<div id="box1" class="box1">
+    <form class="box"  th:action="@{/Update_login_password}" method="post" autocomplete="off">
+        <h1>修改密码</h1>
+        <input type="text" name="passWord" placeholder="旧密码">
+        <input type="text" name="newpassWord" placeholder="新的密码">
+        <input type="text" name="newpassWord2" placeholder="确认密码">
+        <input type="submit" name="" value="确认修改" style="position: absolute;left: 10%">
+        <input type="button" name="" value="返回" style="position: absolute;right: 10%"
+               onclick="javascript:closeBg3();">
+    </form>
+</div>
+
+<div class="public_m1" id="dialog3"
+     style="width: 400px;height:400px;margin: auto;position: absolute;top: 0;left: 0;right: 0;">
+    <p class="close">
+        <a onclick="closeBg3();" style="cursor: pointer">关闭</a>
+    </p>
+    <div class="public_m2">登录密码修改</div>
+    <!--提示信息-->
+    <div class="tip_notem">
+        <ul>
+            <li>1.请牢记登录密码</li>
+            <li>2.如果丢失密码，可以通过绑定的手机或邮箱找到</li>
+        </ul>
+    </div>
+    <form th:action="Update_login_password" method="post" style="width: 300px">
+        <div class="public_m4">
+            <p>
+                <em>原密码：</em> <input type="text" name="passWord"
+                                     style="height: 23px; border: 1px solid #eaeaea; width: 200px">
+            </p>
+            <p>
+                <em>新的密码：</em> <input type="text" name="newpassWord"
+                                      style="height: 23px; border: 1px solid #eaeaea; width: 200px">
+            </p>
+            <p>
+                <em>确认密码：</em> <input type="text" name="newpassWord2"
+                                      style="height: 23px; border: 1px solid #eaeaea; width: 200px">
+            </p>
+
+
+            <!--/*@thymesVar id="PassWordErro" type="java"*/-->
+            <p th:if="${PassWordErro}">
+                <span style="color: red" th:text="${PassWordErro}"></span>
+            </p>
+
+        </div>
+        <input class="public_m3" type="submit" value="确认修改" style="width: 280px;margin: 0 50px;">
+    </form>
+</div>
+
+<script>
+    window.onload = function () {
+        $(".aside").css({display: "none"})
+        $(".important").mouseenter(function () {
+            $(".aside").css({display: "block"})
+        }).mouseleave(function () {
+            $(".aside").css({display: "none"})
+        })
+    }
+</script>
+<!--当前位置-->
+<div class="now_positionm">
+    <span>当前位置：</span><a href="index">首页></a><a
+        href="user">个人中心</a>
+</div>
+<!--centers-->
+<div class="centers_m">
+    <!--清除浮动-->
+    <div class="clear_sm"></div>
+    <!--left-->
+    <div class="centers_ml">
+        <!--头像-->
+        <div class="center_header">
+            <a href="javascript:showBg();">
+                <img id="imgHand" th:src="${user.userHand}"/></a> <em th:text="${user.userName}"></em>
+            下方可修改资料
+        </div>
+        <!--列表go-->
+        <div class="centers_listm">
+            <div class="centers_listm_one">
+                <img src="User_Data_Update/images/zshy.png"/>
+                <em>会员中心</em>
+            </div>
+            <!--一条开始-->
+            <div class="centers_listm_one_in">
+                <img src="User_Data_Update/images/shezhi.png"/>
+                <em>资料管理</em> <b></b>
+            </div>
+
+            <span class="gjszmdm">
+                <a href="javascript:showBg();" class="center_in_self"><font id="shangchuan">上传头像</font></a>
+                <a href="javascript:showBg2();" class="center_in_self"><font>信息资料</font></a>
+<!--                <a href="#" class="center_in_self"><font>银行卡管理</font></a>-->
+<!--                <a href="#" class="center_in_self"><font>收货地址管理</font></a>-->
+            </span>
+
+
+        </div>
+        <script type="text/javascript">
+            $(function () {//第一步都得写这个
+                $(".centers_listm_one_in").click(function () {
+                    $(this).next(".gjszmdm").slideToggle().siblings("gjszmdm").slideUp()
+                });
+
+                //弹出上传头像界面
+
+
+            })
+        </script>
+    </div>
+    <!--right-->
+    <div class="centers_mr">
+        <h1 class="welcom_tm">
+            欢迎您，超级会员！<span style="font-weight:bold;display:inline-block" th:text="${user.userName}"></span>
+            <div class="gezhong_szm_in" style="margin-top: -50px;margin-left: 40px">
+                <a th:href="quit">切换账号</a>
+                <a href="videoFileTop">我要投稿</a>
+            </div>
+        </h1>
+        <!--一条开始-->
+        <div class="public_m1">
+            <div class="public_m2">账户安全</div>
+            <div class="public_m4">
+                <p>
+                    <em>您当前的安全等级：</em><i style="color: #fa3b4a">高</i>
+                </p>
+            </div>
+            <!--各种设置-->
+            <div class="gezhong_szm">
+                <!--一条开始a-->
+                <div class="gezhong_szm_in">
+                    <b style=" background:url(User_Data_Update/images/fourm.png) no-repeat 0 0"></b>
+                    <span>登录密码<br>
+						<em>已设置</em></span>
+                    <p>安全性高的密码，可以使账户更安全。建议您定期更换密码。安全性高的密码，可以使账户更安全。建议您定期更换密码。安全性高的密码，可以使账户更安全。建议您定期更换密码。</p>
+                    <a href="javascript:showBg3();">修改密码</a>
+                    <!--                    <a href="javascript:showPassBg();">修改密码</a>-->
+                </div>
+                <!--一条开始a-->
+                <div class="gezhong_szm_in">
+                    <b style=" background:url(User_Data_Update/images/fourm.png) no-repeat 0 -50px"></b>
+                    <span>邮箱绑定<br>
+						<em>Email</em></span>
+                    <p>进行邮箱验证后，可用于接收敏感操作的身份验证信息，以及订阅更优惠商品的促销邮件。</p>
+                    <a href="javascript:showBg4();">绑定邮箱</a>
+                </div>
+                <!--一条开始a-->
+                <div class="gezhong_szm_in">
+                    <b style=" background:url(User_Data_Update/images/fourm.png) no-repeat 0 -100px"></b>
+                    <span>手机绑定<br>
+						<em>Phone</em></span>
+                    <p>进行手机验证后，可用于接收敏感操作的身份验证信息，以及进行积分消费的验证确认，非常有助于保护您的账号和账户财产安全。</p>
+                    <a href="javascript:showBg5();">修改手机</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

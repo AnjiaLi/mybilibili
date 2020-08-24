@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>我的哔哩哔哩-首页</title>
+    <link th:href="@{bilibiliIndex/css/reset.css}" rel="stylesheet"/>
+    <link th:href="@{bilibiliIndex/css/common.css}" rel="stylesheet"/>
+    <link th:href="@{bilibiliIndex/css/index.css}" rel="stylesheet"/>
+
+    <script th:src="@{Homepage/js/jquery.min.js}"></script>
+    <script th:src="@{bilibiliIndex/js/script.js}"></script>
+    <script th:src="@{jquery-1.10.2/jquery.js}"></script>
+    <script th:src="@{adminjs/adminjs.js}"></script>
+
+    <script type="text/javascript">
+        $(function(){
+            //每个固定的时间移动图片
+            var timer = setInterval(picLoop,1000);
+            var index = 0;
+            function picLoop(){
+                index++;
+                if (index==4) {index=0;}
+                $(".content").animate({"left":-500*index},500);
+                // $(".index li").eq(index).css("background-color","red")
+                //     .siblings().css("background-color","rgba(100,100,100,0.3)");
+            }
+
+            //定时器的控制
+            $(".pic").hover(function(){
+                clearInterval(timer);
+                $(".left").show();
+                $(".right").show();
+            },function(){
+                timer = setInterval(picLoop,1000);
+                $(".left").hide();
+                $(".right").hide();
+            })
+
+            $(".index li").mouseover(function(){
+                // $(this).css("background-color","red")
+                    // .siblings().css("background-color","rgba(100,100,100,0.3)");
+                index = $(this).index();
+                $(".content").animate({"left":-500*index},500);
+
+            })
+
+        })
+    </script>
+
+</head>
+<body>
+
+
+<header id="header">
+    <div id="page_top">
+        <div class="bg-wrap">
+            <div class="bg"></div>
+            <div class="mask"></div>
+        </div>
+        <div class="header-top">
+            <div class="page-width clearfix">
+                <div class="header-top__nav">
+                    <ul>
+                        <li class="item item-home"><a th:href="@{/index}">主站</a></li>
+                        <li class="item"><a th:href="@{/admin/adminSystem}">后台管理</a>
+                        <li class="item"><a href="videoFileTop">我要投稿</a></li>
+                    </ul>
+                </div>
+
+                <div class="header-top__user">
+                    <!--/*@thymesVar id="userName" type="java"*/-->
+                    <div class="login-box" th:if="!${session.userName}">
+                        <a href="clientLogin">登录</a> <span></span> <a href="register">注册</a>
+                    </div>
+
+
+                    <div th:if="${session.userName}" class="login-box" onmouseover="project()">
+                        <ul style="display: inline-block ;position: relative;">
+                            <li class="item">
+                                <a href="user" th:text="${session.userName}"></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $("#div2").hide();
+
+                })
+
+                function asjdh() {//移出
+                    //alert("1");
+                    $("#div2").hide();
+                }
+
+                function project() {//移入
+                    //alert("2");
+                    $("#div2").show();
+                }
+            </script>
+        </div>
+    </div>
+</header>
+
+<nav id="nav">
+    <div class="page-width clearfix">
+        <ul class="nav-list">
+            <li class="item item-home"><a href="index.sf" class="link">首页</a>
+            </li>
+            <li class="item"><a href="" class="link">
+                <div class="num">
+                    <i>887</i>
+                </div>
+                动画
+            </a></li>
+            <li class="item"><a href="" class="link">
+                <div class="num">
+                    <i>23</i>
+                </div>
+                番剧
+            </a></li>
+            <li class="item"><a href="" class="link">
+                <div class="num">
+                    <i>999+</i>
+                </div>
+                音乐
+            </a></li>
+            <li class="item"><a href="" class="link">
+                <div class="num">
+                    <i>152</i>
+                </div>
+                舞蹈
+            </a></li>
+            <li class="item"><a href="" class="link">
+                <div class="num">
+                    <i>999+</i>
+                </div>
+                游戏
+            </a></li>
+            <li class="item"><a href="" class="link">
+                <div class="num">
+                    <i>999+</i>
+                </div>
+                科技
+            </a></li>
+            <li class="item"><a href="" class="link">
+                <div class="num">
+                    <i>999+</i>
+                </div>
+                生活
+            </a></li>
+            <li class="item"><a href="" class="link">
+                <div class="num">
+                    <i>77</i>
+                </div>
+                鬼畜
+            </a></li>
+            <li class="item"><a href="" class="link">
+                <div class="num">
+                    <i>416</i>
+                </div>
+                时尚
+            </a></li>
+            <li class="item"><a href="" class="link">
+                <div class="num">
+                    <i>100</i>
+                </div>
+                广告
+            </a></li>
+            <li class="item"><a href="" class="link">
+                <div class="num">
+                    <i>999+</i>
+                </div>
+                娱乐
+            </a></li>
+            <li class="item"><a href="" class="link">
+                <div class="num">
+                    <i>916</i>
+                </div>
+                影视
+            </a></li>
+            <li class="item item-square"><a href="" class="link">广场</a>
+
+            </li>
+
+            <li class="item item-room"><a href="#" class="link">小黑屋</a></li>
+        </ul>
+        <div class="nav-gif" id="qiulingyang">
+            <img
+                    src="bilibiliIndex/images/cont/nav_img.gif"
+                    alt="求领养">
+        </div>
+    </div>
+</nav>
+
+<div id="banner">
+    <div class="page-width clearfix">
+        <div class="pic">
+            <div class="content" >
+                <img src="bilibiliIndex/images/cont/slider_img1.png" alt="#">
+                <img src="bilibiliIndex/images/cont/slider_img2.png" alt="#">
+                <img src="bilibiliIndex/images/cont/slider_img3.png" alt="#">
+                <img src="bilibiliIndex/images/cont/slider_img4.png" alt="#">
+            </div>
+            <ul class="index" >
+                <li class="first" ></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+        <div class="banner-list fr">
+
+            <ul>
+                <li th:each="videolistimit6MAD : ${videolistimit6MAD}">
+                    <a th:href="'video?dizhi='+${videolistimit6MAD.videoAddress}+'&shipingID='+${videolistimit6MAD.videoID}">
+                    <img th:src="${videolistimit6MAD.videoImage}" alt="#">
+                    <div class="info">
+                        <p class="title" th:text="${videolistimit6MAD.videoName }"></p>
+                        <p class="author">up主：admin</p>
+                        <p class="play" th:text="${videolistimit6MAD.videolookTime}">播放：</p>
+                    </div>
+                </a></li>
+            </ul>
+            <a href="#" class="btn btn-prev">昨日</a> <a href="#"
+                                                       class="btn btn-next">一周</a>
+        </div>
+    </div>
+</div>
+
+<div id="main">
+    <div class="page-width">
+        <div class="mainCont clearfix" id="dance" js-move="true">
+            <div class="pic-list fl" js-tab="true">
+                <div class="pic-list__title">
+                    <i class="icon icon-dance"></i>
+                    <h2>动画</h2>
+                    <div class="tab-title">
+                        <a href="#" class="cur">有新动态</a>
+                    </div>
+                    <div class="more-wrap">
+                        <a href="#" class="dynamic" id="shuaxin"><i></i>392条新动态</a>
+                    </div>
+                </div>
+                <ul class="pic-list__wrapper clearfix tab-cont__item tab-cont__cur">
+                    <!-- 这里开始遍历 -->
+                    <li th:each="list : ${list}" class="item">
+                        <a th:href="'video?dizhi='+${list.videoAddress}+'&shipingID='+${list.videoID}" class="img-link">
+                            <img
+                                th:src="${list.videoImage}" alt="#">
+                            <span class="mask"></span> <span class="time" th:text="${list.videoTime}"></span>
+                        </a>
+                        <div class="img-info">
+                            <a th:href="'video?dizhi='+${list.videoAddress}+'&shipingID='+${list.videoID}"
+                               th:text="${list.videoName}">
+                            </a>
+                            <div class="btm">
+                                <div class="user">
+                                    <i></i>admin
+                                </div>
+                                <div class="online">
+                                    <i th:text="${list.videolookTime}"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="main-side fr" js-tab="true">
+                <div class="main-side__title">
+                    <div class="rank-t">
+                        <h3>排行</h3>
+                    </div>
+                    <div class="tab-title">
+                        <a href="#" class="cur">全部</a>
+                    </div>
+                </div>
+                <div class="main-side__cont">
+                    <div class="tab-cont">
+                        <ul class="tab-cont__item main-rank" id="did2">
+                            <li th:each="list : ${list}" class="item" style="color: black;font-size: 14px">
+                                <a th:href="@{list.videoName}" th:text="${list.videoName}"></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <button type="button" class="more" id="chakan">
+                        查看更多<i></i>
+                    </button>
+
+                    <script type="text/javascript">
+
+                    </script>
+                </div>
+            </div>
+        </div>
+
+        <div class="mainCont clearfix" id="game" js-move="true">
+            <div class="pic-list fl" js-tab="true">
+                <div class="pic-list__title">
+                    <i class="icon icon-game"></i>
+                    <h2>MAD</h2>
+                    <div class="tab-title">
+                        <a href="#" class="cur">有新动态</a>
+                    </div>
+                    <div class="more-wrap">
+                        <a href="#" class="dynamic" id="shuaxin1"><i></i>392条新动态</a>
+                    </div>
+                </div>
+                <ul class="pic-list__wrapper clearfix tab-cont__item tab-cont__cur">
+                    <li th:each="list2 : ${list2}" class="item">
+                        <a th:href="'video?dizhi='+${list2.videoAddress}+'&shipingID='+${list2.videoID}" class="img-link">
+                            <img th:src="${list2.videoImage}" alt="#">
+                        <span class="mask"></span> <span class="time" th:text="${list2.videoTime}"></span>
+                    </a>
+                        <div class="img-info">
+                            <a th:href="'video?dizhi='+${list2.videoAddress}+'&shipingID='+${list2.videoID}"
+                               th:text="${list2.videoName}">
+
+                            </a>
+                            <div class="btm">
+                                <div class="user">
+                                    <i></i>admin
+                                </div>
+                                <div class="online">
+                                    <i th:text="${list2.videolookTime}"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="main-side fr" js-tab="true">
+                <div class="main-side__title">
+                    <div class="rank-t">
+                        <h3>排行</h3>
+                    </div>
+                    <div class="tab-title">
+                        <a href="#" class="cur">全部</a>
+                    </div>
+                </div>
+                <div class="main-side__cont">
+                    <div class="tab-cont">
+                        <ul class="tab-cont__item main-rank" id="did3">
+                            <li th:each="list : ${list}" class="item" style="color: black;font-size: 14px">
+                                <a th:href="@{list.videoName}" th:text="${list.videoName}"></a>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <button type="button" class="more" id="chakan3">
+                        查看更多<i></i>
+                    </button>
+                    <script type="text/javascript">
+
+
+                    </script>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+</body>
+</html>

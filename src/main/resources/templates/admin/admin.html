@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>后台管理</title>
+
+    <link th:href="@{Adminbackgroundshipment/css/common.css}" rel="stylesheet"/>
+    <link th:href="@{Adminbackgroundshipment/css/main.css}" rel="stylesheet"/>
+
+    <script th:src="@{Homepage/js/jquery.min.js}"></script>
+    <script th:src="@{Adminbackgroundshipment/js/libs/modernizr.min.js}"></script>
+    <script th:src="@{Adminbackgroundshipment/js/jquery-1.8.3.min.js}"></script>
+
+</head>
+<body>
+<div style="width: 200px;height: 170px;background-color: white;position: fixed; z-index: 999;margin-left:85%;margin-top: 35%" id="xinxiaoxi">
+    <b style="color: red;margin-left: 8%">有瓜皮下单了! 点击立即查看</b>
+    <a href="Adminbackgroundshipment"><img width="200px;" height="170px" alt="" src="<%=request.getContextPath()%>/static/Adminbackgroundshipment/images/gaoxiao.gif"></a>
+</div>
+<div class="container clearfix">
+    <div class="sidebar-wrap">
+        <div class="sidebar-title">
+            <h1>菜单</h1>
+        </div>
+        <div class="sidebar-content">
+            <ul class="sidebar-list">
+                <li>
+                    <a href="javascript:return false;"><i class="icon-font">&#xe003;</i>常用操作</a>
+                    <ul class="sub-menu">
+                        <li><a th:href="@{/templates/admin}"><i class="icon-font">&#xe008;</i>全部订单</a></li>
+                        <li><a href="Shipmentpending"><i class="icon-font">&#xe005;</i>待发货</a></li>
+                        <li><a href="Completedorder"><i class="icon-font">&#xe006;</i>已完成</a></li>
+                        <li><a href="Returngoods"><i class="icon-font">&#xe008;</i>退货订单</a></li>
+                        <li><a href="Inquiryorder"><i class="icon-font">&#xe006;</i>查询订单</a></li>
+                        <li><a th:href="@{/adminSystem}"><i class="icon-font">&#xe005;</i>注册用户管理</a></li>
+
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    <!--/sidebar-->
+    <div class="main-wrap">
+
+        <div class="crumb-wrap">
+            <div class="crumb-list">
+                <i class="icon-font"></i>
+                <a href="javascript:return false;" color="#white">首页</a>
+                <span class="crumb-step">&gt;</span><span class="crumb-name">订单查询</span>
+                <form th:action="@{/logout}" method="post" style=" display:inline;position: absolute;right: 30px">
+                    <input class="icon-font" type="submit" value="安全退出"/>
+                </form>
+            </div>
+        </div>
+        <div class="result-wrap">
+            <form name="myform" id="myform" method="post">
+                <div class="result-title">
+
+                </div>
+                <div class="result-content">
+                    <table class="result-tab" width="100%">
+                        <tr>
+                            <th>订单时间</th>
+                            <th>订单商品名字</th>
+                            <th>购买者用户名</th>
+                            <th>订单价格</th>
+                            <th>状态</th>
+                        </tr>
+                        <tr th:each="ordertable : ${ordertable}">
+                            <td th:text="${ordertable.orderTime}"></td>
+                            <td><a target="_blank" href="" th:text="${ordertable.orderIgridsName}"></a> <!--课程名称--></td>
+                            <td th:text="${ordertable.orderuserName}"></td> <!--购买者用户名-->
+                            <td th:text="${ordertable.orderzongRMB}"></td> <!--销售者用户名-->
+                            <td style="color: red" th:switch="${ordertable.orderStat}">
+                                <div th:case="1">用户下单,未发货</div>
+                                <div th:case="2">已发货</div>
+                                <div th:case="3">待退货</div>
+                                <div th:case="4">订单完成</div>
+                                <div th:case="*">退货完成</div>
+                             </td> <!--订单时间-->
+                        </tr>
+                    </table>
+                    <!--  <div class="list-page"> 2 条 1/1 页</div> -->
+                </div>
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript">
+        //xinxiaoxi
+        $(document).ready(function(){
+            $("#xinxiaoxi").hide();
+        });
+        function time(){
+            //alert("我3秒出来一次.");
+            //每过一段时间向后台请求查询 是否有新的订单
+            //countordertable
+            var html = "";
+            $.post("countordertable",function(test) {
+                var ht = eval("("+test+ ")");
+                $.each(ht,function(index,m) {
+                    html+=m;
+
+                });
+                //alert(html);
+                if(html=="无新订单"){
+                    //没有订单
+                }else{
+                    $("#xinxiaoxi").show();
+                }
+                html = "";
+
+            });
+
+        }setInterval("time()",20000);
+
+        function fuck(){
+            $("#xinxiaoxi").hide();
+        }setInterval("fuck()",10000);
+    </script>
+    <!--/main-->
+</div>
+
+</body>
+</html>

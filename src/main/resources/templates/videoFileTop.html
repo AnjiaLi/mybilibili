@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>我的哔哩哔哩-视频上传</title>
+
+    <link th:href="@{Homepage/mycssAndimg/css.css}" rel="stylesheet"/>
+
+    <script th:src="@{Homepage/js/jquery-2.0.0.js}"></script>
+
+</head>
+<style>
+
+</style>
+<body>
+<div id="none">
+    <!-- style="width: 100%;height: 60px;background-color: white;" -->
+</div>
+
+<div style="position:relative;left: 30%;">
+
+    <div>
+
+        <form id="upload_form" th:action="@{/uploadVideo}" method="post" style="background-color: white" enctype="multipart/form-data">
+
+            <div>
+                <div><label style="color: black;">请选择投稿视频文件</label></div>
+                <div><input type="file" name="file" id="video"/></div>
+            </div>
+            <div>
+                <div><label style="color: black;">请选择投稿封面壁纸</label></div>
+                <div><input type="file" name="file" id="img"/></div>
+            </div>
+            <div>
+                <div><label style="color: black;">请输入视频标题</label></div>
+                <div><input type="text" name="biaoti" id="biaoti"/></div>
+            </div>
+
+            <div>
+                <div><label style="color: black;">请输入视频标题</label></div>
+                <div><textarea rows="13" name="miaoshu" id="miaoshu" cols="70"></textarea></div>
+            </div>
+
+            <div>
+                <div><label style="color: black;">请选择投放区域</label></div>
+                <div>
+                    <label><input name="VideoType" type="radio" value="1" checked/>动画 </label>
+                    <label><input name="VideoType" type="radio" value="2"/>MAD </label>
+                    <label><input name="VideoType" type="radio" value="3"/>音乐 </label>
+                    <label><input name="VideoType" type="radio" value="1"/>影视 </label>
+                    <label><input name="VideoType" type="radio" value="2"/>原创 </label>
+                </div>
+            </div>
+            <div>
+                <input type="button" id="tougao" value="确认"/>
+                <input type="button" id="fanhui" value="取消返回"/>
+                <input type="submit" id="submit" value="立即投稿" disabled="disabled"/>
+            </div>
+            <!--/*@thymesVar id="VideoUploadFeedback" type="java"*/-->
+            <p th:if="${VideoUploadFeedback}" style="text-align: center">
+                <span style="color: red" th:text="${VideoUploadFeedback}"></span>
+            </p>
+
+            <!--/*@thymesVar id="VideoUploadSuccess" type="java"*/-->
+            <p th:if="${VideoUploadSuccess}" style="text-align: center">
+                <span style="color: green" th:text="${VideoUploadSuccess}"></span>
+            </p>
+
+        </form>
+        <div style="display: none;" id="daxiaobuneng"><b style="color: red;">总大小不能超过1g</b></div>
+
+        
+
+
+
+
+    </div>
+</div>
+    <script type="text/javascript">
+        $("#fanhui").click(function () {
+            location.href = "index";
+        })
+
+    </script>
+
+    <script>
+        $("#tougao").click(function () {
+            //判断视频
+            var video = $("#video").val();
+            if (video == "") {
+                alert("请上传投稿的视频");
+                return false;
+            } else {
+                if (!/\.(mp4)$/.test(video)) {
+                    alert("视频格式必须为.MP4格式")
+                    return false;
+                }
+                //判断图片
+                var img = $("#img").val();
+                if (img == "") {
+                    alert("请选择图片");
+                    return false;
+                } else {
+                    if (!/\.(gif|jpg|jpeg|png|GIF|JPG|PNG)$/.test(img)) {
+                        alert("图片类型必须是.gif,jpeg,jpg,png中的一种")
+                        return false;
+                    }
+                }
+                //开始判断输入的内容
+                var biaoti = $("#ibiaoti").val();
+                var miaoshu = $("#miaoshu").val();
+                if (biaoti == "" || miaoshu == "" || miaoshu == "null" || biaoti == "null") {
+                    alert("请正确输入标题和描述");
+                    return false;
+                }
+                //判断文件总大小 不能超1g
+                //用户上传的视频
+                var addImags = $("#video").prop('files');
+                var fileSize = 0;
+                for (var i = 0; i < addImags.length; i++) {
+                    fileSize = $(addImags)[i].size;
+                }
+                //用户上传的图片
+                var addImags2 = $("#img").prop('files');
+                var fileSize2 = 0;
+                for (var i = 0; i < addImags2.length; i++) {
+                    fileSize2 = $(addImags2)[i].size;
+                }
+
+                var zonggongdaxiao = fileSize + fileSize2;
+                var Maxzong = 1073741824;
+                if (zonggongdaxiao > Maxzong) {
+                    $("#daxiaobuneng").show();
+                    alert("对不起 文件过大.无法上传");
+                    return false;
+                }
+
+            }
+            //判断结束
+            $("#tougao").attr('disabled', true); //将button变成不可点击
+            $("#submit").attr('disabled', false); //将button变成不可点击
+        });
+
+
+    </script>
+    <!--         要想获取某个radio的值有以下的几种方法,直接给出代码：
+    1、
+    1.$('input[name="testradio"]:checked').val();2、
+    1.$('input:radio:checked').val();3、
+    1.$('input[@name="testradio"][checked]');4、
+    1.$('input[name="testradio"]').filter(':checked');差不多挺全的了，如果我们要遍历name为testradio的所有radio呢，代码如下
+    1.$('input[name="testradio"]').each(function(){2.alert(this.value);3.});如果要取具体某个radio的值，比如第二个radio的值，这样写
+    1.$('input[name="testradio"]:eq(1)').val() -->
+</body>
+
+
+</html>

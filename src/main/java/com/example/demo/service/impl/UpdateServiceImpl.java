@@ -1,6 +1,6 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.dao.UpdateMapper;
+import com.example.demo.mapper.UpdateMapper;
 import com.example.demo.entity.UserEntity;
 import com.example.demo.service.UpdateService;
 import org.springframework.beans.factory.annotation.Autowired;

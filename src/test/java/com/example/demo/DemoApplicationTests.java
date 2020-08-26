@@ -1,6 +1,6 @@
 package com.example.demo;
 
-import com.example.demo.dao.UserListMapper;
+import com.example.demo.mapper.UserListMapper;
 import com.example.demo.entity.UserEntity;
 import com.example.demo.service.impl.SendEmailService;
 import org.junit.jupiter.api.Test;

@@ -1,13 +1,11 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.dao.DanmuMapper;
+import com.example.demo.mapper.DanmuMapper;
 import com.example.demo.entity.Danmu;
 import com.example.demo.service.DanmuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 @Service

@@ -1,6 +1,6 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.dao.UserListMapper;
+import com.example.demo.mapper.UserListMapper;
 import com.example.demo.entity.*;
 import com.example.demo.service.UserListService;
 import org.springframework.beans.factory.annotation.Autowired;

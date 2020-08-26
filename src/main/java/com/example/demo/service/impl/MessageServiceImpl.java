@@ -1,6 +1,6 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.dao.MessageMapper;
+import com.example.demo.mapper.MessageMapper;
 import com.example.demo.entity.MessageEntity;
 import com.example.demo.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;

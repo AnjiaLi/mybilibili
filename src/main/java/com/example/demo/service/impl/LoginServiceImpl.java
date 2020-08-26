@@ -1,6 +1,6 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.dao.LoginMapper;
+import com.example.demo.mapper.LoginMapper;
 import com.example.demo.entity.OrdertableEntity;
 import com.example.demo.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;

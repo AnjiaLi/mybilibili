@@ -1,6 +1,6 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.dao.RegisterMapper;
+import com.example.demo.mapper.RegisterMapper;
 import com.example.demo.entity.UserEntity;
 import com.example.demo.entity.VideoEntity;
 import com.example.demo.service.RegisterService;

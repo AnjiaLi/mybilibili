@@ -1,7 +1,6 @@
-package com.example.demo.dao;
+package com.example.demo.mapper;
 
 import com.example.demo.entity.Danmu;
-import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 

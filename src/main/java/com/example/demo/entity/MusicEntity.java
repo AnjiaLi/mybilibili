@@ -6,7 +6,7 @@ public class MusicEntity {
     private String musicImage;//视频图片
     private String musicAddress;//视频地址
     private String musiclookTime;//视频时长
-    private String singer;//歌手
+    private String singer;//歌手名字
     private String musicLeaving;//视频留言
     private String musicTime;//视频上传时间
     private String musicState;//视频状态

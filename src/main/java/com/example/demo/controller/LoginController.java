@@ -128,7 +128,7 @@ public class LoginController {
         UserEntity userEntityfromMysql  = userListServiceImpl.userlist(userName);
         System.out.println("getPassWord: "+userEntityfromMysql.getPassWord());
         System.out.println("getUserEmial: "+userEntityfromMysql.getUserEmial());
-
+//hh
         String to=userEntityfromMysql.getUserEmial();
         String subject="找回密码";
         String text="您的密码是："+userEntityfromMysql.getPassWord();

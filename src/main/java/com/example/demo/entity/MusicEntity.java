@@ -1,27 +1,27 @@
 package com.example.demo.entity;
 
 public class MusicEntity {
-    private String musicID; //视频ID
-    private String musicName;//视频名字
-    private String musicImage;//视频图片
-    private String musicAddress;//视频地址
-    private String musiclookTime;//视频时长
+    private int musicID; //ID
+    private String musicName;//名字
+    private String musicImage;//图片
+    private String musicAddress;//地址
+    private String musiclookTime;//时长
     private String singer;//歌手名字
-    private String musicLeaving;//视频留言
-    private String musicTime;//视频上传时间
-    private String musicState;//视频状态
-    private String musiccAtegory;//视频类别
+    private String musicLeaving;//留言
+    private String musicTime;//上传时间
+    private String musicState;//状态
+    private String musiccAtegory;//类别
 
 //1111
 //2222
     //333333
     //4444
 
-    public String getmusicID() {
+    public int getmusicID() {
         return musicID;
     }
 
-    public void setmusicID(String musicID) {
+    public void setmusicID(int musicID) {
         this.musicID = musicID;
     }
 

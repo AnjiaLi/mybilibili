@@ -106,7 +106,7 @@ public class VideoController {
         if (userName==null){
             return "clientLogin";
         }
-        return "videoFileTop";
+        return "musicFileTop";
 
     }
 

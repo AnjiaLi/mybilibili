@@ -1,15 +1,27 @@
 package com.example.demo.entity;
 
-public class FavoriteEntity {
-    private String id;
-    private String userName;
-    private String musicID;
+import com.baomidou.mybatisplus.annotation.TableName;
 
-    public String getId() {
+@TableName(value = "favorite")
+public class FavoriteEntity {
+    private Integer id;
+    private String userName;
+    private Integer musicID;
+
+    public FavoriteEntity(Integer id, String userName, Integer musicID) {
+        this.id = id;
+        this.userName = userName;
+        this.musicID = musicID;
+    }
+
+    public FavoriteEntity() {
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -21,11 +33,20 @@ public class FavoriteEntity {
         this.userName = userName;
     }
 
-    public String getMusicID() {
+    public Integer getMusicID() {
         return musicID;
     }
 
-    public void setMusicID(String musicID) {
+    public void setMusicID(Integer musicID) {
         this.musicID = musicID;
+    }
+
+    @Override
+    public String toString() {
+        return "FavoriteEntity{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", musicID=" + musicID +
+                '}';
     }
 }

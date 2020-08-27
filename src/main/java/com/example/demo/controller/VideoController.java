@@ -100,14 +100,9 @@ public class VideoController {
         return "redirect:/video?dizhi=/static"+dizhi+"&shipingID="+shipingID;
     }
 
-    @RequestMapping("videoFileTop")
+    @RequestMapping("admin/musicFileUpload")
     public String videoFileTop(HttpServletRequest request) {
-        String userName = (String) request.getSession().getAttribute("userName");
-        if (userName==null){
-            return "clientLogin";
-        }
-        return "musicFileTop";
-
+        return "admin/musicFileUpload";
     }
 
     @RequestMapping("test")

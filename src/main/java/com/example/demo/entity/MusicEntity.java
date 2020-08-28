@@ -1,21 +1,19 @@
 package com.example.demo.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
+
+@TableName(value = "music")
 public class MusicEntity {
     private int musicID; //ID
     private String musicName;//名字
     private String musicImage;//图片
     private String musicAddress;//地址
-    private String musiclookTime;//时长
     private String singer;//歌手名字
-    private String musicLeaving;//留言
     private String musicTime;//上传时间
     private String musicState;//状态
-    private String musiccAtegory;//类别
-
-//1111
-//2222
-    //333333
-    //4444
+    private String musicCategory;//类别
+    private Integer musicClick;//点击数
+    private Integer musicComment;//评论数
 
     public int getmusicID() {
         return musicID;
@@ -49,12 +47,7 @@ public class MusicEntity {
         this.musicAddress = musicAddress;
     }
 
-    public String getmusiclookTime() {
-        return musiclookTime;
-    }
-
     public void setmusiclookTime(String musiclookTime) {
-        this.musiclookTime = musiclookTime;
     }
 
     public String getSinger() {
@@ -63,14 +56,6 @@ public class MusicEntity {
 
     public void setSinger(String Singer) {
         this.singer = Singer;
-    }
-
-    public String getmusicLeaving() {
-        return musicLeaving;
-    }
-
-    public void setmusicLeaving(String musicLeaving) {
-        this.musicLeaving = musicLeaving;
     }
 
     public String getmusicTime() {
@@ -90,10 +75,42 @@ public class MusicEntity {
     }
 
     public String getmusiccAtegory() {
-        return musiccAtegory;
+        return musicCategory;
     }
 
-    public void setmusiccAtegory(String musiccAtegory) {
-        this.musiccAtegory = musiccAtegory;
+    public void setmusiccAtegory(String musicCategory) {
+        this.musicCategory = musicCategory;
+    }
+
+    public Integer getMusicClick() {
+        return musicClick;
+    }
+
+    public void setMusicClick(Integer musicClick) {
+        this.musicClick = musicClick;
+    }
+
+    public Integer getMusicComment() {
+        return musicComment;
+    }
+
+    public void setMusicComment(Integer musicComment) {
+        this.musicComment = musicComment;
+    }
+
+    @Override
+    public String toString() {
+        return "MusicEntity{" +
+                "musicID=" + musicID +
+                ", musicName='" + musicName + '\'' +
+                ", musicImage='" + musicImage + '\'' +
+                ", musicAddress='" + musicAddress + '\'' +
+                ", singer='" + singer + '\'' +
+                ", musicTime='" + musicTime + '\'' +
+                ", musicState='" + musicState + '\'' +
+                ", musicCategory='" + musicCategory + '\'' +
+                ", musicClick=" + musicClick +
+                ", musicComment=" + musicComment +
+                '}';
     }
 }

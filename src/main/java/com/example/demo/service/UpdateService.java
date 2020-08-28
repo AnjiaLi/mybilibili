@@ -24,6 +24,8 @@ public interface UpdateService {
 
     boolean delectVideo(String videoID);
 
+    boolean delectMusic(String musicID);
+
     public boolean Update_user(UserEntity user);
 
 

@@ -244,25 +244,39 @@
                         <table width="100%" border="0" cellpadding="3" cellspacing="1" class="table1">
                             <tr>
                                 <th align="center"><input type="checkbox" name="checkbox" id="checkbox3"></th>
-                                <th align="center" style="width: 100px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;">视频ID</th>
-                                <th align="center">视频名字</th>
-                                <th align="center">视频封面</th>
-                                <th align="center">视频时长</th>
-                                <th align="center">视频类型</th>
+                                <th align="center" style="width: 100px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;">音乐ID</th>
+                                <th align="center">歌曲名</th>
+                                <th align="center">歌手名</th>
+                                <th align="center">时长</th>
+                                <th align="center">歌曲分类</th>
+                                <th align="center">歌曲风格</th>
+                                <th align="center">点击量</th>
+                                <th align="center">评论量</th>
                                 <th width="160" align="center">操作</th>
                             </tr>
-                            <tr th:each="vList : ${videoList}">
+                            <tr th:each="music : ${musicList}">
                                 <TD align="center"><input type="checkbox" name="checkbox2" id="checkbox4"></TD>
-                                <TD align="center" style="width: 100px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;" th:text="${vList.videoID}"></TD>
-                                <TD align="center" th:text="${vList.videoName}"></TD>
-                                <TD align="center" th:text="${vList.videoImage}"></TD>
-                                <TD align="center" th:text="${vList.videoTime}"></TD>
-                                <TD align="center" th:text="${vList.videocAtegory}"></TD>
+                                <TD align="center" th:text="${music.getmusicID()}"></TD>
+                                <TD align="center" th:text="${music.getmusicName()}"></TD>
+                                <TD align="center" th:text="${music.getSinger()}"></TD>
+                                <TD align="center" th:text="${music.getmusicTime()}"></TD>
+                                <TD align="center" th:if="${music.getmusicState()=='1'}" th:text="非VIP"></TD>
+                                <TD align="center" th:if="${music.getmusicState()=='2'}" th:text="VIP歌曲"></TD>
+                                <div th:switch = "${music.getmusiccAtegory()}">
+                                    <TD align="center" th:case="1" th:text="韩语"></TD>
+                                    <TD align="center" th:case="2" th:text="华语"></TD>
+                                    <TD align="center" th:case="3" th:text="欧美"></TD>
+                                    <TD align="center" th:case="4" th:text="日语"></TD>
+                                    <TD align="center" th:case="5" th:text="粤语"></TD>
+                                </div>
+                                <TD align="center" th:text="${music.getMusicClick()}"></TD>
+                                <TD align="center" th:text="${music.getMusicComment()}"></TD>
                                 <TD width="200px" align="center">
                                     <a href="">
                                         <BUTTON style="height:21px; font-size:12px" >查看</BUTTON>
+
                                     </a>
-                                    <a th:href="'delectVideo?videoID='+${vList.videoID}">
+                                    <a th:href="'delectMusic?musicID='+${music.getmusicID()}">
                                         <BUTTON style="height:21px; font-size:12px" >删除</BUTTON>
                                     </a>
                                 </TD>
@@ -322,7 +336,6 @@
                 <span style="color: red" th:text="${MusicUploadFeedback}"></span>
             </p>
 
-            <!--/*@thymesVar id="VideoUploadSuccess" type="java"*/-->
             <p th:if="${MusicUploadSuccess}" style="text-align: center">
                 <span style="color: green" th:text="${MusicUploadSuccess}"></span>
             </p>

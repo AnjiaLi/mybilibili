@@ -103,6 +103,25 @@
     </div>
 </header>
 
+<div id="banner">
+    <div class="page-width clearfix">
+        <div class="pic">
+            <div class="content" >
+                <img src="bilibiliIndex/images/cont/slider_img1.png" alt="#">
+                <img src="bilibiliIndex/images/cont/slider_img2.png" alt="#">
+                <img src="bilibiliIndex/images/cont/slider_img3.png" alt="#">
+                <img src="bilibiliIndex/images/cont/slider_img4.png" alt="#">
+            </div>
+            <ul class="index" >
+                <li class="first" ></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
 <nav id="nav">
     <div class="page-width clearfix">
         <ul class="nav-list">
@@ -194,40 +213,7 @@
     </div>
 </nav>
 
-<div id="banner">
-    <div class="page-width clearfix">
-        <div class="pic">
-            <div class="content" >
-                <img src="bilibiliIndex/images/cont/slider_img1.png" alt="#">
-                <img src="bilibiliIndex/images/cont/slider_img2.png" alt="#">
-                <img src="bilibiliIndex/images/cont/slider_img3.png" alt="#">
-                <img src="bilibiliIndex/images/cont/slider_img4.png" alt="#">
-            </div>
-            <ul class="index" >
-                <li class="first" ></li>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
-        </div>
-        <div class="banner-list fr">
 
-            <ul>
-                <li th:each="videolistimit6MAD : ${videolistimit6MAD}">
-                    <a th:href="'video?dizhi='+${videolistimit6MAD.videoAddress}+'&shipingID='+${videolistimit6MAD.videoID}">
-                    <img th:src="${videolistimit6MAD.videoImage}" alt="#">
-                    <div class="info">
-                        <p class="title" th:text="${videolistimit6MAD.videoName }"></p>
-                        <p class="author">up主：admin</p>
-                        <p class="play" th:text="${videolistimit6MAD.videolookTime}">播放：</p>
-                    </div>
-                </a></li>
-            </ul>
-            <a href="#" class="btn btn-prev">昨日</a> <a href="#"
-                                                       class="btn btn-next">一周</a>
-        </div>
-    </div>
-</div>
 
 <div id="main">
     <div class="page-width">

@@ -1,11 +1,15 @@
 package com.example.demo.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
 import org.springframework.data.redis.core.index.Indexed;
 
 @RedisHash("UserEntity")
+@TableName(value = "user")
 public class UserEntity {
+    @TableId
     private String userID;//用户ID
     private String userMingzi;//用户真实名字
     @Id

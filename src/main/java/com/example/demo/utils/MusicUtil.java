@@ -19,17 +19,8 @@ public class MusicUtil {
         ID3v23Tag.logger.setLevel(Level.SEVERE);
     }
 
-    public static void getMusicDuration() {
-        File file = new File("C:\\Users\\Administrator\\Desktop\\story.mp3");
-        try {
-            MP3File f = (MP3File) AudioFileIO.read(file);
-            MP3AudioHeader audioHeader = (MP3AudioHeader) f.getAudioHeader();
-            System.out.println(audioHeader.getTrackLength());
-            System.out.println(audioHeader.getTrackLengthAsString());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+    public static String getMusicDuration(String path) {
+        return getMusicDuration(new File(path));
     }
 
     public static String getMusicDuration(File file) {
@@ -46,32 +37,24 @@ public class MusicUtil {
         return duration;
     }
 
-//    public static List<String> getMusicDuration(List<File> mp3List) {
-//        int size = mp3List.size();
-//        List<String> durationList = new ArrayList<>(size);
-//        MP3File f;
-//        MP3AudioHeader audioHeader;
-//        try {
-//            for (int i = 0; i < size; i++) {
-//                f = (MP3File) AudioFileIO.read(mp3List.get(i));
-//                audioHeader = (MP3AudioHeader) f.getAudioHeader();
-//                durationList.add(audioHeader.getTrackLengthAsString());
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return durationList;
-//    }
-
-    public static List<String> getMusicDuration(List<String> mp3List) {
-        System.out.println(mp3List.get(1).getClass());
+    public static List<String> getMusicDuration(List mp3List) {
+//        System.out.println(mp3List.get(0) instanceof File);
         int size = mp3List.size();
         List<String> durationList = new ArrayList<>(size);
+        boolean isFile = false, isString = false;
+        if (size != 0) {
+            isFile = mp3List.get(0).getClass().equals(File.class);
+            isString = mp3List.get(0).getClass().equals(String.class);
+        }
         MP3File f;
         MP3AudioHeader audioHeader;
         try {
             for (int i = 0; i < size; i++) {
-                f = (MP3File) AudioFileIO.read(new File(mp3List.get(i)));
+                if (isFile)
+                    f = (MP3File) AudioFileIO.read((File) mp3List.get(i));
+                else if (isString)
+                    f = (MP3File) AudioFileIO.read(new File((String) mp3List.get(i)));
+                else break;
                 audioHeader = (MP3AudioHeader) f.getAudioHeader();
                 durationList.add(audioHeader.getTrackLengthAsString());
             }

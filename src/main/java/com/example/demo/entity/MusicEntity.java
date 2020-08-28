@@ -1,10 +1,12 @@
 package com.example.demo.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 @TableName(value = "music")
 public class MusicEntity {
-    private int musicID; //ID
+    @TableId
+    private Integer musicID; //ID
     private String musicName;//名字
     private String musicImage;//图片
     private String musicAddress;//地址
@@ -15,11 +17,11 @@ public class MusicEntity {
     private Integer musicClick;//点击数
     private Integer musicComment;//评论数
 
-    public int getmusicID() {
+    public Integer getmusicID() {
         return musicID;
     }
 
-    public void setmusicID(int musicID) {
+    public void setmusicID(Integer musicID) {
         this.musicID = musicID;
     }
 
@@ -45,9 +47,6 @@ public class MusicEntity {
 
     public void setmusicAddress(String musicAddress) {
         this.musicAddress = musicAddress;
-    }
-
-    public void setmusiclookTime(String musiclookTime) {
     }
 
     public String getSinger() {

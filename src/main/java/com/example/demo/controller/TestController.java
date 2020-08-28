@@ -1,9 +1,7 @@
 package com.example.demo.controller;
 
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.example.demo.entity.FavoriteEntity;
 import com.example.demo.entity.MusicEntity;
-import com.example.demo.entity.UserEntity;
 import com.example.demo.service.impl.FavoriteServiceImpl;
 import com.example.demo.service.impl.MusicServiceImpl;
 import com.example.demo.service.impl.UserListServiceImpl;
@@ -18,7 +16,6 @@ import java.util.stream.Collectors;
 @RestController
 public class TestController {
 
-    // TODO: 2020/8/28 userName=>VIP
     @Autowired
     FavoriteServiceImpl favoriteService;
     @Autowired
@@ -52,13 +49,12 @@ public class TestController {
     public void update() {
         // TODO: 2020/8/28 下面方法更新音乐时长
 //        updateAllMusicTime();
+        userListService.updateToVip("admin");
     }
 
     public void select() {
         System.out.println(favoriteService.listObjs());
         System.out.println(favoriteService.list());
-
-        userListService.update(new UpdateWrapper<UserEntity>().set("userState","ni").eq("userName","admin"));
     }
 
     public void updateAllMusicTime() {

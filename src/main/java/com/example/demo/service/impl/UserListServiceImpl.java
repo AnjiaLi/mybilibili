@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.demo.entity.*;
 import com.example.demo.mapper.UserListMapper;
@@ -14,6 +15,11 @@ public class UserListServiceImpl extends ServiceImpl<UserListMapper, UserEntity>
 
 	@Autowired
 	UserListMapper userListMapper;
+
+	@Override
+	public boolean updateToVip(String userName) {
+		return this.update(new UpdateWrapper<UserEntity>().set("userState","VIP").eq("userName",userName));
+	}
 
 	@Override
 	public UserEntity userlist(String userName) {

@@ -55,4 +55,6 @@ public interface UpdateMapper {
     @Delete("delete from video where videoID = #{videoID}")
     public int delectVideo(String videoID) ;
 
+    @Delete("delete from music where musicID = #{musicID}")
+    public int delectMusic(String musicID) ;
 }

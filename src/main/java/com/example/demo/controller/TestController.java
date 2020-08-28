@@ -1,9 +1,12 @@
 package com.example.demo.controller;
 
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.example.demo.entity.FavoriteEntity;
 import com.example.demo.entity.MusicEntity;
+import com.example.demo.entity.UserEntity;
 import com.example.demo.service.impl.FavoriteServiceImpl;
 import com.example.demo.service.impl.MusicServiceImpl;
+import com.example.demo.service.impl.UserListServiceImpl;
 import com.example.demo.utils.MusicUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +23,8 @@ public class TestController {
     FavoriteServiceImpl favoriteService;
     @Autowired
     MusicServiceImpl musicService;
+    @Autowired
+    UserListServiceImpl userListService;
 
     @GetMapping(value = "/test")
     public String test() {
@@ -27,7 +32,7 @@ public class TestController {
 //            insert();
             delete();
             update();
-//            select();
+            select();
         } catch (Exception e) {
 //            e.printStackTrace();
         }
@@ -52,6 +57,8 @@ public class TestController {
     public void select() {
         System.out.println(favoriteService.listObjs());
         System.out.println(favoriteService.list());
+
+        userListService.update(new UpdateWrapper<UserEntity>().set("userState","ni").eq("userName","admin"));
     }
 
     public void updateAllMusicTime() {

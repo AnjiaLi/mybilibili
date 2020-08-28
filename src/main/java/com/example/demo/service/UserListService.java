@@ -1,10 +1,11 @@
 package com.example.demo.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.demo.entity.*;
 
 import java.util.List;
 
-public interface UserListService {
+public interface UserListService extends IService<UserEntity> {
 	
 	/**
 	 *  根据用户的名字 查询出用户的所有信息

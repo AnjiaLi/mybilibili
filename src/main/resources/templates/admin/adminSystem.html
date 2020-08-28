@@ -9,10 +9,11 @@
     <link th:href="@{../../User_Data_Update/css/jiazaitoubu.css}" rel="stylesheet"/>
     <link th:href="@{../../User_Data_Update/css/shangchuan.css}" rel="stylesheet"/>
     <link th:href="@{../../User_Data_Update/css/center.css}" rel="stylesheet"/>
+    <link th:href="@{../../Homepage/mycssAndimg/css.css}" rel="stylesheet"/>
 
 
 
-
+    <script th:src="@{../../Homepage/js/jquery-2.0.0.js}"></script>
     <script th:src="@{../../Homepage/js/jquery.min.js}"></script>
     <script th:src="@{../../Homepage/js/sHover.min.js}"></script>
     <script th:src="@{../../adminjs/chaxunjs.js}"></script>
@@ -46,6 +47,7 @@
         function showUserInfo() {
             $("#li010").show();
             $("#li020").hide();
+            $("#li030").hide();
         }
         //关闭灰色 jQuery 遮罩
         function closeUserInfo() {
@@ -59,12 +61,30 @@
         function showVideoInfo() {
             $("#li020").show();
             $("#li010").hide();
+            $("#li030").hide();
         }
         //关闭灰色 jQuery 遮罩
         function closeVideoInfo() {
             $("#li020").hide();
         }
     </script>
+
+
+
+    <script type="text/javascript">
+        //显示灰色 jQuery 遮罩层
+        function showMusicUpload() {
+            $("#li030").show();
+            $("#li010").hide();
+            $("#li020").hide();
+        }
+        //关闭灰色 jQuery 遮罩
+        function closeMusicUpload() {
+            $("#li030").hide();
+        }
+    </script>
+
+
 
 
 </head>
@@ -75,7 +95,7 @@
 <div class="header">
     <div class="header03"></div>
     <div class="header01"></div>
-    <div class="header02">注册用户信息管理系统</div>
+    <div class="header02">后台管理</div>
 
 </div>
 <div class="left" id="LeftBox">
@@ -95,18 +115,25 @@
         <div class="left02top">
             <div class="left02top_right"></div>
             <div class="left02top_left"></div>
-            <div class="left02top_c"><a href="javascript:showVideoInfo();">视频信息管理</a></div>
+            <div class="left02top_c"><a href="javascript:showVideoInfo();">音乐信息管理</a></div>
         </div>
     </div>
-    <div class="left01">
-        <div class="left03_right"></div>
-        <div class="left01_left"></div>
-        <form th:action="@{/logout}" method="post">
-            <input class="left03_c" type="submit" value="安全退出"/>
-        </form>
+    <div class="left02">
+        <div class="left02top">
+            <div class="left02top_right"></div>
+            <div class="left02top_left"></div>
+            <div class="left02top_c"><a href="javascript:showMusicUpload();">音乐上传</a></div>
+        </div>
     </div>
+
+    <form th:action="@{/logout}" method="post">
+        <input class="left03_c" type="submit" value="安全退出" style="line-height: 20px"/>
+    </form>
 </div>
 <div class="rrcc" id="RightBox">
+
+
+
     <div class="right" id="li010">
         <div class="right01"><img src="../../Houtai/images/04.gif" /> 用户信息查询 &gt; </div>
         <table width="100%" height="100%" border="0" cellspacing="0" cellpadding="3">
@@ -211,33 +238,45 @@
     <div class="right" id="li020">
         <div class="right01"><img src="../../Houtai/images/04.gif" /> 视频信息查询 &gt; </div>
         <table width="100%" height="95%" border="0" cellspacing="0" cellpadding="3">
-
-
             <tr>
                 <td height="100%" valign="top">
                     <div style="overflow:auto;height:100%; width:100%">
                         <table width="100%" border="0" cellpadding="3" cellspacing="1" class="table1">
                             <tr>
                                 <th align="center"><input type="checkbox" name="checkbox" id="checkbox3"></th>
-                                <th align="center" style="width: 100px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;">视频ID</th>
-                                <th align="center">视频名字</th>
-                                <th align="center">视频封面</th>
-                                <th align="center">视频时长</th>
-                                <th align="center">视频类型</th>
+                                <th align="center" style="width: 100px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;">音乐ID</th>
+                                <th align="center">歌曲名</th>
+                                <th align="center">歌手名</th>
+                                <th align="center">时长</th>
+                                <th align="center">歌曲分类</th>
+                                <th align="center">歌曲风格</th>
+                                <th align="center">点击量</th>
+                                <th align="center">评论量</th>
                                 <th width="160" align="center">操作</th>
                             </tr>
-                            <tr th:each="vList : ${videoList}">
+                            <tr th:each="music : ${musicList}">
                                 <TD align="center"><input type="checkbox" name="checkbox2" id="checkbox4"></TD>
-                                <TD align="center" style="width: 100px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;" th:text="${vList.videoID}"></TD>
-                                <TD align="center" th:text="${vList.videoName}"></TD>
-                                <TD align="center" th:text="${vList.videoImage}"></TD>
-                                <TD align="center" th:text="${vList.videoTime}"></TD>
-                                <TD align="center" th:text="${vList.videocAtegory}"></TD>
+                                <TD align="center" th:text="${music.getmusicID()}"></TD>
+                                <TD align="center" th:text="${music.getmusicName()}"></TD>
+                                <TD align="center" th:text="${music.getSinger()}"></TD>
+                                <TD align="center" th:text="${music.getmusicTime()}"></TD>
+                                <TD align="center" th:if="${music.getmusicState()=='1'}" th:text="非VIP"></TD>
+                                <TD align="center" th:if="${music.getmusicState()=='2'}" th:text="VIP歌曲"></TD>
+                                <div th:switch = "${music.getmusiccAtegory()}">
+                                    <TD align="center" th:case="1" th:text="韩语"></TD>
+                                    <TD align="center" th:case="2" th:text="华语"></TD>
+                                    <TD align="center" th:case="3" th:text="欧美"></TD>
+                                    <TD align="center" th:case="4" th:text="日语"></TD>
+                                    <TD align="center" th:case="5" th:text="粤语"></TD>
+                                </div>
+                                <TD align="center" th:text="${music.getMusicClick()}"></TD>
+                                <TD align="center" th:text="${music.getMusicComment()}"></TD>
                                 <TD width="200px" align="center">
                                     <a href="">
                                         <BUTTON style="height:21px; font-size:12px" >查看</BUTTON>
+
                                     </a>
-                                    <a th:href="'delectVideo?videoID='+${vList.videoID}">
+                                    <a th:href="'delectMusic?musicID='+${music.getmusicID()}">
                                         <BUTTON style="height:21px; font-size:12px" >删除</BUTTON>
                                     </a>
                                 </TD>
@@ -247,6 +286,61 @@
                 </td>
             </tr>
         </table>
+    </div>
+
+
+    <div class="right" id="li030">
+        <div class="right01"><img src="../../Houtai/images/04.gif" /> 音乐上传 &gt; </div>
+        <form id="upload_form" th:action="@{/uploadMusic}" method="post" style="background-color: white" enctype="multipart/form-data">
+
+            <div>
+                <div><label style="color: black;">请选择音乐文件</label></div>
+                <div><input type="file" name="file" id="music"/></div>
+            </div>
+            <div>
+                <div><label style="color: black;">请选择音乐封面</label></div>
+                <div><input type="file" name="file" id="musicImg"/></div>
+            </div>
+            <div>
+                <div><label style="color: black;">请输入歌曲名</label></div>
+                <div><input type="text" name="musicName" id="musicName"/></div>
+            </div>
+
+            <div>
+                <div><label style="color: black;">请输入歌手名</label></div>
+                <div><input type="text" name="singer" id="singer"/></div>
+            </div>
+
+            <div>
+                <div><label style="color: black;">请选择歌曲分类</label></div>
+                <div>
+                    <label><input name="musicAtegory" type="radio" value="1" checked/>韩语 </label>
+                    <label><input name="musicAtegory" type="radio" value="2"/>华语 </label>
+                    <label><input name="musicAtegory" type="radio" value="3"/>欧美 </label>
+                    <label><input name="musicAtegory" type="radio" value="4"/>日语 </label>
+                    <label><input name="musicAtegory" type="radio" value="5"/>粤语 </label>
+                </div>
+                <div><label style="color: black;">请选择是否为付费</label></div>
+                <div>
+                    <label><input name="musicState" type="radio" value="1" checked/>普通 </label>
+                    <label><input name="musicState" type="radio" value="2"/>VIP </label>
+                </div>
+            </div>
+            <div>
+                <input type="button" id="tougao" value="确认"/>
+                <input type="button" id="fanhui" value="取消返回"/>
+                <input type="submit" id="submit" value="立即投稿" disabled="disabled"/>
+            </div>
+            <!--/*@thymesVar id="MusicUploadFeedback" type="java"*/-->
+            <p th:if="${MusicUploadFeedback}" style="text-align: center">
+                <span style="color: red" th:text="${MusicUploadFeedback}"></span>
+            </p>
+
+            <p th:if="${MusicUploadSuccess}" style="text-align: center">
+                <span style="color: green" th:text="${MusicUploadSuccess}"></span>
+            </p>
+
+        </form>
     </div>
 </div>
 

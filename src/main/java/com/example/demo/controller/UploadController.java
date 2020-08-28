@@ -75,7 +75,7 @@ public class UploadController {
             e.printStackTrace();
             System.out.println("音乐上传失败");
             request.setAttribute("MusicUploadFeedback", "音乐上传失败!");
-            return "musicFileTop";
+            return "musicFileUpload";
         }
 
 
@@ -90,7 +90,7 @@ public class UploadController {
             e.printStackTrace();
             System.out.println("封面上传失败");
             request.setAttribute("MusicUploadFeedback", "封面上传失败!");
-            return "musicFileTop";
+            return "musicFileUpload";
         }
 
 
@@ -129,7 +129,7 @@ public class UploadController {
         System.out.println("立即投稿");
 
 
-        return "musicFileTop";
+        return "musicFileUpload";
     }
 
 }

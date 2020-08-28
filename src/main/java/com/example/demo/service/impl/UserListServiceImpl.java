@@ -1,7 +1,8 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.mapper.UserListMapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.demo.entity.*;
+import com.example.demo.mapper.UserListMapper;
 import com.example.demo.service.UserListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UserListServiceImpl implements UserListService {
+public class UserListServiceImpl extends ServiceImpl<UserListMapper, UserEntity> implements UserListService {
 
 	@Autowired
 	UserListMapper userListMapper;

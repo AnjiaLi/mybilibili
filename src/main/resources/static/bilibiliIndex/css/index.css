@@ -100,7 +100,7 @@ header {
 }
 
 .pic-list__wrapper .item:hover .img-info a {
-    color: #00a1d6;
+    color: #FFB6C1;
 }
 
 .pic-list__wrapper .img-info {
@@ -502,10 +502,10 @@ header {
     width: 100%;
     height: 24px;
     line-height: 24px;
-    background-color: #e5e9ef;
+    background-color: #c84659;
     border-radius: 4px;
     text-align: center;
-    color: #333;
+    color: #fff;
 }
 
 .main-side__cont .more:hover {
@@ -547,7 +547,7 @@ header {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: #c84659;
+    background-color:#530a15;
 }
 
 .header-top {
@@ -1998,7 +1998,7 @@ header {
 .sideBar-list a:hover,
 .sideBar-list a.cur {
     color: #fff;
-    background-color: #00a1d6;
+    background-color: #FFB6C1;
 }
 
 .sideBar-list a:last-child {

@@ -1,9 +1,10 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.OrdertableEntity;
+import com.example.demo.entity.MusicEntity;
 import com.example.demo.entity.UserEntity;
 import com.example.demo.entity.VideoEntity;
 import com.example.demo.redis.UserEntityRepository;
+import com.example.demo.service.impl.MusicServiceImpl;
 import com.example.demo.service.impl.UpdateServiceImpl;
 import com.example.demo.service.impl.UserListServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,8 @@ public class AdminSystemController {
     @Autowired
     UpdateServiceImpl updateServiceImpl;
     @Autowired
+    MusicServiceImpl musicServiceImpl;
+    @Autowired
     UserEntityRepository repository;
 
     @RequestMapping("admin")
@@ -32,14 +35,17 @@ public class AdminSystemController {
     }
     @RequestMapping("/admin/adminSystem")
     public ModelAndView adminSystem(HttpServletRequest request) {
-        // 设置一个默认从第一条开始查询 只查询出15条记录
         int test = 0;
         List<UserEntity> userList = userListServiceImpl.userlistpage(test);
         List<VideoEntity> videoList = userListServiceImpl.allvideolist();
+        List<MusicEntity> musicList = musicServiceImpl.list();
         System.out.println(videoList.size());
         Map model = new HashMap();
         model.put("userList", userList);
-        model.put("videoList", videoList);
+        model.put("musicList", musicList);
+        for (MusicEntity music:musicList){
+            System.out.println(music.toString());
+        }
         return new ModelAndView("admin/adminSystem", model);
     }
 
@@ -78,6 +84,13 @@ public class AdminSystemController {
     public String delectVideo(String videoID,HttpServletRequest request) {
         System.out.println("videoID: "+videoID);
         updateServiceImpl.delectVideo(videoID);
+        return "redirect:/admin/adminSystem";
+    }
+
+    @RequestMapping("admin/delectMusic")
+    public String delectMusic(String musicID,HttpServletRequest request) {
+        System.out.println("musicID: "+musicID);
+        updateServiceImpl.delectMusic(musicID);
         return "redirect:/admin/adminSystem";
     }
 

@@ -6,9 +6,13 @@ import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.request.AlipayTradePagePayRequest;
 import com.alipay.api.request.AlipayTradeWapPayRequest;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.example.demo.config.AlipayConfig;
 import com.example.demo.entity.AlipayEntity;
+import com.example.demo.entity.UserEntity;
+import com.example.demo.service.impl.UserListServiceImpl;
 import com.example.demo.utils.AlipayUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +27,9 @@ import java.util.Map;
 
 @Controller
 public class AlipayController {
+
+    @Autowired
+    UserListServiceImpl userListService;
     /**
      * 支付宝完成回调页面(不可信回调)
      */
@@ -46,6 +53,9 @@ public class AlipayController {
         System.out.println("out_trade_no:" + out_trade_no);
         // 这里一般都是 重定向 payed的controller, 然后携带对应的信息如:return "redirect:/alipay/success?out_trade_no=" + out_trade_no;
         // payed的controller根据out_trade_no获取支付结果,并且给出页面提示
+
+        //设置数据库用户状态为VIP
+        userListService.update(new UpdateWrapper<UserEntity>().set("userState","VIP").eq("userName","admin"));
 
         return "支付完成";
     }
@@ -73,7 +83,7 @@ public class AlipayController {
         }
         return rsaCheck ? "success" : "failure";
     }
-        @RequestMapping("/pay/phone")
+    @RequestMapping("/pay/phone")
     public String pay() {
 
         AlipayEntity AlipayEntity = new AlipayEntity();
@@ -129,14 +139,14 @@ public class AlipayController {
         // 设置订单单号,需要保证唯一性
         AlipayEntity.setOut_trade_no(out_trade_no);
         // 设置支付金额
-        AlipayEntity.setTotal_amount("0.01");
+        AlipayEntity.setTotal_amount("10");
         // 设置支付标题
-        AlipayEntity.setSubject("hbq-test-title");
+        AlipayEntity.setSubject("购买VIP服务");
         // 设置订单有效时长(30分钟)
         AlipayEntity.setTimeout_express("30m");
         AlipayEntity.setProduct_code("FAST_INSTANT_TRADE_PAY");
         //备注
-        AlipayEntity.setBody("Iphone6 16G");
+        AlipayEntity.setBody("购买VIP服务");
 
         AlipayEntity.setPassback_params("merchantBizType%3d3C%26merchantBizNo%3d2016010101111");
         // 对象转为json字符串

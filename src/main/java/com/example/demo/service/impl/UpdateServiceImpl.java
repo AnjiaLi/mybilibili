@@ -102,6 +102,16 @@ public class UpdateServiceImpl implements UpdateService {
         return false;
     }
 
+
+    @Override
+    public boolean delectMusic(String musicID) {
+        int num = updateMapper.delectMusic(musicID);
+        if(num>0){
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public boolean Update_user(UserEntity user) {
         int num = updateMapper.Update_user(user);

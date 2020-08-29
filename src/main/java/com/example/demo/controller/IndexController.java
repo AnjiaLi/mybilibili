@@ -94,7 +94,6 @@ public class IndexController {
         String urlxxx="upload123/"+name + "." + ext;
 
         int i=0;
-        //=dataShowService.insertIntoTable(dkrs,bjmc,bjrs,lsmc,fdymc,fdybh,urlxxx);
         if(i>0){
             map.put("success","ok");
             map.put("msg","添加成功");

@@ -53,13 +53,14 @@ public class MusicUtil {
                 if (isFile)
                     f = (MP3File) AudioFileIO.read((File) mp3List.get(i));
                 else if (isString)
-                    f = (MP3File) AudioFileIO.read(new File((String) mp3List.get(i)));
+                    f = (MP3File) AudioFileIO.read(new File((String) "src/main/resources" + mp3List.get(i)));
                 else break;
                 audioHeader = (MP3AudioHeader) f.getAudioHeader();
                 durationList.add(audioHeader.getTrackLengthAsString());
             }
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
+            durationList.add("00:00");
         }
         return durationList;
     }

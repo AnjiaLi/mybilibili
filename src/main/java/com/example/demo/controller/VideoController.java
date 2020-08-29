@@ -108,7 +108,7 @@ public class VideoController {
     @RequestMapping("test")
     public String test(HttpServletRequest request) {
 
-        return "/test";
+        return "testajax";
 
     }
 
@@ -117,7 +117,7 @@ public class VideoController {
     public String test1(HttpServletRequest request,String userName) {
         System.out.println("hello6516841348");
         System.out.println(userName);
-        return "/test";
+        return "testajax";
 
     }
 

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>hello</title>
+
+
+    <script th:src="@{Homepage/js/jquery.min.js}"></script>
+    <script th:src="@{https://code.jquery.com/jquery-3.5.1.js}"></script>
+
+
+    <style type="text/css">
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Open Sans", sans-serif;
+        }
+
+        body {
+            background: #786fa6;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .newsletter {
+            background: linear-gradient(125deg, #778beb, #f8a5c2);
+            width: 500px;
+            padding: 60px;
+            text-align: center;
+            box-shadow: 0 0 20px #00000060;
+        }
+
+        .newsletter h1 {
+            color: #fff;
+            font-size: 36px;
+            line-height: 40px;
+        }
+
+        .newsletter h1 span {
+            display: block;
+            font-size: 38px;
+        }
+
+        .newsletter p {
+            color: #fff;
+            font-size: 14px;
+            margin: 10px 0;
+        }
+
+        .txtb {
+            width: 100%;
+            height: 70px;
+            background: #f1f1f199;
+            border-radius: 40px;
+            position: relative;
+            margin-top: 40px;
+        }
+
+        .txtb input {
+            width: 100%;
+            height: 70px;
+            border-radius: 40px;
+            border: 0;
+            background: none;
+            padding: 0 30px;
+            outline: none;
+            font-size: 15px;
+            padding-right: 80px;
+        }
+
+        .txtb button {
+            background: #574b90;
+            border: 0;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            outline: none;
+            cursor: pointer;
+            color: #fff;
+            transition: 0.3s linear;
+        }
+
+        .txtb button:hover {
+            opacity: .5;
+        }
+
+
+        #box1 {
+            background-color: black;
+            border: 5px solid rgba(0, 0, 0, 0.4);
+            height: 400px;
+            width: 400px;
+            left: 50%;
+            margin: -200px 0 0 -200px;
+            padding: 1px;
+            position: fixed !important;
+            /* 浮动对话框 */
+            position: absolute;
+            top: 30%;
+            z-index: 5;
+            border-radius: 50px;
+            display: none;
+        }
+
+        .box {
+            z-index: 5;
+            width: 300px;
+            padding: 40px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #FF4081;
+            text-align: center;
+        }
+
+        .box h1 {
+            color: white;
+            font-weight: 500;
+        }
+
+        .box input[type = "text"] {
+            border: 0;
+            background: none;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid #3498db;
+            padding: 14px 10px;
+            width: 200px;
+            outline: none;
+            color: white;
+            background: white;
+            border-radius: 24px;
+            transition: 0.25s;
+        }
+
+        .box input[type = "text"]:focus {
+            width: 280px;
+            border-color: #2ecc71;
+        }
+
+        .box input[type = "submit"], .box input[type = "button"] {
+            border: 0;
+            background: none;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid #2ecc71;
+            padding: 14px 40px;
+            outline: none;
+            color: white;
+            border-radius: 24px;
+            transition: 0.25s;
+            cursor: pointer;
+        }
+
+        .box input[type = "submit"]:hover, .box input[type = "button"]:hover {
+            background: #2ecc71;
+        }
+
+
+    </style>
+
+
+    <script type="text/javascript">
+        //显示灰色 jQuery 遮罩层
+        function showBg() {
+            $("#box1").show();
+        }
+
+        //关闭灰色 jQuery 遮罩
+        function closeBg() {
+            $("#box1").hide();
+        }
+    </script>
+
+</head>
+<body>
+<div class="newsletter">
+
+<!--    <form action="/upload_test" method="post">-->
+<!--        &lt;!&ndash; name : 对应我们servlet去获取前台文本框的值的 key &ndash;&gt;-->
+<!--        用户名：<input id="nmm" name="userName" type="text"/>-->
+<!--        密码：<input name="userPass" type="password" />-->
+<!--        <button type="button">登录</button>-->
+
+<!--    </form>-->
+
+<!--    <form id= "uploadForm">-->
+<!--        <p >指定文件名： <input type="text" name="filename" value= ""/></p >-->
+<!--        <p >上传文件： <input type="file" name="file1" id="file1"  multiple="multiple"  /></p>-->
+<!--        <p >上传文件： <input type="file" name="file2" id="file2" /></p>-->
+<!--        <p >上传文件： <input type="file" name="file3" id="file3" /></p>-->
+<!--        //这里是为了做混合表单上传加的，不需要的可以忽略-->
+<!--        <p>姓名：<input  type="text" id="username" ></p>-->
+<!--        <input type="button" value="上传" id="uploadBtn" />-->
+<!--    </form>-->
+
+
+    <form id="upload_form" style="background-color: white" enctype="multipart/form-data">
+
+        <div>
+            <div><label style="color: black;">请选择音乐文件</label></div>
+            <div><input type="file" name="file" id="music" multiple="multiple"/></div>
+        </div>
+        <div>
+            <div><label style="color: black;">请选择音乐封面</label></div>
+            <div><input type="file" name="file" id="musicImg"/></div>
+        </div>
+        <div>
+            <div><label style="color: black;">请输入歌曲名</label></div>
+            <div><input type="text" name="musicName" id="musicName"/></div>
+        </div>
+
+        <div>
+            <div><label style="color: black;">请输入歌手名</label></div>
+            <div><input type="text" name="singer" id="singer"/></div>
+        </div>
+
+        <div>
+            <div><label style="color: black;">请选择歌曲分类</label></div>
+            <div id="musicCategoryRadioList">
+                <label><input name="musicCategory" type="radio" value="1" checked/>韩语 </label>
+                <label><input name="musicCategory" type="radio" value="2"/>华语 </label>
+                <label><input name="musicCategory" type="radio" value="3"/>欧美 </label>
+                <label><input name="musicCategory" type="radio" value="4"/>日语 </label>
+                <label><input name="musicCategory" type="radio" value="5"/>粤语 </label>
+            </div>
+            <div><label style="color: black;">请选择是否为付费</label></div>
+            <div id="musicStateRadioList">
+                <label><input name="musicState" type="radio" value="1" checked/>普通 </label>
+                <label><input name="musicState" type="radio" value="2"/>VIP </label>
+            </div>
+        </div>
+        <div>
+            <input type="button" id="tougao" value="确认"/>
+            <input type="button" id="fanhui" value="取消返回"/>
+            <input type="button" id="submit" value="立即投稿" disabled="disabled"/>
+        </div>
+        <!--/*@thymesVar id="MusicUploadFeedback" type="java"*/-->
+        <p th:if="${MusicUploadFeedback}" style="text-align: center">
+            <span style="color: red" th:text="${MusicUploadFeedback}"></span>
+        </p>
+
+        <!--/*@thymesVar id="MusicUploadSuccess" type="java"*/-->
+        <p th:if="${MusicUploadSuccess}" style="text-align: center">
+            <span style="color: green" th:text="${MusicUploadSuccess}"></span>
+        </p>
+
+    </form>
+
+</div>
+
+
+
+
+</body>
+
+
+
+<script type="text/javascript">
+
+    // $(function(){
+    //     $("button").click(function(){
+    //
+    //         //使用jQuery发送一个ajax请求
+    //         var name=$("#nmm").val();
+    //         var pass=$("input[name='userPass']").val();
+    //
+    //         $.ajax({
+    //             url:"/upload_test",//目标地址
+    //             type:"post",//请求方式
+    //             data:{userName:name,userPass:pass},//请求参数
+    //             // dataType: 'json',
+    //             success:function(ob){
+    //                 alert(ob);
+    //             },
+    //             error: function(e){
+    //                 console.log(e)
+    //             }
+    //
+    //         });
+    //
+    //
+    //     });
+    // });
+
+
+    $("#tougao").click(function () {
+        alert($("#musicName").val())
+        alert($("#singer").val())
+
+        var formData = new FormData();
+
+        formData.append("music", $('#music')[0].files[0]);
+        formData.append("musicImg", $('#musicImg')[0].files[0]);
+
+
+
+        formData.append("musicName", $("#musicName").val());
+        formData.append("singer", $("#singer").val());
+
+
+        var musicCategory = $('#musicCategoryRadioList input[name="musicCategory"]:checked ').val();
+        var musicState = $('#musicStateRadioList input[name="musicState"]:checked ').val();
+        formData.append("musicCategory", musicCategory);
+        formData.append("musicState", musicState);
+        $.ajax({
+            url: '/uploadMusic',    //这里是我自己项目的URL
+            dataType: 'json',
+            type: 'post',
+            contentType: false, //必须
+            processData: false, //必须
+            data: formData,
+            success: function (data) {
+                if (data > 0) {
+                    alert("success")
+                } else {
+                    alert("系统出错");
+                }
+            }
+        });
+    });
+</script>
+</html>

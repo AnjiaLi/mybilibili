@@ -48,7 +48,7 @@ public class TestController {
 
     public void update() {
         // TODO: 2020/8/28 下面方法更新音乐时长
-//        updateAllMusicTime();
+        updateAllMusicTime();
         userListService.updateToVip("admin");
     }
 
@@ -65,5 +65,7 @@ public class TestController {
             musicList.get(i).setmusicTime(durationList.get(i));
         musicService.updateBatchById(musicList);
     }
+
+
 
 }

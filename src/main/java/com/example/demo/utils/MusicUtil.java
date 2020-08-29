@@ -48,19 +48,27 @@ public class MusicUtil {
         }
         MP3File f;
         MP3AudioHeader audioHeader;
-        try {
+
             for (int i = 0; i < size; i++) {
+                try {
                 if (isFile)
                     f = (MP3File) AudioFileIO.read((File) mp3List.get(i));
                 else if (isString)
-                    f = (MP3File) AudioFileIO.read(new File((String) mp3List.get(i)));
+                {
+                    File ffff=new File((String) mp3List.get(i));
+                    System.out.println(ffff.getAbsolutePath());
+                    f = (MP3File) AudioFileIO.read(ffff);
+
+                }
                 else break;
                 audioHeader = (MP3AudioHeader) f.getAudioHeader();
                 durationList.add(audioHeader.getTrackLengthAsString());
+                } catch (Exception e) {
+//                    e.printStackTrace();
+                    durationList.add("00:00");
+                }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
         return durationList;
     }
 }

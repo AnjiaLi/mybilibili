@@ -8,13 +8,14 @@ import com.example.demo.service.impl.MusicServiceImpl;
 import com.example.demo.service.impl.UserListServiceImpl;
 import com.example.demo.utils.MusicUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@RestController
+@Controller
 public class TestController {
 
     // TODO: 2020/8/28 正在播放
@@ -24,6 +25,12 @@ public class TestController {
     MusicServiceImpl musicService;
     @Autowired
     UserListServiceImpl userListService;
+
+
+    @GetMapping(value = "/music-collection")
+    public String collect(){
+        return "music-collection";
+    }
 
     @GetMapping(value = "/test")
     public String test() {

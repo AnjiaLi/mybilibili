@@ -16,8 +16,7 @@ public class FavoriteController {
     @GetMapping(value = "/favorite")
     public String showFavorite(HttpServletRequest request) {
         String userName = (String) request.getSession().getAttribute("userName");
-//        List<>
-//        favoriteService.listObjs();
+
         return "favorite";
     }
 

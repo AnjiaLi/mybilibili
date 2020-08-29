@@ -54,12 +54,7 @@ public class MusicUtil {
                 if (isFile)
                     f = (MP3File) AudioFileIO.read((File) mp3List.get(i));
                 else if (isString)
-                {
-                    File ffff=new File((String) mp3List.get(i));
-                    System.out.println(ffff.getAbsolutePath());
-                    f = (MP3File) AudioFileIO.read(ffff);
-
-                }
+                    f = (MP3File) AudioFileIO.read(new File((String) "src/main/resources" + mp3List.get(i)));
                 else break;
                 audioHeader = (MP3AudioHeader) f.getAudioHeader();
                 durationList.add(audioHeader.getTrackLengthAsString());

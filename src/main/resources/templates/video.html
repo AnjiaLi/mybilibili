@@ -1408,33 +1408,6 @@
             </div>
             <!-- 点赞栏结束 -->
 
-
-            <!--  视频描述区 -->
-
-            <div id="v_desc" class="video-desc report-wrap-module report-scroll-module">
-
-                <div class="info open"><span th:text="${videoEntity.videoName}"></span>
-                    大会员免费观看
-                </div>
-            </div>
-
-            <!-- 视频描述区结束 -->
-
-            <!-- 视频标签区 -->
-
-            <div id="v_tag" class="s_tag report-wrap-module report-scroll-module">
-
-                <ul class="tag-area clearfix">
-                    <li class="tag">
-
-                        <a href="#"
-                           target="_blank" th:text="${videoEntity.videoName}"></a><!----><!---->
-                    </li><!----><a class="btn-add"><span class="one"></span><span class="two"></span></a><!---->
-                </ul>
-            </div><!---->
-            <!-- 视频标签区结束 -->
-
-
             <!-- 评论区 -->
 
             <div id="comment" class="comment-m report-wrap-module report-scroll-module">
@@ -1698,65 +1671,6 @@
         <div class="r-con">  <!-- 右侧部分 -->
 
 
-            <div id="v_upinfo" class="up-info report-wrap-module report-scroll-module">
-
-
-                <div class="u-face has-pendant"><a
-                        href="https://space.bilibili.com/207539637?spm_id_from=333.788.b_765f7570696e666f.1"
-                        target="_blank" report-id="head" class="fa"><img
-                        src="Homepage/videoPlay/static/image/tx1.webp" width="48"
-                        height="48" class="up-face"><img
-                        src="Homepage/videoPlay/static/image/tx2.png" width="80"
-                        height="80" class="pendant"><!----><i class="auth o-auth"></i></a></div>
-
-
-                <div class="u-info">
-                    <div class="name" style="line-height:40px;height:40px;"><!----><a
-                            href="//space.bilibili.com/207539637" target="_blank" report-id="name" class="username">哔哩哔哩放映姬</a><a
-                            href="//message.bilibili.com/#whisper/mid207539637" target="_blank" class="message"><i
-                            class="van-icon-videodetails_messag"></i>发消息</a>
-                    </div><!---->
-                </div>
-                <div class="btn-panel"><!---->
-                    <div class="default-btn follow-btn b-gz not-follow"><span><i class="van-icon-general_addto_s"></i>
-        关注 <span>12.0万</span></span><!----><!---->
-                    </div>
-                </div>
-            </div>
-            <div id="danmukuBox" class="danmaku-box" style="height: 300px">
-                <div class="danmaku-wrap" style="background-color: white">
-
-
-                    <div class="Dplayer_danmu" style="width: 100%;">
-                        <div class="Dplayer_watching"
-                             style="line-height:inherit;height:40px;background-color: #f4f4f4 ">
-                            <span class="Dplayer-watching-number" title="这个数据是假的">24</span>
-                            人正在观看,<span class="danmuku_num">100</span>条弹幕
-                        </div>
-
-                        <ul class="Dplayer_list">
-                            <li>时间</li>
-                            <li>发送内容</li>
-                            <li>用户类型</li>
-                        </ul>
-                        <ul class="list_ovefiow">
-                            <li th:each="barrageList : ${barrageList}" style="height: 30px">
-                                <span th:text="${barrageList.dtime}" style="display:inline-block;width: 65px;text-align: center"></span>
-                                <span th:text="${barrageList.content}" style="display:inline-block;width: 126px"></span>
-                                <span style="display:inline-block;width: 60px;text-align: center">用户</span>
-                            </li>
-
-                        </ul>
-
-                    </div>
-
-
-                </div>
-            </div><!---->
-
-            <div id="slide_ad" class="report-wrap-module report-scroll-module">
-
-            </div>
 
 
             <!--  相关推荐部分 -->

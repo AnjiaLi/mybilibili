@@ -17,14 +17,15 @@ function initList() {
 }
 
 function initMusic() {
-    let addButton = document.querySelector("#add-button")
-    let starButton = document.querySelector("#star-button")
-    addButton.addEventListener("click", addMusic(JSON.parse(document.querySelector("#music-info").textContent)))
+    let addButton = document.querySelector(".add-button")
+    let starButton = document.querySelector(".star-button")
+    addButton.addEventListener("click", addMusic(JSON.parse(document.querySelector(".music-info").textContent)))
     starButton.addEventListener("click", () => {
         let musicID = window.location.search
         musicID = musicID.slice(musicID.lastIndexOf("=") + 1)
-        starMusic(musicID, 0)
+        starMusic(musicID, 0, true)
     })
+    starButton.click()
 }
 
 function showPlayList() {
@@ -53,14 +54,14 @@ function showPlayList() {
         star.value = "收藏"
         star.className = "star-button"
         star.onclick = () => {
-            starMusic(playList[i].id, i)
+            starMusic(playList[i].id, i, false)
         }
         tr.appendChild(name)
         tr.appendChild(singer)
         tr.appendChild(time)
         tr.appendChild(add)
         tr.appendChild(star)
-        table.appendChild(tr)
+        table.children[0].appendChild(tr)
     }
 }
 
@@ -128,19 +129,26 @@ function addMusic(music) {
     playMusic(false)
 }
 
-function starMusic(id, index) {
+function starMusic(id, index, first) {
+    let starButton = document.querySelectorAll(".star-button")[index]
+    let unFav = false
+    if (starButton.value == "已收藏") unFav = true
     $.ajax({
         type: "post",
         url: "/music/starMusic",
         data: {
-            musicID: id
+            musicID: id,
+            unFav: unFav
         },
         success: function (result) {
             if (result == "false") {
-                alert("请登录")
+                if (!first)
+                    alert("请登录")
             } else {
-                let starButton = document.querySelectorAll(".star-button")[index]
-                starButton.textContent = "已收藏"
+                if (unFav)
+                    starButton.value = "收藏"
+                else
+                    starButton.value = "已收藏"
             }
         },
         error: function (e) {

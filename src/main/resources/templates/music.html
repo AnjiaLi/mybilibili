@@ -20,6 +20,9 @@
     <!--    <script th:src="@{jquery-1.10.2/jquery.js}"></script>-->
     <script th:src="@{webIndex/js/script.js}"></script>
 
+    <script th:src="@{test/jquery-3.5.1.js}"></script>
+    <script th:src="@{test/playList.js}"></script>
+
     <style type="text/css">
         body {
             font: 12px/180% Arial, Helvetica, sans-serif, "新宋体";
@@ -377,7 +380,7 @@
 </head>
 <body>
 
-<p id="music-info" style="display: none" th:text="${musicEntity}"></p>
+<p class="music-info" style="display: none" th:text="${musicJson}"></p>
 
 <div id="page_top">
     <div class="bg-wrap">
@@ -540,7 +543,10 @@
             <div id="arc_toolbar_report" class="video-toolbar report-wrap-module report-scroll-module">
 
                 <div class="ops">
-	     			   	<span title="点赞数0" class="like"><i class="van-icon-videodetails_like"></i>--
+                    <input type="button" class="add-button" value="播放">
+                    <input type="button" class="star-button" value="收藏">
+
+                    <span title="点赞数0" class="like"><i class="van-icon-videodetails_like"></i>--
                        </span>
                     <span title="投硬币枚数" class="coin"><canvas width="34" height="34" class="ring-progress"
                                                              style="width:34px;height:34px;left:-3px;top:-3px;"></canvas>

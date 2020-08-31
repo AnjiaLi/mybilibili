@@ -7,6 +7,7 @@ import com.example.demo.service.impl.MessageServiceImpl;
 import com.example.demo.service.impl.MusicServiceImpl;
 import com.example.demo.service.impl.UserListServiceImpl;
 import com.example.demo.utils.GetUUID;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,6 +45,8 @@ public class MusicController {
 
         List<MusicEntity> hotMusicList = musicServiceImpl.hotMusicList(8);
         model.put("hotMusicList", hotMusicList);
+
+        model.put("musicJson",new Gson().toJson(list.get(0)));
 
 //        request.setAttribute("shipingID", ID);
 //        model.put("shipingID", ID);

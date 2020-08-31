@@ -20,10 +20,13 @@
     <!--    <script th:src="@{jquery-1.10.2/jquery.js}"></script>-->
     <script th:src="@{webIndex/js/script.js}"></script>
 
+    <script th:src="@{test/jquery-3.5.1.js}"></script>
+    <script th:src="@{test/playList.js}"></script>
+
     <style type="text/css">
         body {
             font: 12px/180% Arial, Helvetica, sans-serif, "新宋体";
-            background: #282725
+            background: #282725;
         }
 
         /* slider */
@@ -40,7 +43,6 @@
         .slider {
             position: absolute;
             width: 760px;
-            padding: 0 20px;
             left: 0;
             top: 0;
         }
@@ -377,7 +379,7 @@
 </head>
 <body>
 
-<p id="music-info" style="display: none" th:text="${musicEntity}"></p>
+<p id="music-info" style="display: none" th:text="${musicJson}"></p>
 
 <div id="page_top">
     <div class="bg-wrap">
@@ -407,6 +409,17 @@
                     </ul>
                 </div>
             </div>
+
+            <!------搜索框------>
+            <header style="text-align: center;">
+                <ul class="ku">
+                    <form th:action="@{/list}" method="GET">
+                        <input type="hidden" name="type" value="search">
+                        <input type="search" name="key" id="inp1" style="border-radius:10px 0 0 10px;background: white;margin-top: 10px;height: 25px;width: 200px" placeholder="搜索音乐">
+                        <input type="submit" id="inp2" value="搜索" style="border-radius:0 10px 10px 0;background-color:#4e6ef2;margin-top: 10px;height: 25px;width:40px;color: white">
+                    </form>
+                </ul>
+            </header>
         </div>
         <script type="text/javascript">
             $(document).ready(function () {
@@ -460,7 +473,7 @@
 
 
                 <div class="video-data" style="padding-left: 10px">
-                    <span title="" class="view" th:text="'点击量: '+${musicEntity.getMusicClick()}"></span>
+                    <span title="" class="view" th:text="'点击量: '+${musicEntity.getMusicClick()}"></span>&nbsp;&nbsp;&nbsp;
                     <span title="" class="dm" th:text="'评论数: '+${musicEntity.getMusicComment()}"></span>
                 </div>
             </div>
@@ -540,52 +553,20 @@
             <div id="arc_toolbar_report" class="video-toolbar report-wrap-module report-scroll-module">
 
                 <div class="ops">
-	     			   	<span title="点赞数0" class="like"><i class="van-icon-videodetails_like"></i>--
-                       </span>
-                    <span title="投硬币枚数" class="coin"><canvas width="34" height="34" class="ring-progress"
-                                                             style="width:34px;height:34px;left:-3px;top:-3px;"></canvas>
-                        <!----><i class="van-icon-videodetails_throw"></i>
-      --
-                       </span>
-                    <span title="收藏人数" class="collect"><canvas width="34" height="34" class="ring-progress"
-                                                               style="width:34px;height:34px;left:-3px;top:-3px;"></canvas>
-                        <!----><i class="van-icon-videodetails_collec"></i>--
-                      </span>
-                    <span title="分享" class="share"><i class="van-icon-videodetails_share"></i>--
-                       </span>
+	     			   	<button id="add-button" value="add"><i class="van-icon-videodetails_like"></i></button>
+
+                        <button id="star-button" value="star12545"><i class="van-icon-videodetails_collec"></i></button>
+
                 </div>
 
-                <div class="more"><i class="van-icon-general_moreactions"></i><!----></div>
 
-                <div class="appeal-text">稿件投诉</div>
             </div>
             <!-- 点赞栏结束 -->
 
 
-            <!--  视频描述区 -->
 
-            <div id="v_desc" class="video-desc report-wrap-module report-scroll-module">
 
-                <div class="info open"><span th:text="${musicEntity.getmusicName()}"></span>
-                    大会员免费观看
-                </div>
-            </div>
 
-            <!-- 视频描述区结束 -->
-
-            <!-- 视频标签区 -->
-
-            <div id="v_tag" class="s_tag report-wrap-module report-scroll-module">
-
-                <ul class="tag-area clearfix">
-                    <li class="tag">
-
-                        <a href="#"
-                           target="_blank" th:text="${musicEntity.getmusicName()}"></a><!----><!---->
-                    </li><!----><a class="btn-add"><span class="one"></span><span class="two"></span></a><!---->
-                </ul>
-            </div><!---->
-            <!-- 视频标签区结束 -->
 
 
             <!-- 评论区 -->
@@ -601,10 +582,10 @@
                             <div class="box">
                                 <form th:action="@{/sendMessage}" method="get">
 
-                                    <input type="text" style="min-height: 64px;width: 300px;border: 1px solid #0AB5DA"
+                                    <input type="text" style="min-height: 64px;width: 300px;border: 1px solid #0AB5DA;color: whitesmoke"
                                            placeholder="请输入留言内容---------内容不超过150字" id="message" required=""
                                            name="message"/>
-                                    <!--                                    <input type="text" name="shipingID" th:value="${shipingID}" hidden="hidden">-->
+                                    <input type="text" name="musicID" th:value="${musicEntity.getmusicID()}" hidden="hidden">
                                     <!--                                    <input type="text" name="dizhi" th:value="${dizhi}" hidden="hidden">-->
                                     <input style="width: 70px;height: 64px;position: absolute; left: 320px;border-radius: 4px;border: 1px solid #00a1d6;padding: 4px 15px;font-size: 14px;color: #fff;background-color: #00a1d6;"
                                            type="submit" id="button" value="发表">
@@ -612,16 +593,15 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="wp" style="background-color: #696969" id="danmu">
+                        <div class="wp" id="danmu">
                             <ul id="slider" class="slider">
-                                    <li th:each="messagelist : ${messagelist}">
-                                        <a class="fl" href=""> <img th:src="${messagelist.messageHand}" alt="" width="70px" ;height="70px"/></a>
-                                        <p th:text="${messagelist.message}"></p>
-                                        <span style="color: red;display:inline-block">留言者:</span>
-                                        <span th:text="${messagelist.messageuserName}">&nbsp;</span>
-                                        <span style="color: blue;display:inline-block" th:text="${messagelist.messageTime}"></span>
-
-                                    </li>
+                                <li th:each="messagelist : ${messageList}">
+                                    <a class="fl" href=""> <img th:src="${messagelist.getUserHead()}" alt="" width="70px" ;height="70px"/></a>
+                                    <p style="color: whitesmoke;height: 40px;padding-left: 90px" th:text="${messagelist.getMessage()}"></p>
+                                    <span style="color: grey;display:inline-block;padding-left: 20px">用户:</span>
+                                    <span style="color: grey" th:text="${messagelist.getUserName()}">&nbsp;</span>
+                                    <span style="color: grey;display:inline-block" th:text="${messagelist.getMessageTime()}"></span>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -630,23 +610,6 @@
                 </div>
 
                 <style type="text/css">
-                    /** {*/
-                    /*    margin: 0;*/
-                    /*    padding: 0;*/
-                    /*    -webkit-touch-callout: none; !* prevent callout to copy image, etc when tap to hold *!*/
-                    /*    -webkit-text-size-adjust: none; !* prevent webkit from resizing text to fit *!*/
-                    /*    -webkit-tap-highlight-color: rgba(210, 210, 210, 0.35); !* make transparent link selection, adjust last value opacity 0 to 1.0 *!*/
-                    /*    -webkit-user-select: none; !* prevent copy paste, to allow, change 'none' to 'text' *!*/
-                    /*}*/
-
-                    /*body {*/
-                    /*    font-family: "微软雅黑";*/
-                    /*    font-size: 12px;*/
-                    /*}*/
-
-                    /*ul, li {*/
-                    /*    list-style: none;*/
-                    /*}*/
 
                     .tit {
                         height: 26px;
@@ -660,7 +623,6 @@
 
                 </style>
             </div>
-
         </div>
         <div class="r-con">  <!-- 右侧部分 -->
             <div id="reco_list" class="recommend-list report-wrap-module report-scroll-module">

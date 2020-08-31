@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <title>U-music</title>
 
-<!--    <link th:href="@{Homepage/videoPlay/font/iconfont.css}" rel="stylesheet"/>-->
+    <!--    <link th:href="@{Homepage/videoPlay/font/iconfont.css}" rel="stylesheet"/>-->
     <link th:href="@{Homepage/video/css/bootstrap.min.css}" rel="stylesheet"/>
-<!--    <link th:href="@{Homepage/video/css/dashboard.css}" rel="stylesheet"/>-->
-<!--    <link th:href="@{Homepage/video/css/popuo-box.css}" rel="stylesheet"/>-->
-<!--    <link th:href="@{Homepage/videoPlay/css/DPlayer.min.css}" rel="stylesheet"/>-->
+    <!--    <link th:href="@{Homepage/video/css/dashboard.css}" rel="stylesheet"/>-->
+    <!--    <link th:href="@{Homepage/video/css/popuo-box.css}" rel="stylesheet"/>-->
+    <!--    <link th:href="@{Homepage/videoPlay/css/DPlayer.min.css}" rel="stylesheet"/>-->
     <link th:href="@{musicplayer/css/common.css}" rel="stylesheet"/>
     <link th:href="@{webIndex/css/reset.css}" rel="stylesheet"/>
     <link th:href="@{webIndex/css/common.css}" rel="stylesheet"/>
@@ -16,9 +16,8 @@
     <link th:href="@{musicplayer/css/style.css}" rel="stylesheet"/>
 
 
-
     <script th:src="@{Homepage/js/jquery.min.js}"></script>
-<!--    <script th:src="@{jquery-1.10.2/jquery.js}"></script>-->
+    <!--    <script th:src="@{jquery-1.10.2/jquery.js}"></script>-->
     <script th:src="@{webIndex/js/script.js}"></script>
 
     <style type="text/css">
@@ -214,6 +213,7 @@
         .Dplayer_list li:nth-child(2) {
             width: 136px !important
         }
+
         .Dplayer_list li:nth-child(1) {
             width: 60px !important;
             text-align: center;
@@ -278,7 +278,6 @@
         }
 
 
-
         .international-header ol,
         .van-popover ol,
         .international-header ul,
@@ -316,9 +315,6 @@
         }
 
 
-
-
-
         .international-header .mini-type .user-con.logout .item a,
         .van-popover .mini-type .user-con.logout .item a {
             color: #212121 !important;
@@ -334,7 +330,6 @@
         }
 
         @media screen and (max-width: 990px) {
-
 
 
         }
@@ -360,6 +355,7 @@
                 width: 50px;
             }
         }
+
         .nav-user-center .user-con .fall-mini-avatar img {
             width: 36px;
             height: 36px;
@@ -452,15 +448,12 @@
 </script>
 
 
-
-
 <div id="app" data-server-rendered="true">
 
     <div class="v-wrap" style="width:1000px;left: 50%;margin-top: 20px;margin-bottom: 20px;right: 50%">
 
         <!-- 左边部分 -->
         <div class="l-con">
-
             <div id="viewbox_report" class="video-info report-wrap-module report-scroll-module"><!-- 视频标题位置 -->
                 <h1 title="" class="video-title"><!---->
                     <span class="tit tr-fix" th:text="${musicEntity.getmusicName()}"></span></h1>
@@ -475,69 +468,69 @@
             <!--  播放器部分 -->
 
             <div class="music-player" style="width: 100%;height: 493px">
-                <div id="music" >
+                <div id="music">
                     <div class="container">
-                        <div class="music-box" >>
+                        <div class="music-box">>
                             <img th:src="${musicEntity.getmusicImage()}"/>
                             <div class="mask">
                                 <div class="music-start">
-                                <div class="mplayer" onclick="play2()">
-                                    <i class="fa">
-                                        <span class="before" ></span>
+                                    <div class="mplayer" onclick="play2()">
+                                        <i class="fa">
+                                            <span class="before"></span>
 
-                                        <span class="after"> </span>
-                                    </i>
-                                    <svg
-                                            class="loadingSvg"
-                                            width="50"
-                                            height="50"
-                                            viewBox="0,0,50,50"
-                                            style="
+                                            <span class="after"> </span>
+                                        </i>
+                                        <svg
+                                                class="loadingSvg"
+                                                width="50"
+                                                height="50"
+                                                viewBox="0,0,50,50"
+                                                style="
                   position: absolute;
                   top: 2px;
                   left: 10px;
                   transform: translate(-50%, -50%);
                 "
-                                    >
-                                        <circle></circle>
-                                    </svg>
+                                        >
+                                            <circle></circle>
+                                        </svg>
+                                    </div>
+                                    <div class="m-circle m-progress">
+                                        <svg width="326" height="326" viewBox="0,0,326,326">
+                                            <circle
+                                                    cx="163"
+                                                    cy="163"
+                                                    r="159"
+                                                    stroke-width="4"
+                                                    stroke="rgba(255, 206, 113, 0.2)"
+                                                    fill="rgba(0,0,0,.2)"
+                                            ></circle>
+                                            <circle
+                                                    class="a"
+                                                    cx="163"
+                                                    cy="163"
+                                                    r="159"
+                                                    stroke-width="3"
+                                                    stroke="rgba(255, 206, 113, 1)"
+                                                    fill="none"
+                                                    stroke-dasharray="0 999"
+                                                    transform="matrix(0,-1,1,0,0,326)"
+                                            ></circle>
+                                        </svg>
+                                    </div>
+                                    <div class="m_time">
+                                        <span class="mplayer_curtime">00:00</span>
+                                        <span class="m-join">/</span>
+                                        <span class="mplayer_durtime">00:00</span>
+                                    </div>
                                 </div>
-                                <div class="m-circle m-progress" >
-                                    <svg width="326" height="326" viewBox="0,0,326,326">
-                                        <circle
-                                                cx="163"
-                                                cy="163"
-                                                r="159"
-                                                stroke-width="4"
-                                                stroke="rgba(255, 206, 113, 0.2)"
-                                                fill="rgba(0,0,0,.2)"
-                                        ></circle>
-                                        <circle
-                                                class="a"
-                                                cx="163"
-                                                cy="163"
-                                                r="159"
-                                                stroke-width="3"
-                                                stroke="rgba(255, 206, 113, 1)"
-                                                fill="none"
-                                                stroke-dasharray="0 999"
-                                                transform="matrix(0,-1,1,0,0,326)"
-                                        ></circle>
-                                    </svg>
-                                </div>
-                                <div class="m_time" >
-                                    <span class="mplayer_curtime">00:00</span>
-                                    <span class="m-join">/</span>
-                                    <span class="mplayer_durtime">00:00</span>
-                                </div>
+
+
                             </div>
-
-
-                        </div>
                         </div>
                     </div>
                 </div>
-                <audio  id="myAudio" th:src="${musicEntity.getmusicAddress()}"></audio>
+                <audio id="myAudio" th:src="${musicEntity.getmusicAddress()}"></audio>
             </div>
             <!--  播放器部分结束 -->
 
@@ -547,16 +540,16 @@
             <div id="arc_toolbar_report" class="video-toolbar report-wrap-module report-scroll-module">
 
                 <div class="ops">
-	     			   	<span title="点赞数0" class="like"><i class="van-icon-videodetails_like" ></i>--
+	     			   	<span title="点赞数0" class="like"><i class="van-icon-videodetails_like"></i>--
                        </span>
                     <span title="投硬币枚数" class="coin"><canvas width="34" height="34" class="ring-progress"
                                                              style="width:34px;height:34px;left:-3px;top:-3px;"></canvas>
-                        <!----><i class="van-icon-videodetails_throw" ></i>
+                        <!----><i class="van-icon-videodetails_throw"></i>
       --
                        </span>
                     <span title="收藏人数" class="collect"><canvas width="34" height="34" class="ring-progress"
                                                                style="width:34px;height:34px;left:-3px;top:-3px;"></canvas>
-                        <!----><i class="van-icon-videodetails_collec" ></i>--
+                        <!----><i class="van-icon-videodetails_collec"></i>--
                       </span>
                     <span title="分享" class="share"><i class="van-icon-videodetails_share"></i>--
                        </span>
@@ -605,64 +598,70 @@
 
                     <div class="all-comments">
                         <div class="all-comments-info">
-                            <!-- 这里是自定义的js -->
-<!--                            <script th:src="@{adminjs/videojs.js}"></script>-->
-
-
                             <div class="box">
                                 <form th:action="@{/sendMessage}" method="get">
 
                                     <input type="text" style="min-height: 64px;width: 300px;border: 1px solid #0AB5DA"
-                                          placeholder="请输入留言内容---------内容不超过150字" id="message" required=""
+                                           placeholder="请输入留言内容---------内容不超过150字" id="message" required=""
                                            name="message"/>
-<!--                                    <input type="text" name="shipingID" th:value="${shipingID}" hidden="hidden">-->
-<!--                                    <input type="text" name="dizhi" th:value="${dizhi}" hidden="hidden">-->
+                                    <!--                                    <input type="text" name="shipingID" th:value="${shipingID}" hidden="hidden">-->
+                                    <!--                                    <input type="text" name="dizhi" th:value="${dizhi}" hidden="hidden">-->
                                     <input style="width: 70px;height: 64px;position: absolute; left: 320px;border-radius: 4px;border: 1px solid #00a1d6;padding: 4px 15px;font-size: 14px;color: #fff;background-color: #00a1d6;"
                                            type="submit" id="button" value="发表">
                                     <div class="clearfix"></div>
                                 </form>
                             </div>
                         </div>
+                        <div class="wp" style="background-color: #696969" id="danmu">
+                            <ul id="slider" class="slider">
+                                    <li th:each="messagelist : ${messagelist}">
+                                        <a class="fl" href=""> <img th:src="${messagelist.messageHand}" alt="" width="70px" ;height="70px"/></a>
+                                        <p th:text="${messagelist.message}"></p>
+                                        <span style="color: red;display:inline-block">留言者:</span>
+                                        <span th:text="${messagelist.messageuserName}">&nbsp;</span>
+                                        <span style="color: blue;display:inline-block" th:text="${messagelist.messageTime}"></span>
 
-                        <style type="text/css">
-                            /** {*/
-                            /*    margin: 0;*/
-                            /*    padding: 0;*/
-                            /*    -webkit-touch-callout: none; !* prevent callout to copy image, etc when tap to hold *!*/
-                            /*    -webkit-text-size-adjust: none; !* prevent webkit from resizing text to fit *!*/
-                            /*    -webkit-tap-highlight-color: rgba(210, 210, 210, 0.35); !* make transparent link selection, adjust last value opacity 0 to 1.0 *!*/
-                            /*    -webkit-user-select: none; !* prevent copy paste, to allow, change 'none' to 'text' *!*/
-                            /*}*/
-
-                            /*body {*/
-                            /*    font-family: "微软雅黑";*/
-                            /*    font-size: 12px;*/
-                            /*}*/
-
-                            /*ul, li {*/
-                            /*    list-style: none;*/
-                            /*}*/
-
-                            .tit {
-                                height: 26px;
-                                line-height: 26px;
-                                padding: 0px 15px;
-                                position: relative;
-                                font-size: 15px;
-                                color: #aaa;
-                                border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-                            }
-
-                        </style>
+                                    </li>
+                            </ul>
+                        </div>
                     </div>
 
-                </div>
-            </div>
-            <!-- 评论区结束 -->
 
+                </div>
+
+                <style type="text/css">
+                    /** {*/
+                    /*    margin: 0;*/
+                    /*    padding: 0;*/
+                    /*    -webkit-touch-callout: none; !* prevent callout to copy image, etc when tap to hold *!*/
+                    /*    -webkit-text-size-adjust: none; !* prevent webkit from resizing text to fit *!*/
+                    /*    -webkit-tap-highlight-color: rgba(210, 210, 210, 0.35); !* make transparent link selection, adjust last value opacity 0 to 1.0 *!*/
+                    /*    -webkit-user-select: none; !* prevent copy paste, to allow, change 'none' to 'text' *!*/
+                    /*}*/
+
+                    /*body {*/
+                    /*    font-family: "微软雅黑";*/
+                    /*    font-size: 12px;*/
+                    /*}*/
+
+                    /*ul, li {*/
+                    /*    list-style: none;*/
+                    /*}*/
+
+                    .tit {
+                        height: 26px;
+                        line-height: 26px;
+                        padding: 0px 15px;
+                        position: relative;
+                        font-size: 15px;
+                        color: #aaa;
+                        border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+                    }
+
+                </style>
+            </div>
 
         </div>
-
         <div class="r-con">  <!-- 右侧部分 -->
             <div id="reco_list" class="recommend-list report-wrap-module report-scroll-module">
 
@@ -680,14 +679,17 @@
                                         <a th:href="'music?ID='+${list.getmusicID()}">
                                             <img th:src="${list.getmusicImage()}" width="140" height="90">
                                         </a>
-                                        <span class="mask-video"></span><span class="duration" th:text="${list.getmusicTime()}"></span>
+                                        <span class="mask-video"></span><span class="duration"
+                                                                              th:text="${list.getmusicTime()}"></span>
                                     </div>
                                     <div class="watch-later-video van-watchlater"><span class="wl-tips"
                                                                                         style="display:none;"></span>
                                     </div>
                                 </div>
-                                <div class="info"><a th:href="'music?ID='+${list.getmusicID()}" class="title" th:text="${list.getmusicName()}"></a>
-                                    <div class="count up"><a th:href="'music?ID='+${list.getmusicID()}" target="_blank" th:text="${list.getSinger()}"></a>
+                                <div class="info"><a th:href="'music?ID='+${list.getmusicID()}" class="title"
+                                                     th:text="${list.getmusicName()}"></a>
+                                    <div class="count up"><a th:href="'music?ID='+${list.getmusicID()}" target="_blank"
+                                                             th:text="${list.getSinger()}"></a>
                                     </div>
                                     <div class="count">
                                         <span th:text="'热度： '+${list.getMusicClick()}+${list.getMusicComment()*10}"></span>
@@ -701,9 +703,16 @@
             </div>
 
 
-
         </div>
     </div>
+    <!-- 评论区结束 -->
+
+
+
+</div>
+
+
+</div>
 
 </div>
 

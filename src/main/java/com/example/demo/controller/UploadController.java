@@ -32,14 +32,14 @@ public class UploadController {
         for (MultipartFile file : fileUpload) {
             String fileName = file.getOriginalFilename();
             fileName = UUID.randomUUID() + "_" + fileName;
-            String dirPath = "E:/IDEA_project/mybilibili/src/main/resources/static/userHand_Top/upload/";
+            String dirPath = "src/main/resources/static/userHand_Top/upload/";
             File filePath = new File(dirPath);
             if (!filePath.exists()) {
                 filePath.mkdirs();
             }
             try {
                 System.out.println(dirPath + fileName);
-                file.transferTo(new File(dirPath + fileName));
+                file.transferTo(new File(new File(dirPath + fileName).getAbsolutePath()));
             } catch (Exception e) {
                 e.printStackTrace();
                 model.addAttribute("uploadStatus", "上传失败：" + e.getMessage());
@@ -126,7 +126,7 @@ public class UploadController {
         musicEntity.setmusicID(0);
         musicEntity.setmusicName(musicName);
         musicEntity.setmusicImage("/music/musicImg/"+photoFileName);
-        musicEntity.setmusicAddress("/static/music/"+musicFileName);
+        musicEntity.setmusicAddress("/music/"+musicFileName);
         musicEntity.setMusicClick(0);
         musicEntity.setSinger(singer);
         musicEntity.setmusicTime(MusicUtil.getMusicDuration(new File(musicFileDirPath + musicFileName)));

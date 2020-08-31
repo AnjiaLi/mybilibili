@@ -1,8 +1,10 @@
 package com.example.demo.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.demo.entity.*;
 import com.example.demo.service.impl.DanmuServiceImpl;
 import com.example.demo.service.impl.MessageServiceImpl;
+import com.example.demo.service.impl.MusicServiceImpl;
 import com.example.demo.service.impl.UserListServiceImpl;
 import com.example.demo.utils.GetUUID;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,46 +25,36 @@ public class VideoController {
     DanmuServiceImpl danmuServiceImpl;
     @Autowired
     MessageServiceImpl messageServiceImpl;
+    @Autowired
+    MusicServiceImpl musicServiceImpl;
 
-    @RequestMapping("video")
-    public ModelAndView video(String dizhi, String shipingID,HttpServletRequest request) {
+    @RequestMapping("music")
+    public ModelAndView music(String ID,HttpServletRequest request) {
 
-        // 获得地址
-        dizhi=dizhi.substring("/static".length());
-        request.setAttribute("dizhi", dizhi);
+
 
         Map model = new HashMap();
 
-        VideoEntity videoEntity = userListServiceImpl.selectVideo(shipingID);
-        model.put("videoEntity",videoEntity);
-        System.out.println("getVideoName: "+videoEntity.getVideoName());
+        List<MusicEntity> list = musicServiceImpl.list(new QueryWrapper<MusicEntity>().eq("musicID",ID));
+        for (MusicEntity m :
+                list) {
+            model.put("musicEntity",m);
 
-        request.setAttribute("shipingID", shipingID);
-        model.put("shipingID", shipingID);
-        // 根据视频ID查询出 此视频的所有留言
-        List<MessageEntity> messagelist = userListServiceImpl.messagelist(shipingID);
-
-        //for (messageEntity message : messagelist) {
-        //    model.put("messagelist", messagelist);
-        //}
-        model.put("messagelist", messagelist);
-
-        List<Danmu> danmuList=danmuServiceImpl.selectDanmubyVid(Integer.parseInt(shipingID));
-
-        List<Barrage> barrageList=new ArrayList<>();
-
-
-
-        for (Danmu danmu:danmuList){
-            float time1 = danmu.getDtime();
-            String result = new SimpleDateFormat("mm:ss").format(new Date((long) (time1 * 1000)));
-            Barrage barrage=new Barrage();
-            barrage.setContent(danmu.getContent());
-            barrage.setDtime(result);
-            barrageList.add(barrage);
         }
-        model.put("barrageList", barrageList);
-        return new ModelAndView("video", model);
+
+//        request.setAttribute("shipingID", ID);
+//        model.put("shipingID", ID);
+//        // 根据视频ID查询出 此视频的所有留言
+//        List<MessageEntity> messagelist = userListServiceImpl.messagelist(ID);
+//
+//        //for (messageEntity message : messagelist) {
+//        //    model.put("messagelist", messagelist);
+//        //}
+//        model.put("messagelist", messagelist);
+//
+//        List<Danmu> danmuList=danmuServiceImpl.selectDanmubyVid(Integer.parseInt(ID));
+
+        return new ModelAndView("music", model);
     }
 
     @RequestMapping("sendMessage")

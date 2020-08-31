@@ -5,7 +5,6 @@ var circle = $('.m-circle .a')[0];
 var circumference = 2 * Math.PI * 160;
 var timer;
 function play2() {
-  // alert(123);return false;
   if (audio.paused) {
     audio.play();
     $('.music-box').addClass('mplaying');

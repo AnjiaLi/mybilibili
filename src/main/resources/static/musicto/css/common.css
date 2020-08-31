@@ -118,12 +118,12 @@ body {
 
 .mplayer i .after {
   display: inline-block;
-  width: 4px;
+  width: 10px;
   height: 10px;
   opacity: 0;
   transition: 0.36s ease;
-  border-left: 2px solid black;
-  border-right: 2px solid black;
+  border-left: 3px solid black;
+  border-right: 3px solid black;
 }
 
 .loadingSvg circle {

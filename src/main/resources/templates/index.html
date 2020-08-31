@@ -10,7 +10,7 @@
     <script th:src="@{Homepage/js/jquery.min.js}"></script>
     <script th:src="@{bilibiliIndex/js/script.js}"></script>
     <script th:src="@{jquery-1.10.2/jquery.js}"></script>
-    <script th:src="@{adminjs/adminjs.js}"></script>
+<!--    <script th:src="@{adminjs/adminjs.js}"></script>-->
 
     <script type="text/javascript">
         $(function(){
@@ -221,22 +221,22 @@
                 </div>
                 <ul class="pic-list__wrapper clearfix tab-cont__item tab-cont__cur">
                     <!-- 这里开始遍历 -->
-                    <li th:each="list : ${list}" class="item">
-                        <a th:href="'video?dizhi='+${list.videoAddress}+'&shipingID='+${list.videoID}" class="img-link">
+                    <li th:each="list : ${lists1}" class="item">
+                        <a th:href="'music?ID='+${list.getmusicID()}" class="img-link">
                             <img
-                                th:src="${list.videoImage}" alt="#">
-                            <span class="mask"></span> <span class="time" th:text="${list.videoTime}"></span>
+                                th:src="${list.getmusicImage()}" alt="#">
+                            <span class="mask"></span> <span class="time" th:text="${list.getMusicClick()}"></span>
                         </a>
                         <div class="img-info">
-                            <a th:href="'video?dizhi='+${list.videoAddress}+'&shipingID='+${list.videoID}"
-                               th:text="${list.videoName}">
+                            <a th:href="'video?dizhi='+${list.getmusicAddress()}+'&shipingID='+${list.getmusicID()}"
+                               th:text="${list.getmusicName()}">
                             </a>
                             <div class="btm">
                                 <div class="user">
                                     <i></i>admin
                                 </div>
                                 <div class="online">
-                                    <i th:text="${list.videolookTime}"></i>
+                                    <i th:text="${list.getmusicTime()}"></i>
                                 </div>
                             </div>
                         </div>
@@ -253,8 +253,8 @@
                 <div class="main-side__cont">
                     <div class="tab-cont">
                         <ul class="tab-cont__item main-rank" id="did2">
-                            <li th:each="list : ${list}" class="item" style="color: black;font-size: 14px">
-                                <a th:href="@{list.videoName}" th:text="${list.videoName}"></a>
+                            <li th:each="list : ${lists3}" class="item" style="color: black;font-size: 14px">
+                                <a th:href="'music?ID='+${list.getmusicID()}"  th:text="${list.getmusicName()}"></a>
                             </li>
                         </ul>
                     </div>
@@ -282,14 +282,14 @@
                     </div>
                 </div>
                 <ul class="pic-list__wrapper clearfix tab-cont__item tab-cont__cur">
-                    <li th:each="list2 : ${list2}" class="item">
-                        <a th:href="'video?dizhi='+${list2.videoAddress}+'&shipingID='+${list2.videoID}" class="img-link">
-                            <img th:src="${list2.videoImage}" alt="#">
-                        <span class="mask"></span> <span class="time" th:text="${list2.videoTime}"></span>
-                    </a>
+                    <li th:each="list2 : ${lists2}" class="item">
+                        <a th:href="'music?ID='+${list2.getmusicID()}" class="img-link">
+                            <img th:src="${list2.getmusicImage()}" alt="#">
+                        <span class="mask"></span> <span class="time" th:text="${list2.getMusicClick()}"></span>
+                        </a>
                         <div class="img-info">
-                            <a th:href="'video?dizhi='+${list2.videoAddress}+'&shipingID='+${list2.videoID}"
-                               th:text="${list2.videoName}">
+                            <a th:href="'video?dizhi='+${list2.getmusicAddress()}+'&shipingID='+${list2.getmusicID()}"
+                               th:text="${list2.getmusicName()}">
 
                             </a>
                             <div class="btm">
@@ -297,7 +297,7 @@
                                     <i></i>admin
                                 </div>
                                 <div class="online">
-                                    <i th:text="${list2.videolookTime}"></i>
+                                    <i th:text="${list2.getmusicTime()}"></i>
                                 </div>
                             </div>
                         </div>
@@ -314,8 +314,8 @@
                 <div class="main-side__cont">
                     <div class="tab-cont">
                         <ul class="tab-cont__item main-rank" id="did3">
-                            <li th:each="list : ${list}" class="item" style="color: black;font-size: 14px">
-                                <a th:href="@{list.videoName}" th:text="${list.videoName}"></a>
+                            <li th:each="list : ${lists3}" class="item" style="color: black;font-size: 14px">
+                                <a th:href="'music?ID='+${list.getmusicID()}" th:text="${list.getmusicName()}"></a>
                             </li>
                         </ul>
 

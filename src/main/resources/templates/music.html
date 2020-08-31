@@ -20,7 +20,6 @@
     <script th:src="@{jquery-1.10.2/jquery.js}"></script>
     <script th:src="@{bilibiliIndex/js/script.js}"></script>
 
-
     <style type="text/css">
         body {
             font: 12px/180% Arial, Helvetica, sans-serif, "新宋体";
@@ -1291,7 +1290,7 @@
 
             <div id="viewbox_report" class="video-info report-wrap-module report-scroll-module"><!-- 视频标题位置 -->
                 <h1 title="" class="video-title"><!---->
-                    <span class="tit tr-fix" th:text="${videoEntity.videoName}"></span></h1>
+                    <span class="tit tr-fix" th:text="${musicEntity.getmusicName()}"></span></h1>
 
                 <div class="video-data">
 
@@ -1313,9 +1312,9 @@
                 <div id="music" >
                     <div class="container">
                         <div class="music-box" >>
-                            <img src="musicto/images/avatar.jpg"/>
+                            <img th:src="${musicEntity.getmusicImage()}"/>
                             <div class="mask">
-                                <div class="music-start" onclick="fun1()">
+                                <div class="music-start">
                                 <div class="mplayer" onclick="play2()">
                                     <i class="fa">
                                         <span class="before" ></span>
@@ -1372,12 +1371,7 @@
                         </div>
                     </div>
                 </div>
-                <audio  id="myAudio" src="musicto/music-listen/jq22.mp3"></audio>
-                <script>
-                    function fun1(){
-                        document.getElementById('myAudio').play()
-                    }
-                </script>
+                <audio  id="myAudio" th:src="${musicEntity.getmusicAddress()}"></audio>
             </div>
             <!--  播放器部分结束 -->
 
@@ -1387,16 +1381,16 @@
             <div id="arc_toolbar_report" class="video-toolbar report-wrap-module report-scroll-module">
 
                 <div class="ops">
-	     			   	<span title="点赞数0" class="like"><i class="van-icon-videodetails_like" style="color:;"></i>--
+	     			   	<span title="点赞数0" class="like"><i class="van-icon-videodetails_like" ></i>--
                        </span>
                     <span title="投硬币枚数" class="coin"><canvas width="34" height="34" class="ring-progress"
                                                              style="width:34px;height:34px;left:-3px;top:-3px;"></canvas>
-                        <!----><i class="van-icon-videodetails_throw" style="color:;"></i>
+                        <!----><i class="van-icon-videodetails_throw" ></i>
       --
                        </span>
                     <span title="收藏人数" class="collect"><canvas width="34" height="34" class="ring-progress"
                                                                style="width:34px;height:34px;left:-3px;top:-3px;"></canvas>
-                        <!----><i class="van-icon-videodetails_collec" style="color:;"></i>--
+                        <!----><i class="van-icon-videodetails_collec" ></i>--
                       </span>
                     <span title="分享" class="share"><i class="van-icon-videodetails_share"></i>--
                        </span>
@@ -1413,7 +1407,7 @@
 
             <div id="v_desc" class="video-desc report-wrap-module report-scroll-module">
 
-                <div class="info open"><span th:text="${videoEntity.videoName}"></span>
+                <div class="info open"><span th:text="${musicEntity.getmusicName()}"></span>
                     大会员免费观看
                 </div>
             </div>
@@ -1428,7 +1422,7 @@
                     <li class="tag">
 
                         <a href="#"
-                           target="_blank" th:text="${videoEntity.videoName}"></a><!----><!---->
+                           target="_blank" th:text="${musicEntity.getmusicName()}"></a><!----><!---->
                     </li><!----><a class="btn-add"><span class="one"></span><span class="two"></span></a><!---->
                 </ul>
             </div><!---->
@@ -1455,8 +1449,8 @@
                                     <input type="text" style="min-height: 64px;width: 300px;border: 1px solid #0AB5DA"
                                            placeholder="请输入留言内容---------内容不超过150字" id="message" required=""
                                            name="message"/>
-                                    <input type="text" name="shipingID" th:value="${shipingID}" hidden="hidden">
-                                    <input type="text" name="dizhi" th:value="${dizhi}" hidden="hidden">
+<!--                                    <input type="text" name="shipingID" th:value="${shipingID}" hidden="hidden">-->
+<!--                                    <input type="text" name="dizhi" th:value="${dizhi}" hidden="hidden">-->
                                     <input style="width: 70px;height: 64px;position: absolute; left: 320px;border-radius: 4px;border: 1px solid #00a1d6;padding: 4px 15px;font-size: 14px;color: #fff;background-color: #00a1d6;"
                                            type="submit" id="button" value="发表">
                                     <div class="clearfix"></div>
@@ -1558,20 +1552,20 @@
                         <!--                                type="button" id="buttonhide2">静态留言板-->
                         <!--                        </button>-->
                         <!--                        </div>-->
-                        <div class="wp" style="background-color: #E8E8E8" id="danmu">
-                            <ul id="slider" class="slider">
-                                <li th:each="messagelist : ${messagelist}">
-                                    <a class="fl" href="">
-                                        <img th:src="${messagelist.messageHand}" alt=""
-                                             width="70px" ;height="70px"/></a>
-                                    <p th:text="${messagelist.message}"></p>
-                                    <span style="color: red;display:inline-block">留言者:</span>
-                                    <span th:text="${messagelist.messageuserName}">&nbsp;</span>
-                                    <span style="color: blue;display:inline-block" th:text="${messagelist.messageTime}"></span>
-                                </li>
+<!--                        <div class="wp" style="background-color: #E8E8E8" id="danmu">-->
+<!--                            <ul id="slider" class="slider">-->
+<!--                                <li th:each="messagelist : ${messagelist}">-->
+<!--                                    <a class="fl" href="">-->
+<!--                                        <img th:src="${messagelist.messageHand}" alt=""-->
+<!--                                             width="70px" ;height="70px"/></a>-->
+<!--                                    <p th:text="${messagelist.message}"></p>-->
+<!--                                    <span style="color: red;display:inline-block">留言者:</span>-->
+<!--                                    <span th:text="${messagelist.messageuserName}">&nbsp;</span>-->
+<!--                                    <span style="color: blue;display:inline-block" th:text="${messagelist.messageTime}"></span>-->
+<!--                                </li>-->
 
-                            </ul>
-                        </div>
+<!--                            </ul>-->
+<!--                        </div>-->
                         <script type="text/javascript">
                             /* $("#buttonhide").click(function(){
                                 $("#buttonhide").html("不行 不行! 还是动的弹幕好看!");
@@ -1739,14 +1733,7 @@
                             <li>发送内容</li>
                             <li>用户类型</li>
                         </ul>
-                        <ul class="list_ovefiow">
-                            <li th:each="barrageList : ${barrageList}" style="height: 30px">
-                                <span th:text="${barrageList.dtime}" style="display:inline-block;width: 65px;text-align: center"></span>
-                                <span th:text="${barrageList.content}" style="display:inline-block;width: 126px"></span>
-                                <span style="display:inline-block;width: 60px;text-align: center">用户</span>
-                            </li>
 
-                        </ul>
 
                     </div>
 
@@ -1780,7 +1767,7 @@
                                                                                     style="display:none;"></span>
                                 </div>
                             </div>
-                            <div class="info"><a href="/video/av7276464/?spm_id_from=333.788.videocard.0"
+                            <div class="info"><a href="/video/av7276464/music.html?spm_id_from=333.788.videocard.0"
                                                  title="实习老师粉笔画让网友跪服 神还原《你的名字》" class="title">实习老师粉笔画让网友跪服 神还原《你的名字》</a>
                                 <div class="count up"><a href="//space.bilibili.com/583792/" target="_blank">H·D</a>
                                 </div>
@@ -1800,7 +1787,7 @@
                                 <div class="watch-later-video van-watchlater"><span class="wl-tips"
                                                                                     style="display:none;"></span></div>
                             </div>
-                            <div class="info"><a href="/video/av7185185/?spm_id_from=333.788.videocard.1"
+                            <div class="info"><a href="/video/av7185185/music.html?spm_id_from=333.788.videocard.1"
                                                  title="【大陆官方预告片】《你的名字。》大陆官方预告片！！！首发“初见版”预告！！！！" class="title">【大陆官方预告片】《你的名字。》大陆官方预告片！！！首发“初见版”预告！！！！</a>
                                 <div class="count up"><a href="//space.bilibili.com/1791122/" target="_blank">贴吧坦克君</a>
                                 </div>
@@ -1822,7 +1809,7 @@
                                 <div class="watch-later-video van-watchlater"><span class="wl-tips"
                                                                                     style="display:none;"></span></div>
                             </div>
-                            <div class="info"><a href="/video/av70323398/?spm_id_from=333.788.videocard.2"
+                            <div class="info"><a href="/video/av70323398/music.html?spm_id_from=333.788.videocard.2"
                                                  title="【1080P字幕版】《你的名字。》交响乐团音乐会"
                                                  class="title">【1080P字幕版】《你的名字。》交响乐团音乐会</a>
                                 <div class="count up"><a href="//space.bilibili.com/7349630/" target="_blank">lh9831</a>
@@ -1844,7 +1831,7 @@
                                 <div class="watch-later-video van-watchlater"><span class="wl-tips"
                                                                                     style="display:none;"></span></div>
                             </div>
-                            <div class="info"><a href="/video/av7449411/?spm_id_from=333.788.videocard.3"
+                            <div class="info"><a href="/video/av7449411/music.html?spm_id_from=333.788.videocard.3"
                                                  title="你身在何方 【你的名字AMV】" class="title">你身在何方 【你的名字AMV】</a>
                                 <div class="count up"><a href="//space.bilibili.com/60783/" target="_blank">FCSMio</a>
                                 </div>
@@ -1865,7 +1852,7 @@
                                 <div class="watch-later-video van-watchlater"><span class="wl-tips"
                                                                                     style="display:none;"></span></div>
                             </div>
-                            <div class="info"><a href="/video/av22543323/?spm_id_from=333.788.videocard.4"
+                            <div class="info"><a href="/video/av22543323/music.html?spm_id_from=333.788.videocard.4"
                                                  title="【预告】你的名字。真人版（预定2019年5月）"
                                                  class="title">【预告】你的名字。真人版（预定2019年5月）</a>
                                 <div class="count up"><a href="//space.bilibili.com/15823178/" target="_blank">柴犬三号</a>
@@ -1887,7 +1874,7 @@
                                 <div class="watch-later-video van-watchlater"><span class="wl-tips"
                                                                                     style="display:none;"></span></div>
                             </div>
-                            <div class="info"><a href="/video/av7413041/?spm_id_from=333.788.videocard.13"
+                            <div class="info"><a href="/video/av7413041/music.html?spm_id_from=333.788.videocard.13"
                                                  title="【王司徒】前前前世（你的名字）" class="title">【王司徒】前前前世（你的名字）</a>
                                 <div class="count up"><a href="//space.bilibili.com/1706344/" target="_blank">昔日友人</a>
                                 </div>
@@ -1907,7 +1894,7 @@
                                 <div class="watch-later-video van-watchlater"><span class="wl-tips"
                                                                                     style="display:none;"></span></div>
                             </div>
-                            <div class="info"><a href="/video/av41904646/?spm_id_from=333.788.videocard.18"
+                            <div class="info"><a href="/video/av41904646/music.html?spm_id_from=333.788.videocard.18"
                                                  title="【Chin×Rikinn】前前前世【你的名字。】"
                                                  class="title">【Chin×Rikinn】前前前世【你的名字。】</a>
                                 <div class="count up"><a href="//space.bilibili.com/2488966/"
@@ -1928,7 +1915,7 @@
                                 <div class="watch-later-video van-watchlater"><span class="wl-tips"
                                                                                     style="display:none;"></span></div>
                             </div>
-                            <div class="info"><a href="/video/av16123990/?spm_id_from=333.788.videocard.19"
+                            <div class="info"><a href="/video/av16123990/music.html?spm_id_from=333.788.videocard.19"
                                                  title="【马云】钱钱钱逝【你的钱包主题曲】" class="title">【马云】钱钱钱逝【你的钱包主题曲】</a>
                                 <div class="count up"><a href="//space.bilibili.com/2283296/" target="_blank">小猪P_</a>
                                 </div>
@@ -2049,6 +2036,8 @@
 
 
 </script>
+
+
 <script th:src="@{musicto/js/common.js}"></script>
 <script th:src="@{musicto/js/jquery.min.js}"></script>
 

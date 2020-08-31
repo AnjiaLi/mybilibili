@@ -31,7 +31,6 @@
 				html = "";
 			});
 			$.post("ajaxTuiJian", function(test) {
-				alert("hello");
 				var i=0;
 				var ht = eval("(" + test + ")");
 				$.each(ht, function(index, m) {

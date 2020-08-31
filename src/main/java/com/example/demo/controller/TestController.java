@@ -10,7 +10,6 @@ import com.example.demo.utils.MusicUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -59,7 +58,15 @@ public class TestController {
         // TODO: 2020/8/28 下面方法更新音乐时长
 //        updateAllMusicTime();
 
-        userListService.updateToVip("admin");
+//        userListService.updateToVip("admin");
+        List<MusicEntity> lists=musicService.list();
+
+        for (MusicEntity m :
+                lists) {
+            m.setmusicImage(m.getmusicImage().substring(1));
+        }
+        musicService.updateBatchById(lists);
+
     }
 
     public void select() {
@@ -75,5 +82,8 @@ public class TestController {
             musicList.get(i).setmusicTime(durationList.get(i));
         musicService.updateBatchById(musicList);
     }
+
+
+
 
 }

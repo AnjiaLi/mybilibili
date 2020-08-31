@@ -1,7 +1,10 @@
 package com.example.demo.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.example.demo.entity.MusicEntity;
 import com.example.demo.entity.VideoEntity;
+import com.example.demo.service.impl.MusicServiceImpl;
 import com.example.demo.service.impl.UserListServiceImpl;
 import com.google.gson.Gson;
 import org.apache.commons.io.FilenameUtils;
@@ -27,19 +30,21 @@ public class IndexController {
 
     @Autowired
     UserListServiceImpl userListServiceImpl;
+    @Autowired
+    MusicServiceImpl musicServiceImpl;
 
     @RequestMapping(value = {"/","/index"})
 
     public ModelAndView index(HttpServletRequest request,
                               HttpServletResponse response)
             throws FileNotFoundException {
-        List<VideoEntity> list = userListServiceImpl.videolist("1");
         Map model = new HashMap();
-        model.put("list", list);
-        List<VideoEntity> list2 = userListServiceImpl.videolist("2");
-        model.put("list2", list2);
-        List<VideoEntity> list3 = userListServiceImpl.videolist("3");
-        model.put("list3", list3);
+        List<MusicEntity> list = musicServiceImpl.list(new QueryWrapper<MusicEntity>().eq("musicCategory","1").last("limit 8"));
+        model.put("lists1", list);
+        List<MusicEntity> list2 = musicServiceImpl.list(new QueryWrapper<MusicEntity>().eq("musicCategory","2").last("limit 8"));
+        model.put("lists2", list2);
+        List<MusicEntity> list3 = musicServiceImpl.hotMusicList(8);
+        model.put("lists3", list3);
         // 随机查6条数据出来
         List<VideoEntity> videolistimit6MAD = userListServiceImpl.videolistimit6MAD();
         model.put("videolistimit6MAD", videolistimit6MAD);

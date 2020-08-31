@@ -808,7 +808,7 @@
 }
 
 .video-toolbar .ops > span.on, .video-toolbar .ops > span.on i, .video-toolbar .ops > span:hover, .video-toolbar .ops > span:hover i {
-    color: #00a1d6
+    color: #c84659
 }
 
 .video-toolbar .ops > span.like i.shake {
@@ -978,8 +978,10 @@
 }
 
 .video-toolbar .appeal-text:hover {
-    color: #00a1d6
+    color: #c84659
 }
+
+
 
 .video-toolbar .more {
     float: right;
@@ -2870,7 +2872,7 @@
 .comment-m .b-head {
     font-size: 18px;
     line-height: 24px;
-    color: #222;
+    color: #FFFAFA;
     margin: 0 0 20px
 }
 

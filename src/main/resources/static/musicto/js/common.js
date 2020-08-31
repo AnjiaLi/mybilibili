@@ -36,7 +36,7 @@ function play2() {
 
 // 格式化时间
 function formatTime(time) {
-  console.log(time)
+  // console.log(time)
   // 取整
   time = ~~time;
   var formatTime;

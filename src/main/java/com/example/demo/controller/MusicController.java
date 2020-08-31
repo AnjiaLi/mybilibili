@@ -17,7 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Controller
-public class VideoController {
+public class MusicController {
 
     @Autowired
     UserListServiceImpl userListServiceImpl;
@@ -41,6 +41,9 @@ public class VideoController {
             model.put("musicEntity",m);
 
         }
+
+        List<MusicEntity> hotMusicList = musicServiceImpl.hotMusicList(8);
+        model.put("hotMusicList", hotMusicList);
 
 //        request.setAttribute("shipingID", ID);
 //        model.put("shipingID", ID);

@@ -15,7 +15,7 @@
     <script type="text/javascript">
         $(function(){
             //每个固定的时间移动图片
-            var timer = setInterval(picLoop,1000);
+            var timer = setInterval(picLoop,3000);
             var index = 0;
             function picLoop(){
                 index++;
@@ -63,7 +63,6 @@
                     <ul>
                         <li class="item item-home"><a th:href="@{/index}">主页</a></li>
                         <li class="item"><a th:href="@{/admin/adminSystem}">后台管理</a>
-                        <li class="item"><a href="videoFileTop">我要上传</a></li>
                     </ul>
                 </div>
 
@@ -211,7 +210,7 @@
             <div class="pic-list fl" js-tab="true">
                 <div class="pic-list__title">
                     <i class="icon icon-dance"></i>
-                    <h2>新歌</h2>
+                    <h2>韩语</h2>
                     <div class="tab-title">
                         <a href="#" class="cur">有新动态</a>
                     </div>
@@ -225,7 +224,8 @@
                         <a th:href="'music?ID='+${list.getmusicID()}" class="img-link">
                             <img
                                 th:src="${list.getmusicImage()}" alt="#">
-                            <span class="mask"></span> <span class="time" th:text="${list.getMusicClick()}"></span>
+                            <span class="mask"></span>
+                            <span class="time" th:text="点击量+${list.getMusicClick()}"></span>
                         </a>
                         <div class="img-info">
                             <a th:href="'video?dizhi='+${list.getmusicAddress()}+'&shipingID='+${list.getmusicID()}"
@@ -233,10 +233,10 @@
                             </a>
                             <div class="btm">
                                 <div class="user">
-                                    <i></i>admin
+                                    <p th:text="${list.getSinger()}"></p>
                                 </div>
                                 <div class="online">
-                                    <i th:text="${list.getmusicTime()}"></i>
+                                    <p th:text="${list.getmusicTime()}"></p>
                                 </div>
                             </div>
                         </div>
@@ -273,7 +273,7 @@
             <div class="pic-list fl" js-tab="true">
                 <div class="pic-list__title">
                     <i class="icon icon-game"></i>
-                    <h2>流行</h2>
+                    <h2>华语</h2>
                     <div class="tab-title">
                         <a href="#" class="cur">有新动态</a>
                     </div>
@@ -294,10 +294,10 @@
                             </a>
                             <div class="btm">
                                 <div class="user">
-                                    <i></i>admin
+                                    <p th:text="${list2.getSinger()}"></p>
                                 </div>
                                 <div class="online">
-                                    <i th:text="${list2.getmusicTime()}"></i>
+                                    <p th:text="${list2.getmusicTime()}"></p>
                                 </div>
                             </div>
                         </div>

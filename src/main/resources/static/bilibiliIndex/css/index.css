@@ -131,28 +131,6 @@ header {
     width: 85px;
 }
 
-.pic-list__wrapper .img-info .user i,
-.pic-list__wrapper .img-info .online i {
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    margin-right: 4px;
-    vertical-align: top;
-}
-
-.pic-list__wrapper .img-info .user i {
-    background-image: url(../images/page_icons.png);
-    background-repeat: no-repeat;
-    background-position: -282px -154px;
-}
-
-.pic-list__wrapper .img-info .online {
-    float: left;
-}
-
-.pic-list__wrapper .img-info .online i {
-    background: url(../images/live_online.png) no-repeat;
-}
 
 .main-gg {
     display: block;

@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface MusicService extends IService<MusicEntity> {
     List<MusicEntity> hotMusicList(int limit);
+
+    List<MusicEntity> musicListByRand(String musicCategory);
 }

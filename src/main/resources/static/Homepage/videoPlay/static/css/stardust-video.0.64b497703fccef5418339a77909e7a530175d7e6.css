@@ -1065,8 +1065,8 @@
 
 .video-page-card .card-box .pic-box {
     position: relative;
-    width: 141px;
-    height: 80px;
+    width: 140px;
+    height: 90px;
     border-radius: 2px;
     background: #f4f5f7
 }
@@ -1075,13 +1075,13 @@
     position: relative;
     overflow: hidden;
     border-radius: 2px;
-    width: 141px;
-    height: 80px
+    width: 140px;
+    height: 90px
 }
 
 .video-page-card .card-box .pic-box .pic img {
-    width: 141px;
-    height: 80px
+    width: 100%;
+    height: 100%;
 }
 
 .video-page-card .card-box .pic-box .pic img[src=""] {

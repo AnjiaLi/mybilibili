@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.demo.entity.MusicEntity;
 import com.example.demo.entity.VideoEntity;
 import com.example.demo.service.impl.MusicServiceImpl;
@@ -10,7 +9,10 @@ import com.google.gson.Gson;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -39,9 +41,9 @@ public class IndexController {
                               HttpServletResponse response)
             throws FileNotFoundException {
         Map model = new HashMap();
-        List<MusicEntity> list = musicServiceImpl.list(new QueryWrapper<MusicEntity>().eq("musicCategory","1").last("limit 8"));
+        List<MusicEntity> list = musicServiceImpl.musicListByRand("1");
         model.put("lists1", list);
-        List<MusicEntity> list2 = musicServiceImpl.list(new QueryWrapper<MusicEntity>().eq("musicCategory","2").last("limit 8"));
+        List<MusicEntity> list2 = musicServiceImpl.musicListByRand("2");
         model.put("lists2", list2);
         List<MusicEntity> list3 = musicServiceImpl.hotMusicList(8);
         model.put("lists3", list3);

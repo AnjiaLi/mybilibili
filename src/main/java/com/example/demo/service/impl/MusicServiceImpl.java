@@ -16,4 +16,9 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, MusicEntity> impl
     public List<MusicEntity> hotMusicList(int limit){
         return getBaseMapper().hotMusicList(limit);
     }
+
+    @Override
+    public List<MusicEntity> musicListByRand(String musicCategory){
+        return getBaseMapper().musicListByRand(musicCategory);
+    };
 }

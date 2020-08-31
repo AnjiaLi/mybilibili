@@ -10,42 +10,79 @@
         .more-info {
             display: none;
         }
+
+        .no-display {
+            display: none;
+        }
+
+        .left {
+            float: left;
+            width: 50%;
+        }
+
+        .right {
+            float: left;
+            width: 50%;
+        }
+
+        .add-button {
+            /* width:100px; */
+        }
     </style>
+    <script th:src="@{test/jquery-3.5.1.js}"></script>
     <script th:src="@{test/playList.js}"></script>
 </head>
 
 <body>
     <!-- <div th:replace="head/head::head"></div> -->
 
-    <header style="text-align: center;">
-        <audio id="myAudio" th:src="@{music/水月陵 - それは、とある王国の物語.mp3}" controls autoplay></audio>
-        <form th:action="@{/list}" method="GET">
-            <input type="hidden" name="type" value="search">
-            <input type="search" name="key" id="inp1" placeholder="搜索音乐">
-            <input type="submit" id="inp2" value="搜索">
-        </form>
-    </header>
-    <div style="text-align: center;">
-        <table style="width: 80%; margin:auto;">
-            <tr>
-                <th>歌名</th>
-                <th>歌手</th>
-                <th>时长</th>
-                <th class="more-info">操作</th>
-            </tr>
-            <tr th:each="music : ${musicList}">
-                <td th:text="${music.getmusicName()}"></td>
-                <td th:text="${music.getSinger()}"></td>
-                <td th:text="${music.getmusicTime()}"></td>
-                <td class="more-info">
-                    <span th:text="${music.getmusicID()}"></span>
-                    <span th:text="${music.getmusicAddress()}"></span>
-                    <!-- <a th:href="@{'/admin/music/del/'+${music.id}}">删除</a> -->
-                    <!-- <a th:href="@{'/admin/music/upd/'+${music.id}}">修改</a> -->
-                </td>
-            </tr>
-        </table>
-    </div>
+    <section style="text-align: center;width: 60%;margin: auto;">
+        <section class="left">
+            <header>
+                <form th:action="@{/list}" method="GET">
+                    <input type="hidden" name="type" value="search">
+                    <input type="search" name="key" id="inp1" placeholder="搜索音乐">
+                    <input type="submit" id="inp2" value="搜索">
+                </form>
+            </header>
+            <div>
+                <table style="width: 80%; margin:auto;">
+                    <tr>
+                        <th>歌名</th>
+                        <th>歌手</th>
+                        <th>时长</th>
+                        <th class="more-info">操作</th>
+                    </tr>
+                    <tr th:each="music : ${musicList}">
+                        <td th:text="${music.getmusicName()}"></td>
+                        <td th:text="${music.getSinger()}"></td>
+                        <td th:text="${music.getmusicTime()}"></td>
+                        <td class="more-info">
+                            <span th:text="${music.getmusicID()}"></span>
+                            <span th:text="${music.getmusicAddress()}"></span>
+                            <!-- <a th:href="@{'/admin/music/del/'+${music.id}}">删除</a> -->
+                            <!-- <a th:href="@{'/admin/music/upd/'+${music.id}}">修改</a> -->
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+        <section class="right">
+            <header> <audio id="myAudio" th:src="@{music/水月陵 - それは、とある王国の物語.mp3}" controls autoplay></audio> </header>
+            <div>
+                <table style="width: 80%; margin:auto;" id="play-list">
+                    <tr>
+                        <th>歌名</th>
+                        <th>歌手</th>
+                        <th>时长</th>
+                        <th class="more-info">操作</th>
+                    </tr>
+
+                </table>
+            </div>
+        </section>
+
+
 </body>
 
 </html>

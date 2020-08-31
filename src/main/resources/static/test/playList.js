@@ -1,17 +1,74 @@
 window.onload = function () {
-    let musicList = getMusicList();
+    let page = window.location.pathname.slice(1)
+    if (page == "list") {
+        initList()
+    } else if (page == "music") {
+        initMusic()
+    }
+    showPlayList()
+}
+
+function initList() {
+    // let musicList = getMusicList();
     let myAudio = document.querySelector("#myAudio");
-    localStorage.setItem("index", 0);
-    localStorage.setItem("playList", JSON.stringify(musicList));
-    myAudio.addEventListener("ended", () => {
-        let index = localStorage.getItem("index")
-        index = (index * 1 + 1) % musicList.length
-        console.log(musicList[index].address);
-        myAudio.src = musicList[index].address
-        localStorage.setItem("index", index)
-        myAudio.load();
-        myAudio.play();
+    // localStorage.setItem("index", 0);
+    // localStorage.setItem("playList", JSON.stringify(musicList));
+    myAudio.addEventListener("ended", playMusic(true))
+}
+
+function initMusic() {
+    let addButton = document.querySelector("#add-button")
+    let starButton = document.querySelector("#star-button")
+    addButton.addEventListener("click", addMusic(JSON.parse(document.querySelector("#music-info").textContent)))
+    starButton.addEventListener("click", () => {
+        let musicID = window.location.search
+        musicID = musicID.slice(musicID.lastIndexOf("=") + 1)
+        starMusic(musicID, 0)
     })
+}
+
+function showPlayList() {
+    let table = document.querySelector("#play-list")
+    let playList = getPlayList()
+    for (let i = 0, tr, name, singer, time, add, star; i < playList.length; i++) {
+        tr = document.createElement("tr")
+        name = document.createElement("td")
+        name.textContent = playList[i].name
+        name.className = "music-name"
+        singer = document.createElement("td")
+        singer.textContent = playList[i].singer
+        singer.className = "music-singer"
+        time = document.createElement("td")
+        time.textContent = playList[i].time
+        time.className = "music-time"
+        add = document.createElement("input")
+        add.type = "button"
+        add.value = "播放"
+        add.className = "add-button"
+        add.onclick = () => {
+            addMusic(playList[i])
+        }
+        star = document.createElement("input")
+        star.type = "button"
+        star.value = "收藏"
+        star.className = "star-button"
+        star.onclick = () => {
+            starMusic(playList[i].id, i)
+        }
+        tr.appendChild(name)
+        tr.appendChild(singer)
+        tr.appendChild(time)
+        tr.appendChild(add)
+        tr.appendChild(star)
+        table.appendChild(tr)
+    }
+}
+
+function getPlayList() {
+    let playList = localStorage.getItem("playList")
+    if (playList == null) playList = []
+    else playList = JSON.parse(playList)
+    return playList
 }
 
 function getMusicList() {
@@ -29,4 +86,66 @@ function getMusicList() {
         })
     }
     return musicList
+}
+
+function playMusic(next) {
+    let myAudio = document.querySelector("#myAudio");
+    let playList = getPlayList()
+    let index = localStorage.getItem("index")
+    if (next) {
+        index = (index * 1 + 1) % playList.length
+        localStorage.setItem("index", index)
+    }
+    console.log(playList[index].address);
+    myAudio.src = playList[index].address
+    myAudio.load();
+    myAudio.play();
+}
+
+function addMusic(music) {
+    let playList = getPlayList()
+    // let prefix = window.location.protocol + "//" + window.location.host + "/"
+    let newMusic
+    if (music.musicName == undefined) {
+        newMusic = music
+    } else {
+        newMusic = {
+            name: music.musicName,
+            singer: music.singer,
+            time: music.musicTime,
+            id: music.musicID,
+            address: music.musicAddress,
+        }
+    }
+    let index = playList.findIndex(e => e.id == newMusic.id)
+    if (index == -1) {
+        playList.push(newMusic)
+        localStorage.setItem("playList", JSON.stringify(playList))
+        localStorage.setItem("index", playList.length - 1)
+    } else {
+        localStorage.setItem("index", index)
+    }
+    playMusic(false)
+}
+
+function starMusic(id, index) {
+    $.ajax({
+        type: "post",
+        url: "/music/starMusic",
+        data: {
+            musicID: id
+        },
+        success: function (result) {
+            if (result == "false") {
+                alert("请登录")
+            } else {
+                let starButton = document.querySelectorAll(".star-button")[index]
+                starButton.textContent = "已收藏"
+            }
+        },
+        error: function (e) {
+            console.log(e.status);
+            console.log(e.responseText);
+        }
+    });
 }

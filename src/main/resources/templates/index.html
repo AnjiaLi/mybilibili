@@ -2,7 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>我的哔哩哔哩-首页</title>
+    <title>U-MusicWeb</title>
     <link th:href="@{bilibiliIndex/css/reset.css}" rel="stylesheet"/>
     <link th:href="@{bilibiliIndex/css/common.css}" rel="stylesheet"/>
     <link th:href="@{bilibiliIndex/css/index.css}" rel="stylesheet"/>
@@ -20,7 +20,7 @@
             function picLoop(){
                 index++;
                 if (index==4) {index=0;}
-                $(".content").animate({"left":-500*index},500);
+                $(".content").animate({"left":-1000*index},1000);
                 // $(".index li").eq(index).css("background-color","red")
                 //     .siblings().css("background-color","rgba(100,100,100,0.3)");
             }
@@ -31,7 +31,7 @@
                 $(".left").show();
                 $(".right").show();
             },function(){
-                timer = setInterval(picLoop,1000);
+                timer = setInterval(picLoop,4000);
                 $(".left").hide();
                 $(".right").hide();
             })
@@ -40,7 +40,7 @@
                 // $(this).css("background-color","red")
                     // .siblings().css("background-color","rgba(100,100,100,0.3)");
                 index = $(this).index();
-                $(".content").animate({"left":-500*index},500);
+                $(".content").animate({"left":-1000*index},1000);
 
             })
 
@@ -61,8 +61,9 @@
             <div class="page-width clearfix">
                 <div class="header-top__nav">
                     <ul>
-                        <li class="item item-home"><a th:href="@{/index}">主站</a></li>
+                        <li class="item item-home"><a th:href="@{/index}">主页</a></li>
                         <li class="item"><a th:href="@{/admin/adminSystem}">后台管理</a>
+                        <li class="item"><a href="videoFileTop">我要上传</a></li>
                     </ul>
                 </div>
 
@@ -130,61 +131,61 @@
                 <div class="num">
                     <i>887</i>
                 </div>
-                动画
+                推荐
             </a></li>
             <li class="item"><a href="" class="link">
                 <div class="num">
                     <i>23</i>
                 </div>
-                番剧
+                华语
             </a></li>
             <li class="item"><a href="" class="link">
                 <div class="num">
                     <i>999+</i>
                 </div>
-                音乐
+                海外
             </a></li>
             <li class="item"><a href="" class="link">
                 <div class="num">
                     <i>152</i>
                 </div>
-                舞蹈
+                流行
             </a></li>
             <li class="item"><a href="" class="link">
                 <div class="num">
                     <i>999+</i>
                 </div>
-                游戏
+                摇滚
             </a></li>
             <li class="item"><a href="" class="link">
                 <div class="num">
                     <i>999+</i>
                 </div>
-                科技
+                民谣
             </a></li>
             <li class="item"><a href="" class="link">
                 <div class="num">
                     <i>999+</i>
                 </div>
-                生活
+                电子
             </a></li>
             <li class="item"><a href="" class="link">
                 <div class="num">
                     <i>77</i>
                 </div>
-                鬼畜
+                BGM
             </a></li>
             <li class="item"><a href="" class="link">
                 <div class="num">
                     <i>416</i>
                 </div>
-                时尚
+                新歌
             </a></li>
             <li class="item"><a href="" class="link">
                 <div class="num">
                     <i>100</i>
                 </div>
-                广告
+                RAP
             </a></li>
             <li class="item"><a href="" class="link">
                 <div class="num">
@@ -192,23 +193,13 @@
                 </div>
                 娱乐
             </a></li>
-            <li class="item"><a href="" class="link">
-                <div class="num">
-                    <i>916</i>
-                </div>
-                影视
-            </a></li>
             <li class="item item-square"><a href="" class="link">广场</a>
 
             </li>
 
             <li class="item item-room"><a href="#" class="link">小黑屋</a></li>
         </ul>
-        <div class="nav-gif" id="qiulingyang">
-            <img
-                    src="bilibiliIndex/images/cont/nav_img.gif"
-                    alt="求领养">
-        </div>
+
     </div>
 </nav>
 
@@ -220,7 +211,7 @@
             <div class="pic-list fl" js-tab="true">
                 <div class="pic-list__title">
                     <i class="icon icon-dance"></i>
-                    <h2>动画</h2>
+                    <h2>新歌</h2>
                     <div class="tab-title">
                         <a href="#" class="cur">有新动态</a>
                     </div>
@@ -255,11 +246,9 @@
             <div class="main-side fr" js-tab="true">
                 <div class="main-side__title">
                     <div class="rank-t">
-                        <h3>排行</h3>
+                        <h3>U音乐新歌榜</h3>
                     </div>
-                    <div class="tab-title">
-                        <a href="#" class="cur">全部</a>
-                    </div>
+
                 </div>
                 <div class="main-side__cont">
                     <div class="tab-cont">
@@ -284,7 +273,7 @@
             <div class="pic-list fl" js-tab="true">
                 <div class="pic-list__title">
                     <i class="icon icon-game"></i>
-                    <h2>MAD</h2>
+                    <h2>流行</h2>
                     <div class="tab-title">
                         <a href="#" class="cur">有新动态</a>
                     </div>
@@ -318,11 +307,9 @@
             <div class="main-side fr" js-tab="true">
                 <div class="main-side__title">
                     <div class="rank-t">
-                        <h3>排行</h3>
+                        <h3>U音乐热度榜</h3>
                     </div>
-                    <div class="tab-title">
-                        <a href="#" class="cur">全部</a>
-                    </div>
+
                 </div>
                 <div class="main-side__cont">
                     <div class="tab-cont">

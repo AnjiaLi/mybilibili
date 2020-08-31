@@ -13,19 +13,19 @@ body {
   line-height: 1;
   font-size: 12px;
   font-family: "Microsoft Yahei";
-  color: #333;
-  background-color: #fff;
+  color: #FFFAFA;
+  background-color: #282725;
 }
 ul, ol {
   list-style: none;
 }
 a {
   display: block;
-  color: #333;
+  color: #FFFAFA;
   text-decoration: none;
 }
 a:hover {
-  color: #00a1d6;
+  color: #FFB6C1;
 }
 input, button {
   padding: 0;
@@ -33,7 +33,7 @@ input, button {
   outline: none;
   background: none;
 }
-img {
+/*img {
   vertical-align: top;
   border: 0;
 }

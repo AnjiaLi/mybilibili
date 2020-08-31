@@ -110,6 +110,7 @@ public class UploadController {
         musicEntity.setmusicName(musicName);
         musicEntity.setmusicImage(photoFileName);
         musicEntity.setmusicAddress(musicFileName);
+        musicEntity.setMusicClick(0);
         musicEntity.setSinger(singer);
         musicEntity.setmusicTime("10:00");
         musicEntity.setmusicState(strings[0]);

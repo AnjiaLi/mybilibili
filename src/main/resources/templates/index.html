@@ -20,7 +20,7 @@
             function picLoop(){
                 index++;
                 if (index==4) {index=0;}
-                $(".content").animate({"left":-500*index},500);
+                $(".content").animate({"left":-1000*index},1000);
                 // $(".index li").eq(index).css("background-color","red")
                 //     .siblings().css("background-color","rgba(100,100,100,0.3)");
             }
@@ -31,7 +31,7 @@
                 $(".left").show();
                 $(".right").show();
             },function(){
-                timer = setInterval(picLoop,1000);
+                timer = setInterval(picLoop,4000);
                 $(".left").hide();
                 $(".right").hide();
             })
@@ -40,7 +40,7 @@
                 // $(this).css("background-color","red")
                     // .siblings().css("background-color","rgba(100,100,100,0.3)");
                 index = $(this).index();
-                $(".content").animate({"left":-500*index},500);
+                $(".content").animate({"left":-1000*index},1000);
 
             })
 
@@ -199,11 +199,7 @@
 
             <li class="item item-room"><a href="#" class="link">小黑屋</a></li>
         </ul>
-        <div class="nav-gif" id="qiulingyang">
-            <img
-                    src="bilibiliIndex/images/cont/nav_img.gif"
-                    alt="求领养">
-        </div>
+
     </div>
 </nav>
 
@@ -252,9 +248,7 @@
                     <div class="rank-t">
                         <h3>U音乐新歌榜</h3>
                     </div>
-                    <div class="tab-title">
-                        <a href="#" class="cur">全部</a>
-                    </div>
+
                 </div>
                 <div class="main-side__cont">
                     <div class="tab-cont">
@@ -315,9 +309,7 @@
                     <div class="rank-t">
                         <h3>U音乐热度榜</h3>
                     </div>
-                    <div class="tab-title">
-                        <a href="#" class="cur">全部</a>
-                    </div>
+
                 </div>
                 <div class="main-side__cont">
                     <div class="tab-cont">

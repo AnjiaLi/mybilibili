@@ -13,8 +13,8 @@
 
 
 
-    <script th:src="@{../../Homepage/js/jquery-2.0.0.js}"></script>
-    <script th:src="@{../../Homepage/js/jquery.min.js}"></script>
+    <script th:src="@{https://code.jquery.com/jquery-3.5.1.js}"></script>
+<!--    <script th:src="@{../../Homepage/js/jquery.min.js}"></script>-->
     <script th:src="@{../../Homepage/js/sHover.min.js}"></script>
     <script th:src="@{../../adminjs/chaxunjs.js}"></script>
 
@@ -263,7 +263,7 @@
                                 <TD align="center" th:text="${music.getmusicTime()}"></TD>
                                 <TD align="center" th:if="${music.getmusicState()=='1'}" th:text="非VIP"></TD>
                                 <TD align="center" th:if="${music.getmusicState()=='2'}" th:text="VIP歌曲"></TD>
-                                <div th:switch = "${music.getmusiccAtegory()}">
+                                <div th:switch = "${music.getmusicCategory()}">
                                     <TD align="center" th:case="1" th:text="韩语"></TD>
                                     <TD align="center" th:case="2" th:text="华语"></TD>
                                     <TD align="center" th:case="3" th:text="欧美"></TD>
@@ -292,11 +292,11 @@
 
     <div class="right" id="li030">
         <div class="right01"><img src="../../Houtai/images/04.gif" /> 音乐上传 &gt; </div>
-        <form id="upload_form" th:action="@{/uploadMusic}" method="post" style="background-color: white" enctype="multipart/form-data">
+        <form id="upload_form" style="background-color: white" enctype="multipart/form-data">
 
             <div>
                 <div><label style="color: black;">请选择音乐文件</label></div>
-                <div><input type="file" name="file" id="music"/></div>
+                <div><input type="file" name="file" id="music" multiple="multiple"/></div>
             </div>
             <div>
                 <div><label style="color: black;">请选择音乐封面</label></div>
@@ -314,15 +314,15 @@
 
             <div>
                 <div><label style="color: black;">请选择歌曲分类</label></div>
-                <div>
-                    <label><input name="musicAtegory" type="radio" value="1" checked/>韩语 </label>
-                    <label><input name="musicAtegory" type="radio" value="2"/>华语 </label>
-                    <label><input name="musicAtegory" type="radio" value="3"/>欧美 </label>
-                    <label><input name="musicAtegory" type="radio" value="4"/>日语 </label>
-                    <label><input name="musicAtegory" type="radio" value="5"/>粤语 </label>
+                <div id="musicCategoryRadioList">
+                    <label><input name="musicCategory" type="radio" value="1" checked/>韩语 </label>
+                    <label><input name="musicCategory" type="radio" value="2"/>华语 </label>
+                    <label><input name="musicCategory" type="radio" value="3"/>欧美 </label>
+                    <label><input name="musicCategory" type="radio" value="4"/>日语 </label>
+                    <label><input name="musicCategory" type="radio" value="5"/>粤语 </label>
                 </div>
                 <div><label style="color: black;">请选择是否为付费</label></div>
-                <div>
+                <div id="musicStateRadioList">
                     <label><input name="musicState" type="radio" value="1" checked/>普通 </label>
                     <label><input name="musicState" type="radio" value="2"/>VIP </label>
                 </div>
@@ -330,21 +330,107 @@
             <div>
                 <input type="button" id="tougao" value="确认"/>
                 <input type="button" id="fanhui" value="取消返回"/>
-                <input type="submit" id="submit" value="立即投稿" disabled="disabled"/>
+                <input type="button" id="submit" value="立即投稿" disabled="disabled"/>
             </div>
             <!--/*@thymesVar id="MusicUploadFeedback" type="java"*/-->
             <p th:if="${MusicUploadFeedback}" style="text-align: center">
                 <span style="color: red" th:text="${MusicUploadFeedback}"></span>
             </p>
 
+            <!--/*@thymesVar id="MusicUploadSuccess" type="java"*/-->
             <p th:if="${MusicUploadSuccess}" style="text-align: center">
                 <span style="color: green" th:text="${MusicUploadSuccess}"></span>
             </p>
 
         </form>
+
+
+
     </div>
 </div>
 
+<script type="text/javascript">
+    $("#fanhui").click(function () {
+        location.href = "index";
+    })
+
+</script>
+
+<script>
+
+
+    $("#tougao").click(function () {
+        //判断视频
+        var music = $("#music").val();
+        if (music == "") {
+            alert("请上传投稿的视频");
+            return false;
+        } else {
+            if (!/\.(mp3)$/.test(music)) {
+                alert("音乐格式必须为.MP3格式");
+                return false;
+            }
+            //判断图片
+            var musicImg = $("#musicImg").val();
+            if (musicImg == "") {
+                alert("请选择图片");
+                return false;
+            } else {
+                if (!/\.(gif|jpg|jpeg|png|GIF|JPG|PNG)$/.test(musicImg)) {
+                    alert("图片类型必须是.gif,jpeg,jpg,png中的一种")
+                    return false;
+                }
+            }
+            //开始判断输入的内容
+            var musicName = $("#musicName").val();
+            var singer = $("#singer").val();
+            if (musicName == "" || singer == "" || singer == "null" || musicName == "null") {
+                alert("请输入歌曲名和歌手名");
+                return false;
+            }
+        }
+
+        $("#tougao").attr('disabled', true); //将button变成不可点击
+        $("#submit").attr('disabled', false); //将button变成不可点击
+    });
+
+
+    $("#submit").click(function () {
+        alert("1111")
+        alert($("#musicName").val())
+        alert($("#singer").val())
+
+        var formData = new FormData();
+
+        formData.append("music", $('#music')[0].files[0]);
+        formData.append("musicImg", $('#musicImg')[0].files[0]);
+
+
+
+        formData.append("musicName", $("#musicName").val());
+        formData.append("singer", $("#singer").val());
+
+
+        var musicCategory = $('#musicCategoryRadioList input[name="musicCategory"]:checked ').val();
+        var musicState = $('#musicStateRadioList input[name="musicState"]:checked ').val();
+        formData.append("musicCategory", musicCategory);
+        formData.append("musicState", musicState);
+
+        $.ajax({
+            url: '/uploadMusic',    //这里是我自己项目的URL
+            dataType: 'json',
+            type: 'post',
+            contentType: false, //必须
+            processData: false, //必须
+            data: formData,
+            success: function (data) {
+                alert(data)
+            }
+        });
+    })
+
+
+</script>
 
 </body>
 </html>

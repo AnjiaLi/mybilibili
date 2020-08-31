@@ -73,11 +73,11 @@ public class MusicEntity {
         this.musicState = musicState;
     }
 
-    public String getmusiccAtegory() {
+    public String getmusicCategory() {
         return musicCategory;
     }
 
-    public void setmusiccAtegory(String musicCategory) {
+    public void setmusicCategory(String musicCategory) {
         this.musicCategory = musicCategory;
     }
 

@@ -1,32 +1,102 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>音乐列表</title>
+
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- 加载JQ -->
+    <script th:src="@{bootstrap-3.3.7-dist/js/jquery-3.5.1.min.js}"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script th:src="@{bootstrap-3.3.7-dist/js/bootstrap.min.js}"></script>
+
     <style>
+        .row1{
+            padding: 0;
+            overflow:auto;
+            height:100%;
+            width: 100%;
+            background: #e6dede;
+        }
+        .a{
+            padding: 0;
+            width: 100%;
+            height: 10vh;
+            background: #530a15;
+        }
+        .row2{
+            padding: 0;
+            overflow:auto;
+            height:100%;
+            width:100%;
+            background: #FFFFFF;
+        }
+        .left{
+            padding: 0;
+        }
+        header{
+            padding: 0;
+            width: 100%;
+            height: 15vh;
+            background: #FFFFFF;
+            font-size: 22px;
+        }
+        header .ku{
+            position: absolute;
+            top: 10vh;
+            left: 15%;
+            margin-top: -5vh ;
+            text-align: center;
+        }
+
+
+        .right{
+            padding: 0;
+        }
+        .Bf-right{
+            height: 120vh;
+            background: #FFFFFF;
+        }
+        audio{
+            position: absolute;
+            top:10%;
+            left: 10%;
+            margin-top: -5vh ;
+        }
+
         .more-info {
             display: none;
         }
 
-        .no-display {
-            display: none;
-        }
+        /*.no-display {*/
+        /*    display: none;*/
+        /*}*/
 
-        .left {
-            float: left;
-            width: 50%;
-        }
+        /*.left {*/
+        /*    float: left;*/
+        /*    width: 50%;*/
+        /*}*/
 
-        .right {
-            float: left;
-            width: 50%;
-        }
+        /*.right {*/
+        /*    float: left;*/
+        /*    width: 50%;*/
+        /*}*/
 
-        .add-button {
-            /* width:100px; */
+        /*.add-button {*/
+        /*}*/
+        footer{
+            width: 100%;
+            height: 10vh;
+            background: #e6dede;
         }
     </style>
     <script th:src="@{test/jquery-3.5.1.js}"></script>
@@ -36,53 +106,104 @@
 <body>
     <!-- <div th:replace="head/head::head"></div> -->
 
-    <section style="text-align: center;width: 60%;margin: auto;">
-        <section class="left">
-            <header>
-                <form th:action="@{/list}" method="GET">
-                    <input type="hidden" name="type" value="search">
-                    <input type="search" name="key" id="inp1" placeholder="搜索音乐">
-                    <input type="submit" id="inp2" value="搜索">
-                </form>
-            </header>
-            <div>
-                <table style="width: 80%; margin:auto;">
-                    <tr>
-                        <th>歌名</th>
-                        <th>歌手</th>
-                        <th>时长</th>
-                        <th class="more-info">操作</th>
-                    </tr>
-                    <tr th:each="music : ${musicList}">
-                        <td th:text="${music.getmusicName()}"></td>
-                        <td th:text="${music.getSinger()}"></td>
-                        <td th:text="${music.getmusicTime()}"></td>
-                        <td class="more-info">
-                            <span th:text="${music.getmusicID()}"></span>
-                            <span th:text="${music.getmusicAddress()}"></span>
-                            <!-- <a th:href="@{'/admin/music/del/'+${music.id}}">删除</a> -->
-                            <!-- <a th:href="@{'/admin/music/upd/'+${music.id}}">修改</a> -->
-                        </td>
-                    </tr>
-                </table>
+<!--    <section style="text-align: center;width: 60%;margin: auto;">-->
+<!--        <section class="left">-->
+<!--            <header>-->
+<!--                <form th:action="@{/list}" method="GET">-->
+<!--                    <input type="hidden" name="type" value="search">-->
+<!--                    <input type="search" name="key" id="inp1" placeholder="搜索音乐">-->
+<!--                    <input type="submit" id="inp2" value="搜索">-->
+<!--                </form>-->
+<!--            </header>-->
+<!--            <div>-->
+<!--                <table style="width: 80%; margin:auto;">-->
+<!--                    <tr>-->
+<!--                        <th>歌名</th>-->
+<!--                        <th>歌手</th>-->
+<!--                        <th>时长</th>-->
+<!--                        <th class="more-info">操作</th>-->
+<!--                    </tr>-->
+<!--                    <tr th:each="music : ${musicList}">-->
+<!--                        <td th:text="${music.getmusicName()}"></td>-->
+<!--                        <td th:text="${music.getSinger()}"></td>-->
+<!--                        <td th:text="${music.getmusicTime()}"></td>-->
+<!--                        <td class="more-info">-->
+<!--                            <span th:text="${music.getmusicID()}"></span>-->
+<!--                            <span th:text="${music.getmusicAddress()}"></span>-->
+<!--                            &lt;!&ndash; <a th:href="@{'/admin/music/del/'+${music.id}}">删除</a> &ndash;&gt;-->
+<!--                            &lt;!&ndash; <a th:href="@{'/admin/music/upd/'+${music.id}}">修改</a> &ndash;&gt;-->
+<!--                        </td>-->
+<!--                    </tr>-->
+<!--                </table>-->
+<!--            </div>-->
+<!--        </section>-->
+<!--        <section class="right">-->
+<!--            <header> <audio id="myAudio" th:src="@{music/水月陵 - それは、とある王国の物語.mp3}" controls autoplay></audio> </header>-->
+<!--            <div>-->
+<!--                <table style="width: 80%; margin:auto;" id="play-list">-->
+<!--                    <tr>-->
+<!--                        <th>歌名</th>-->
+<!--                        <th>歌手</th>-->
+<!--                        <th>时长</th>-->
+<!--                        <th class="more-info">操作</th>-->
+<!--                    </tr>-->
+
+<!--                </table>-->
+<!--            </div>-->
+<!--        </section>-->
+
+
+<section class="container-fluid">
+    <div class="row1">
+        <div class="col-md-12 a"></div>
+        <div class="col-md-8 col-md-offset-2">
+            <div class="row2">
+                <div class="col-md-7 left">
+                    <header style="text-align: center;">
+                        <ul class="ku">
+                            <form th:action="@{/list}" method="GET">
+                                <input type="hidden" name="type" value="search">
+                                <input type="search" name="key" id="inp1" placeholder="搜索音乐">
+                                <input type="submit" id="inp2" value="搜索">
+                            </form>
+                        </ul>
+                    </header>
+                    <div class="left-sectionA">
+                        <div style="text-align: center;">
+                            <table  class="table table-hover" style="width: 80%; margin:auto;">
+                                <tr>
+                                    <th>歌名</th>
+                                    <th>歌手</th>
+                                    <th>时长</th>
+                                    <th class="more-info">操作</th>
+                                </tr>
+                                <tr th:each="music : ${musicList}">
+                                    <td th:text="${music.getmusicName()}"></td>
+                                    <td th:text="${music.getSinger()}"></td>
+                                    <td th:text="${music.getmusicTime()}"></td>
+                                    <td class="more-info">
+                                        <span th:text="${music.getmusicID()}"></span>
+                                        <span th:text="${music.getmusicAddress()}"></span>
+                                        <!-- <a th:href="@{'/admin/music/del/'+${music.id}}">删除</a> -->
+                                        <!-- <a th:href="@{'/admin/music/upd/'+${music.id}}">修改</a> -->
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5 right">
+                    <ul class="Bf-right">
+                        <audio id="myAudio" th:src="@{music/水月陵 - それは、とある王国の物語.mp3}" controls autoplay></audio>
+                    </ul>
+                </div>
             </div>
-        </section>
-        <section class="right">
-            <header> <audio id="myAudio" th:src="@{music/水月陵 - それは、とある王国の物語.mp3}" controls autoplay></audio> </header>
-            <div>
-                <table style="width: 80%; margin:auto;" id="play-list">
-                    <tr>
-                        <th>歌名</th>
-                        <th>歌手</th>
-                        <th>时长</th>
-                        <th class="more-info">操作</th>
-                    </tr>
-
-                </table>
-            </div>
-        </section>
-
-
+        </div>
+        <div class="col-md-12">
+            <footer></footer>
+        </div>
+    </div>
+</section>
 </body>
 
 </html>

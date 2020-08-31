@@ -48,8 +48,9 @@ public class MusicUtil {
         }
         MP3File f;
         MP3AudioHeader audioHeader;
-        try {
+
             for (int i = 0; i < size; i++) {
+                try {
                 if (isFile)
                     f = (MP3File) AudioFileIO.read((File) mp3List.get(i));
                 else if (isString)
@@ -57,11 +58,12 @@ public class MusicUtil {
                 else break;
                 audioHeader = (MP3AudioHeader) f.getAudioHeader();
                 durationList.add(audioHeader.getTrackLengthAsString());
+                } catch (Exception e) {
+//                    e.printStackTrace();
+                    durationList.add("00:00");
+                }
             }
-        } catch (Exception e) {
-//            e.printStackTrace();
-            durationList.add("00:00");
-        }
+
         return durationList;
     }
 }

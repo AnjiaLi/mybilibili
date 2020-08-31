@@ -29,6 +29,7 @@ public class AdminSystemController {
     @Autowired
     UserEntityRepository repository;
 
+
     @RequestMapping("admin")
     public String admin(HttpServletRequest request) {
         return "redirect:/admin/adminSystem";
@@ -43,9 +44,6 @@ public class AdminSystemController {
         Map model = new HashMap();
         model.put("userList", userList);
         model.put("musicList", musicList);
-        for (MusicEntity music:musicList){
-            System.out.println(music.toString());
-        }
         return new ModelAndView("admin/adminSystem", model);
     }
 

@@ -10,7 +10,7 @@ import com.example.demo.utils.MusicUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,14 +26,15 @@ public class TestController {
     @Autowired
     UserListServiceImpl userListService;
 
-
     @GetMapping(value = "/music-collection")
-    public String collect(){
+    public String collect() {
         return "music-collection";
     }
 
     @GetMapping(value = "/test")
+    @ResponseBody
     public String test() {
+
         try {
 //            insert();
 //            delete();
@@ -68,7 +69,7 @@ public class TestController {
     }
 
     public void updateAllMusicTime() {
-        List<MusicEntity> musicList = musicService.list(new QueryWrapper<MusicEntity>().eq("singer","test"));
+        List<MusicEntity> musicList = musicService.list(new QueryWrapper<MusicEntity>().eq("singer", "test"));
         List<String> durationList = MusicUtil.getMusicDuration(musicList.stream()
                 .map(MusicEntity::getmusicAddress).collect(Collectors.toList()));
         for (int i = 0; i < musicList.size(); i++)

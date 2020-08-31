@@ -100,7 +100,7 @@ header {
 }
 
 .pic-list__wrapper .item:hover .img-info a {
-    color: #00a1d6;
+    color: #FFB6C1;
 }
 
 .pic-list__wrapper .img-info {
@@ -123,7 +123,7 @@ header {
 
 .pic-list__wrapper .img-info .btm {
     margin-top: 7px;
-    color: #99a2aa;
+    color: #FFFFFF;
 }
 
 .pic-list__wrapper .img-info .user {
@@ -177,14 +177,14 @@ header {
     float: left;
     height: 22px;
     line-height: 22px;
-    border: 1px solid #ccd0d7;
+    border: 1px solid #FFFFFF;
     border-radius: 4px;
 }
 
 .more-wrap .dynamic:hover,
 .more-wrap .more:hover {
     color: #333;
-    background-color: #ccd0d7;
+    background-color: #FFFAFA;
 }
 
 .more-wrap .dynamic {
@@ -235,7 +235,7 @@ header {
 }
 
 .main-link:hover {
-    color: #00a1d6;
+    color: #FFB6C1;
 }
 
 .main-link i {
@@ -375,8 +375,8 @@ header {
 }
 
 .tab-title a.cur {
-    color: #00a1d6;
-    border-bottom: 1px solid #00a1d6;
+    color: #FFB6C1;
+    border-bottom: 1px solid #FFB6C1;
 }
 
 .tab-title a.cur:after {
@@ -388,7 +388,7 @@ header {
     height: 0;
     border-width: 3px;
     border-style: solid;
-    border-color: transparent transparent #00a1d6 transparent;
+    border-color: transparent transparent #FFB6C1 transparent;
 }
 
 /* side-select */
@@ -502,10 +502,10 @@ header {
     width: 100%;
     height: 24px;
     line-height: 24px;
-    background-color: #e5e9ef;
+    background-color: #c84659;
     border-radius: 4px;
     text-align: center;
-    color: #333;
+    color: #fff;
 }
 
 .main-side__cont .more:hover {
@@ -524,6 +524,7 @@ header {
 #header {
     position: relative;
     z-index: 999;
+    background: url(../images/bg.png) no-repeat center -6px;
 }
 
 /* page_top */
@@ -531,6 +532,13 @@ header {
     position: relative;
 }
 
+#page_top .bg-wrap {
+    overflow: hidden;
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+}
 
 #page_top .bg {
 }
@@ -539,7 +547,7 @@ header {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, .4);
+    background-color:#530a15;
 }
 
 .header-top {
@@ -736,7 +744,7 @@ header {
     float: right;
     line-height: 26px;
     margin-right: 12px;
-    color: #00a1d6;
+    color: #FFB6C1;
 }
 
 .game-center .game-list .all {
@@ -749,7 +757,7 @@ header {
 }
 
 .game-center .game-list .all a:hover {
-    color: #00a1d6;
+    color: #FFB6C1;
     background-color: #e5e9ef;
 }
 
@@ -1095,7 +1103,7 @@ header {
 }
 
 .nav-list .link:hover {
-    color: #00a1d6;
+    color: #FFB6C1;
 }
 
 .nav-list .num {
@@ -1467,7 +1475,7 @@ header {
     float: right;
 }
 
-.banner-list ul {
+/*.banner-list ul {
     margin-right: -20px;
 }
 
@@ -1529,7 +1537,7 @@ header {
 
 .banner-list li a .info .play {
 }
-
+*/
 .banner-list .btn {
     display: none;
     position: absolute;
@@ -1577,7 +1585,7 @@ header {
 }
 
 #promote .promote-link:hover {
-    color: #00a1d6;
+    color: #FFB6C1;
 }
 
 #promote .icon-promote {
@@ -1609,7 +1617,7 @@ header {
 }
 
 .promote-side__title a:hover {
-    color: #00a1d6;
+    color: #FFB6C1;
 }
 
 .promote-side__title span {
@@ -1637,7 +1645,7 @@ header {
 }
 
 #live .live-online em {
-    color: #00a1d6;
+    color: #FFB6C1;
 }
 
 #live .category {
@@ -1676,7 +1684,7 @@ header {
     line-height: 20px;
     border-radius: 20px;
     color: #fff;
-    background-color: #00a1d6;
+    background-color: #FFB6C1;
 }
 
 #live .pic-list__wrapper .icon-live:before {
@@ -1990,7 +1998,7 @@ header {
 .sideBar-list a:hover,
 .sideBar-list a.cur {
     color: #fff;
-    background-color: #00a1d6;
+    background-color: #FFB6C1;
 }
 
 .sideBar-list a:last-child {
@@ -2029,8 +2037,8 @@ header {
 
 .sideBar-toTop:hover {
     background-position: -714px -72px;
-    border-color: #00a1d6;
-    background-color: #00a1d6;
+    border-color: #FFB6C1;
+    background-color: #FFB6C1;
 }
 
 

@@ -52,7 +52,7 @@
 
         .slider img {
             display: block;
-            padding: 2px;
+
             border: 1px solid #282725;
         }
 
@@ -64,10 +64,10 @@
         }
 
         .slider p {
-            font-size: 12px;
+            font-size: 14px;
             margin: 0;
             padding-left: 68px;
-            color: #333;
+            color: 	#FFE4E1;
             line-height: 20px;
         }
     </style>
@@ -80,7 +80,7 @@
 
         body {
             background: #282725;
-            color: #282725;
+            color:  #FFB6C1;
             font-size: 14px;
             font-family: Verdana, Arial, Helvetica, sans-serif;
         }
@@ -263,7 +263,7 @@
         }
 
         .danmuku_list li:nth-child(2):hover {
-            color: #00a1d6
+            color: #FFB6C1
         }
 
         .danmuku_list li:nth-child(3) {
@@ -302,7 +302,7 @@
         .international-header a:hover,
         .van-popover a:hover {
             text-decoration: none;
-            color: #00A1D6;
+            color: #FFB6C1;
         }
 
         .international-header a,
@@ -349,7 +349,7 @@
 
         .international-header .mini-type .nav-link .nav-link-ul .nav-link-item .link:hover,
         .van-popover .mini-type .nav-link .nav-link-ul .nav-link-item .link:hover {
-            color: #00A1D6;
+            color: #FFB6C1;
         }
 
         .international-header .mini-type .nav-search #nav_searchform,
@@ -370,7 +370,7 @@
 
         .international-header .mini-type .user-con.logout .item a:hover,
         .van-popover .mini-type .user-con.logout .item a:hover {
-            color: #00A1D6 !important;
+            color: #FFB6C1 !important;
         }
 
         @media screen and (max-width: 1200px) {
@@ -512,7 +512,7 @@
         }
 
         .nav-link .nav-link-ul.mini .bili-icon_dingdao_xiazaiapp {
-            color: #00a1d6;
+            color: #FFB6C1;
         }
 
         .nav-link .nav-link-ul .nav-link-item {
@@ -530,7 +530,7 @@
 
         .nav-link .nav-link-ul .nav-link-item .link .bili-Navbar_logo {
             font-size: 32px;
-            color: #00a1d6;
+            color: #FFB6C1;
             vertical-align: middle;
             margin-right: 16px;
         }
@@ -670,7 +670,7 @@
             left: -81px;
             padding: 2px 6px 2px 2px;
             border-radius: 4px;
-            background: #00A1D6;
+            background: #FFB6C1;
             box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
             color: #fff;
             white-space: nowrap;
@@ -683,7 +683,7 @@
             margin-left: -4px;
             width: 8px;
             height: 8px;
-            background: #00a1d6;
+            background: #FFB6C1;
             content: "";
             transform: rotate(45deg);
         }
@@ -765,7 +765,7 @@
 
         .bili-header-m .nav-search .nav-search-btn:hover .nav-search-submit,
         .international-header .nav-search .nav-search-btn:hover .nav-search-submit {
-            color: #00a1d6;
+            color: #FFB6C1;
         }
 
         .bili-header-m .nav-search .nav-search-submit,
@@ -1217,7 +1217,7 @@
             <div class="header-top__nav">
                 <ul>
                     <li class="item item-home" style="width: 70px"><a href="index"
-                                                                      style="width: 70px;padding: 0 0 0 20px;">主站</a>
+                                                                      style="width: 70px;padding: 0 0 0 20px;">主页</a>
                     </li>
                     <!-- <li class="item"><a href="Shopping.sf">周边</a></li> -->
                     <li class="item"><a href="admin/adminSystem">后台管理</a>
@@ -1388,17 +1388,16 @@
 
                 <div class="ops">
 	     			   	<span title="点赞数0" class="like"><i class="van-icon-videodetails_like" style="color:;"></i>--
+<!--                            -->
                        </span>
-                    <span title="投硬币枚数" class="coin"><canvas width="34" height="34" class="ring-progress"
-                                                             style="width:34px;height:34px;left:-3px;top:-3px;"></canvas>
-                        <!----><i class="van-icon-videodetails_throw" style="color:;"></i>
+
       --
                        </span>
                     <span title="收藏人数" class="collect"><canvas width="34" height="34" class="ring-progress"
                                                                style="width:34px;height:34px;left:-3px;top:-3px;"></canvas>
                         <!----><i class="van-icon-videodetails_collec" style="color:;"></i>--
                       </span>
-                    <span title="分享" class="share"><i class="van-icon-videodetails_share"></i>--
+<!--                    <span title="分享" class="share"><i class="van-icon-videodetails_share"></i>&#45;&#45;-->
                        </span>
                 </div>
 
@@ -1425,12 +1424,12 @@
                             <div class="box">
                                 <form th:action="@{/sendMessage}" method="get">
 
-                                    <input type="text" style="min-height: 64px;width: 300px;border: 1px solid #0AB5DA"
+                                    <input type="text" style="min-height: 64px;width: 300px;border: 1px solid  #696969"
                                            placeholder="请输入留言内容---------内容不超过150字" id="message" required=""
                                            name="message"/>
                                     <input type="text" name="shipingID" th:value="${shipingID}" hidden="hidden">
                                     <input type="text" name="dizhi" th:value="${dizhi}" hidden="hidden">
-                                    <input style="width: 70px;height: 64px;position: absolute; left: 320px;border-radius: 4px;border: 1px solid #00a1d6;padding: 4px 15px;font-size: 14px;color: #fff;background-color: #00a1d6;"
+                                    <input style="width: 70px;height: 64px;position: absolute; left: 320px;border-radius: 4px;border: 1px solid  	#696969;padding: 4px 15px;font-size: 14px;color: #fff;background-color:  	#696969;"
                                            type="submit" id="button" value="发表">
                                     <div class="clearfix"></div>
                                 </form>
@@ -1531,16 +1530,16 @@
                         <!--                                type="button" id="buttonhide2">静态留言板-->
                         <!--                        </button>-->
                         <!--                        </div>-->
-                        <div class="wp" style="background-color: #E8E8E8" id="danmu">
+                        <div class="wp" style="background-color: #696969" id="danmu">
                             <ul id="slider" class="slider">
                                 <li th:each="messagelist : ${messagelist}">
                                     <a class="fl" href="">
                                         <img th:src="${messagelist.messageHand}" alt=""
                                              width="70px" ;height="70px"/></a>
                                     <p th:text="${messagelist.message}"></p>
-                                    <span style="color: red;display:inline-block">留言者:</span>
+                                    <span style="color:Silver;display:inline-block">留言者:</span>
                                     <span th:text="${messagelist.messageuserName}">&nbsp;</span>
-                                    <span style="color: blue;display:inline-block" th:text="${messagelist.messageTime}"></span>
+                                    <span style="color: Silver;display:inline-block" th:text="${messagelist.messageTime}"></span>
                                 </li>
 
                             </ul>

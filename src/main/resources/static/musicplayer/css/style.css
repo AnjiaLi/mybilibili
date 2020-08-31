@@ -208,7 +208,7 @@
 
 .bili-icon, .icon {
     display: inline-block;
-    background-image: url(../images/icons.png)
+    background-image: url(../../Homepage/videoPlay/static/images/icons.png)
 }
 
 .bili-wrapper {
@@ -273,7 +273,7 @@
 .b-loading:before {
     content: "";
     width: 20px;
-    background: url(../images/loading.gif) no-repeat 50%;
+    background: url(../../Homepage/videoPlay/static/images/loading.gif) no-repeat 50%;
     margin-right: 5px
 }
 
@@ -292,7 +292,7 @@
 }
 
 .b-loading.b-load-fail:before {
-    background: url(../images/empty-icon.png) center -472px no-repeat
+    background: url(../../Homepage/videoPlay/static/images/empty-icon.png) center -472px no-repeat
 }
 
 .b-loading.b-load-fail:after {
@@ -1783,7 +1783,7 @@
     height: 11px;
     vertical-align: middle;
     margin: 0 5px 0 3px;
-    background: url(../images/icons.png) -666px -603px no-repeat
+    background: url(../../Homepage/videoPlay/static/images/icons.png) -666px -603px no-repeat
 }
 
 .tag-info-pane .tag-header .btn-subscribe:hover {
@@ -1817,7 +1817,7 @@
     display: inline-block;
     width: 12px;
     height: 12px;
-    background: url(../images/icons.png);
+    background: url(../../Homepage/videoPlay/static/images/icons.png);
     vertical-align: top;
     margin-right: 3px
 }
@@ -1950,7 +1950,7 @@
     right: 20px;
     width: 10px;
     height: 10px;
-    background: url(../images/icons.png) -475px -539px
+    background: url(../../Homepage/videoPlay/static/images/icons.png) -475px -539px
 }
 
 .tag-report-popup .btn-ok {
@@ -2090,7 +2090,7 @@
     position: absolute;
     width: 10px;
     height: 10px;
-    background: url(../images/icons.png) -539px -539px no-repeat;
+    background: url(../../Homepage/videoPlay/static/images/icons.png) -539px -539px no-repeat;
     left: 138px;
     top: 6px
 }
@@ -2190,7 +2190,7 @@
     height: 20px;
     right: -2px;
     bottom: -2px;
-    background: url(../images/user-auth.png);
+    background: url(../../Homepage/videoPlay/static/images/user-auth.png);
     background-repeat: no-repeat;
     z-index: 3
 }
@@ -2445,7 +2445,7 @@
     height: 20px;
     right: -2px;
     bottom: -2px;
-    background: url(../images/user-auth.png);
+    background: url(../../Homepage/videoPlay/static/images/user-auth.png);
     background-repeat: no-repeat;
     z-index: 3
 }
@@ -2811,7 +2811,7 @@
     margin-right: 10px;
     width: 36px;
     height: 32px;
-    background: url(../images/icons.png) no-repeat -655px -2126px;
+    background: url(../../Homepage/videoPlay/static/images/icons.png) no-repeat -655px -2126px;
     cursor: pointer
 }
 
@@ -3211,7 +3211,7 @@
 }
 
 #dm_chart .b-toggle-block .b-toggle-btn {
-    background: url(../images/toggle-base.png) -653px -79px no-repeat;
+    background: url(../../Homepage/videoPlay/static/images/toggle-base.png) -653px -79px no-repeat;
     width: 94px;
     height: 30px;
     line-height: 22px;
@@ -3226,13 +3226,13 @@
 }
 
 #dm_chart .b-toggle-block .b-toggle-btn .b-icon-toggle-down {
-    background: url(../images/icons.png) -474px -732px no-repeat;
+    background: url(../../Homepage/videoPlay/static/images/icons.png) -474px -732px no-repeat;
     width: 12px;
     height: 10px
 }
 
 #dm_chart .b-toggle-block .b-toggle-btn .b-icon-toggle-up {
-    background: url(../images/icons.png) -473px -797px no-repeat;
+    background: url(../../Homepage/videoPlay/static/images/icons.png) -473px -797px no-repeat;
     width: 12px;
     height: 10px
 }
@@ -3549,7 +3549,7 @@
 }
 
 .error-related .error.details {
-    background: url(../images/not_fang.png) 50% no-repeat
+    background: url(../../Homepage/videoPlay/static/images/not_fang.png) 50% no-repeat
 }
 
 .error-body {
@@ -3673,7 +3673,7 @@
 }
 
 .error-container .error.split {
-    background: url(../images/have_rest.png) 50% no-repeat
+    background: url(../../Homepage/videoPlay/static/images/have_rest.png) 50% no-repeat
 }
 
 .error-container .error-manga {
@@ -3777,7 +3777,7 @@
     height: 20px;
     right: 0;
     top: 34px;
-    background: url(../images/user-auth.png);
+    background: url(../../Homepage/videoPlay/static/images/user-auth.png);
     background-repeat: no-repeat
 }
 
@@ -3829,7 +3829,7 @@
 }
 
 .user-card-m .info .user .sex {
-    background: url(../images/icons-comment.png) no-repeat;
+    background: url(../../Homepage/videoPlay/static/images/icons-comment.png) no-repeat;
     margin-left: 6px;
     width: 15px;
     height: 13px;
@@ -3856,7 +3856,7 @@
     height: 9px;
     vertical-align: middle;
     margin-left: 8px;
-    background: url(../images/icons-comment.png) no-repeat
+    background: url(../../Homepage/videoPlay/static/images/icons-comment.png) no-repeat
 }
 
 .user-card-m .info .level.l0 {
@@ -4160,7 +4160,7 @@
 
 .collection-m .content .group-list .add-group .fav-add-tip .blue-arrow {
     position: absolute;
-    background-image: url(../images/blue-arrow.png);
+    background-image: url(../../Homepage/videoPlay/static/images/blue-arrow.png);
     background-repeat: no-repeat;
     left: 60px;
     top: 40px;
@@ -4176,7 +4176,7 @@
     filter: alpha(opacity=90) !important;
     cursor: pointer;
     vertical-align: middle;
-    background: url(../images/close-white.png) 50% no-repeat;
+    background: url(../../Homepage/videoPlay/static/images/close-white.png) 50% no-repeat;
     width: 24px;
     height: 24px
 }
@@ -4303,11 +4303,11 @@
 
 .coin-operated-m .mc-box.left-con {
     margin-left: 35px;
-    background-image: url(../images/22-gray.png)
+    background-image: url(../../Homepage/videoPlay/static/images/22-gray.png)
 }
 
 .coin-operated-m .mc-box.right-con {
-    background-image: url(../images/33-gray.png)
+    background-image: url(../../Homepage/videoPlay/static/images/33-gray.png)
 }
 
 .coin-operated-m .mc-box .c-num {
@@ -4334,12 +4334,12 @@
 
 .coin-operated-m .mc-box.on.left-con {
     background-size: 122px;
-    background-image: url(../images/22.gif)
+    background-image: url(../../Homepage/videoPlay/static/images/22.gif)
 }
 
 .coin-operated-m .mc-box.on.right-con {
     background-size: 118px;
-    background-image: url(../images/33.gif)
+    background-image: url(../../Homepage/videoPlay/static/images/33.gif)
 }
 
 .coin-operated-m .like-checkbox {
@@ -4367,7 +4367,7 @@
 }
 
 .coin-operated-m .like-checkbox input[type=checkbox]:checked + i {
-    background: url(../fonts/checkbox_selected.svg)
+    background: url(../../Homepage/videoPlay/static/fonts/checkbox_selected.svg)
 }
 
 .coin-operated-m .coin-bottom {
@@ -4585,7 +4585,7 @@
     width: 11px;
     height: 11px;
     cursor: pointer;
-    background: url(../images/icons.png) -475px -539px no-repeat
+    background: url(../../Homepage/videoPlay/static/images/icons.png) -475px -539px no-repeat
 }
 
 .pop-live {
@@ -4657,11 +4657,11 @@
 }
 
 .pop-live .pl__icon--user {
-    background: url(../images/icons.png) no-repeat -282px -154px
+    background: url(../../Homepage/videoPlay/static/images/icons.png) no-repeat -282px -154px
 }
 
 .pop-live .pl__icon--online {
-    background: url(../images/live-eye.png) no-repeat
+    background: url(../../Homepage/videoPlay/static/images/live-eye.png) no-repeat
 }
 
 .pop-live .pl__user__block {
@@ -5246,8 +5246,8 @@ article, aside, blockquote, body, button, code, dd, details, div, dl, dt, fields
 
 @font-face {
     font-family: vanfont;
-    src: url(../fonts/iconfont.ae48418.eot);
-    src: url(../fonts/3ed24ede10d84167bbd27773aeacee69.woff) format("woff"), url(../fonts/iconfont.6401a86.ttf) format("truetype"), url(../fonts/iconfont.5899803.svg#iconfont) format("svg")
+    src: url(../../Homepage/videoPlay/static/fonts/iconfont.ae48418.eot);
+    src: url(../fonts/3ed24ede10d84167bbd27773aeacee69.woff) format("woff"), url(../../Homepage/videoPlay/static/fonts/iconfont.6401a86.ttf) format("truetype"), url(../../Homepage/videoPlay/static/fonts/iconfont.5899803.svg#iconfont) format("svg")
 }
 
 .vanfont {

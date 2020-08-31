@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>U-MusicWeb</title>
-    <link th:href="@{bilibiliIndex/css/reset.css}" rel="stylesheet"/>
-    <link th:href="@{bilibiliIndex/css/common.css}" rel="stylesheet"/>
-    <link th:href="@{bilibiliIndex/css/index.css}" rel="stylesheet"/>
+    <link th:href="@{webIndex/css/reset.css}" rel="stylesheet"/>
+    <link th:href="@{webIndex/css/common.css}" rel="stylesheet"/>
+    <link th:href="@{webIndex/css/index.css}" rel="stylesheet"/>
 
     <script th:src="@{Homepage/js/jquery.min.js}"></script>
-    <script th:src="@{bilibiliIndex/js/script.js}"></script>
+    <script th:src="@{webIndex/js/script.js}"></script>
     <script th:src="@{jquery-1.10.2/jquery.js}"></script>
 <!--    <script th:src="@{adminjs/adminjs.js}"></script>-->
 
@@ -106,10 +106,10 @@
     <div class="page-width clearfix">
         <div class="pic">
             <div class="content" >
-                <img src="bilibiliIndex/images/cont/top1.jpg" alt="#">
-                <img src="bilibiliIndex/images/cont/top2.jpg" alt="#">
-                <img src="bilibiliIndex/images/cont/top3.jpg" alt="#">
-                <img src="bilibiliIndex/images/cont/top4.jpg" alt="#">
+                <img src="webIndex/images/cont/top1.jpg" alt="#">
+                <img src="webIndex/images/cont/top2.jpg" alt="#">
+                <img src="webIndex/images/cont/top3.jpg" alt="#">
+                <img src="webIndex/images/cont/top4.jpg" alt="#">
             </div>
             <ul class="index" >
                 <li class="first" ></li>
@@ -225,7 +225,7 @@
                             <img
                                 th:src="${list.getmusicImage()}" alt="#">
                             <span class="mask"></span>
-                            <span class="time" th:text="点击量+${list.getMusicClick()}"></span>
+                            <span class="time" th:text="'点击量: '+${list.getMusicClick()}"></span>
                         </a>
                         <div class="img-info">
                             <a th:href="'video?dizhi='+${list.getmusicAddress()}+'&shipingID='+${list.getmusicID()}"
@@ -285,7 +285,8 @@
                     <li th:each="list2 : ${lists2}" class="item">
                         <a th:href="'music?ID='+${list2.getmusicID()}" class="img-link">
                             <img th:src="${list2.getmusicImage()}" alt="#">
-                        <span class="mask"></span> <span class="time" th:text="${list2.getMusicClick()}"></span>
+                            <span class="mask"></span>
+                            <span class="time" th:text="'点击量: '+${list2.getMusicClick()}"></span>
                         </a>
                         <div class="img-info">
                             <a th:href="'video?dizhi='+${list2.getmusicAddress()}+'&shipingID='+${list2.getmusicID()}"

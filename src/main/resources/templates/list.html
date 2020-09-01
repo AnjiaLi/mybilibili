@@ -73,22 +73,24 @@
             display: none;
         }
 
-        /*.no-display {*/
-        /*    display: none;*/
-        /*}*/
+         #inp1{
+             background: white;
+             margin-top: 10px;
+         }
+        #inp2{
+            background: url('./webIndex/images/search.png') no-repeat center;
+            margin-top: 9px;
+            color: white;
+        }
 
-        /*.left {*/
-        /*    float: left;*/
-        /*    width: 50%;*/
-        /*}*/
 
-        /*.right {*/
-        /*    float: left;*/
-        /*    width: 50%;*/
-        /*}*/
+        input::-ms-input-placeholder{
+            text-align: center;
+        }
+        input::-webkit-input-placeholder {
+            text-align: center;
+        }
 
-        /*.add-button {*/
-        /*}*/
         footer{
             width: 100%;
             height: 10vh;
@@ -160,7 +162,7 @@
                 <div class="page-width clearfix">
                     <div class="header-top__nav">
                         <ul>
-                            <li class="item item-home" style="width: 70px"><a href="index"
+                            <li class="item" style="width: 70px"><a href="index"
                                                                               style="width: 70px;padding: 0 0 0 20px;">主站</a>
                             </li>
                             <li class="item"><a href="admin/adminSystem">后台管理</a>
@@ -190,7 +192,7 @@
                             <form th:action="@{/list}" method="GET">
                                 <input type="hidden" name="type" value="search">
                                 <input type="search" name="key" id="inp1" placeholder="搜索音乐" style="width:18vw;border-radius:20px 0 0 20px;">
-                                <input type="submit" id="inp2" value="搜索" style="border-radius:0 20px 20px 0;">
+                                <input type="submit" id="inp2" value=" " style="width:5vw;border-radius:0 20px 20px 0;">
                             </form>
                         </ul>
                     </header>

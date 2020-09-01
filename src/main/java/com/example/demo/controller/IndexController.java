@@ -45,7 +45,7 @@ public class IndexController {
         model.put("lists1", list);
         List<MusicEntity> list2 = musicServiceImpl.musicListByRand("2");
         model.put("lists2", list2);
-        List<MusicEntity> list3 = musicServiceImpl.hotMusicList(8);
+        List<MusicEntity> list3 = musicServiceImpl.hotMusicList(18);
         model.put("lists3", list3);
         // 随机查6条数据出来
         List<VideoEntity> videolistimit6MAD = userListServiceImpl.videolistimit6MAD();

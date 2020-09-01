@@ -47,6 +47,34 @@
 
         })
     </script>
+
+
+    <style>
+        #inp1{
+            border-radius:10px 0 0 10px;
+            background: white;
+            margin-top: 10px;
+            height: 25px;
+            width: 200px;
+        }
+        #inp2{
+            background: url('./webIndex/images/search.png') no-repeat center;
+            border-radius:0 10px 10px 0;
+            background-color:whitesmoke;
+            margin-top: 9px;
+            height: 25px;
+            width:40px;
+            color: white;
+        }
+
+
+        input::-ms-input-placeholder{
+            text-align: center;
+        }
+        input::-webkit-input-placeholder {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 
@@ -86,8 +114,8 @@
                     <ul class="ku">
                         <form th:action="@{/list}" method="GET">
                             <input type="hidden" name="type" value="search">
-                            <input type="search" name="key" id="inp1" style="border-radius:10px 0 0 10px;background: white;margin-top: 10px;height: 25px;width: 200px" placeholder="搜索音乐">
-                            <input type="submit" id="inp2" value="搜索" style="border-radius:0 10px 10px 0;background-color:#4e6ef2;margin-top: 10px;height: 25px;width:40px;color: white">
+                            <input type="search" name="key" id="inp1" placeholder="搜索音乐">
+                            <input type="submit" id="inp2" value=" ">
                         </form>
                     </ul>
                 </header>
@@ -140,77 +168,73 @@
         <ul class="nav-list">
             <li class="item item-home"><a href="index.sf" class="link">首页</a>
             </li>
-            <li class="item"><a href="" class="link">
+            <li class="item"><a href="list?type=category&key=1" class="link">
                 <div class="num">
-                    <i>887</i>
+                    <i>韩语</i>
                 </div>
-                推荐
-            </a></li>
-            <li class="item"><a href="" class="link">
-                <div class="num">
-                    <i>23</i>
-                </div>
-                华语
-            </a></li>
-            <li class="item"><a href="" class="link">
-                <div class="num">
-                    <i>999+</i>
-                </div>
-                海外
-            </a></li>
-            <li class="item"><a href="" class="link">
-                <div class="num">
-                    <i>152</i>
-                </div>
-                流行
-            </a></li>
-            <li class="item"><a href="" class="link">
-                <div class="num">
-                    <i>999+</i>
-                </div>
-                摇滚
-            </a></li>
-            <li class="item"><a href="" class="link">
-                <div class="num">
-                    <i>999+</i>
-                </div>
-                民谣
-            </a></li>
-            <li class="item"><a href="" class="link">
-                <div class="num">
-                    <i>999+</i>
-                </div>
-                电子
-            </a></li>
-            <li class="item"><a href="" class="link">
-                <div class="num">
-                    <i>77</i>
-                </div>
-                BGM
-            </a></li>
-            <li class="item"><a href="" class="link">
-                <div class="num">
-                    <i>416</i>
-                </div>
-                新歌
-            </a></li>
-            <li class="item"><a href="" class="link">
-                <div class="num">
-                    <i>100</i>
-                </div>
-                RAP
-            </a></li>
-            <li class="item"><a href="" class="link">
-                <div class="num">
-                    <i>999+</i>
-                </div>
-                娱乐
-            </a></li>
-            <li class="item item-square"><a href="" class="link">广场</a>
 
-            </li>
+            </a></li>
+            <li class="item"><a href="list?type=category&key=2" class="link">
+                <div class="num">
+                    <i>华语</i>
+                </div>
 
-            <li class="item item-room"><a href="#" class="link">小黑屋</a></li>
+            </a></li>
+            <li class="item"><a href="list?type=category&key=3" class="link">
+                <div class="num">
+                    <i>欧美</i>
+                </div>
+
+            </a></li>
+            <li class="item"><a href="list?type=category&key=4" class="link">
+                <div class="num">
+                    <i>日语</i>
+                </div>
+
+            </a></li>
+            <li class="item"><a href="list?type=category&key=5" class="link">
+                <div class="num">
+                    <i>粤语</i>
+                </div>
+
+            </a></li>
+            <li class="item"><a href="list?type=category&key=6" class="link">
+                <div class="num">
+                    <i>民谣</i>
+                </div>
+
+            </a></li>
+            <li class="item"><a href="" class="link">
+                <div class="num">
+                    <i>电子</i>
+                </div>
+
+            </a></li>
+            <li class="item"><a href="" class="link">
+                <div class="num">
+                    <i>BGM</i>
+                </div>
+
+            </a></li>
+            <li class="item"><a href="" class="link">
+                <div class="num">
+                    <i>新歌</i>
+                </div>
+
+            </a></li>
+            <li class="item"><a href="" class="link">
+                <div class="num">
+                    <i>RAP</i>
+                </div>
+
+            </a></li>
+            <li class="item">
+                <a href="" class="link">
+                <div class="num">
+                    <i>娱乐</i>
+                </div>
+                </a>
+
         </ul>
 
     </div>
@@ -228,9 +252,7 @@
                     <div class="tab-title">
                         <a href="#" class="cur">有新动态</a>
                     </div>
-                    <div class="more-wrap">
-                        <a href="#" class="dynamic" id="shuaxin"><i></i>392条新动态</a>
-                    </div>
+
                 </div>
                 <ul class="pic-list__wrapper clearfix tab-cont__item tab-cont__cur">
                     <!-- 这里开始遍历 -->
@@ -256,43 +278,13 @@
                         </div>
                     </li>
                 </ul>
-            </div>
-            <div class="main-side fr" js-tab="true">
-                <div class="main-side__title">
-                    <div class="rank-t">
-                        <h3>U音乐新歌榜</h3>
-                    </div>
 
-                </div>
-                <div class="main-side__cont">
-                    <div class="tab-cont">
-                        <ul class="tab-cont__item main-rank" id="did2">
-                            <li th:each="list : ${lists3}" class="item" style="color: black;font-size: 14px">
-                                <a th:href="'music?ID='+${list.getmusicID()}"  th:text="${list.getmusicName()}"></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <button type="button" class="more" id="chakan">
-                        查看更多<i></i>
-                    </button>
 
-                    <script type="text/javascript">
-
-                    </script>
-                </div>
-            </div>
-        </div>
-
-        <div class="mainCont clearfix" id="game" js-move="true">
-            <div class="pic-list fl" js-tab="true">
                 <div class="pic-list__title">
-                    <i class="icon icon-game"></i>
+                    <i class="icon icon-dance"></i>
                     <h2>华语</h2>
                     <div class="tab-title">
                         <a href="#" class="cur">有新动态</a>
-                    </div>
-                    <div class="more-wrap">
-                        <a href="#" class="dynamic" id="shuaxin1"><i></i>392条新动态</a>
                     </div>
                 </div>
                 <ul class="pic-list__wrapper clearfix tab-cont__item tab-cont__cur">
@@ -322,29 +314,34 @@
             <div class="main-side fr" js-tab="true">
                 <div class="main-side__title">
                     <div class="rank-t">
-                        <h3>U音乐热度榜</h3>
+                        <h3>U音乐新歌榜</h3>
                     </div>
 
                 </div>
                 <div class="main-side__cont">
                     <div class="tab-cont">
-                        <ul class="tab-cont__item main-rank" id="did3">
-                            <li th:each="list : ${lists3}" class="item" style="color: black;font-size: 14px">
-                                <a th:href="'music?ID='+${list.getmusicID()}" th:text="${list.getmusicName()}"></a>
+                        <ul class="tab-cont__item main-rank" id="did2">
+                            <li th:each="list : ${lists3}" class="item">
+
+                                <a style="width: 200px;float: left;display: block" th:href="'music?ID='+${list.getmusicID()}"
+                                   th:text="${list.getmusicName()}"></a>
+                                <img style="width: 18px;float: left;display: block;line-height: 18px" src="webIndex/images/fire.png" alt="">
                             </li>
                         </ul>
-
                     </div>
-                    <button type="button" class="more" id="chakan3">
-                        查看更多<i></i>
-                    </button>
-                    <script type="text/javascript">
+<!--                    <button type="button" class="more" id="chakan">-->
+<!--                        查看更多<i></i>-->
+<!--                    </button>-->
 
+                    <script type="text/javascript">
 
                     </script>
                 </div>
+
             </div>
         </div>
+
+
 
 
     </div>

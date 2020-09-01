@@ -6,6 +6,7 @@
     <title>后台管理</title>
 
     <link th:href="@{../../Houtai/css/style.css}" rel="stylesheet"/>
+    <link th:href="@{../../Houtai/css/style2.css}" rel="stylesheet"/>
 
     <link th:href="@{../../User_Data_Update/css/jiazaitoubu.css}" rel="stylesheet"/>
     <link th:href="@{../../User_Data_Update/css/shangchuan.css}" rel="stylesheet"/>
@@ -97,52 +98,64 @@
     <div class="header02">后台管理</div>
 
 </div>
-<div class="left" id="LeftBox">
-    <div class="left01">
-        <div class="left01_right"></div>
-        <div class="left01_left"></div>
-        <div class="left01_c">超级管理员：admin</div>
-    </div>
-    <div class="left02">
-        <div class="left02top">
-            <div class="left02top_right"></div>
-            <div class="left02top_left"></div>
-            <div class="left02top_c"><a href="javascript:showUserInfo();">用户信息管理</a></div>
-        </div>
-    </div>
-    <div class="left02">
-        <div class="left02top">
-            <div class="left02top_right"></div>
-            <div class="left02top_left"></div>
-            <div class="left02top_c"><a href="javascript:showVideoInfo();">音乐信息管理</a></div>
-        </div>
-    </div>
-    <div class="left02">
-        <div class="left02top">
-            <div class="left02top_right"></div>
-            <div class="left02top_left"></div>
-            <div class="left02top_c"><a href="javascript:showMusicUpload();">音乐上传</a></div>
-        </div>
-    </div>
+<div id="sidebar" class="nav-collapse " tabindex="5000" style="overflow: hidden; outline: none;">
+    <!-- sidebar menu start-->
+    <ul class="sidebar-menu">
+        <li class="">
+            <a class="" href="index.html">
+                <i class="icon_house_alt"></i>
+                <span>超级管理员：admin</span>
+            </a>
+        </li>
 
-    <form th:action="@{/logout}" method="post">
-        <input class="left03_c" type="submit" value="安全退出" style="line-height: 20px"/>
-    </form>
+
+
+
+        <li class="sub-menu">
+            <a href="javascript:showUserInfo();" class="">
+                <i class="icon_document_alt"></i>
+                <span>用户信息管理</span>
+                <span class="menu-arrow arrow_carrot-right"></span>
+            </a>
+        </li>
+        <li class="sub-menu">
+            <a href="javascript:showVideoInfo();" class="">
+                <i class="icon_desktop"></i>
+                <span>音乐信息管理</span>
+                <span class="menu-arrow arrow_carrot-right"></span>
+            </a>
+        </li>
+        <li>
+            <a class="" href="javascript:showMusicUpload();">
+                <i class="icon_genius"></i>
+                <span>音乐上传</span>
+            </a>
+        </li>
+        <li>
+            <a class="" href="/logout">
+                <i class="icon_piechart"></i>
+                <span>管理员退出</span>
+
+            </a>
+
+        </li>
+
+    </ul>
 </div>
+
+
+
+
+
 <div class="rrcc" id="RightBox">
-
-
-
-
-
         <div class="right" id="li010">
-            <div class="right01"><img src="../../Houtai/images/04.gif" /> 用户信息查询 &gt; </div>
+            <div class="right01" style="height: 30px"><img src="../../Houtai/images/04.gif" /> 用户信息查询 &gt; </div>
             <table width="100%" height="100%" border="0" cellspacing="0" cellpadding="3">
                 <tr>
                     <td height="100%" valign="top">
                         <div style="overflow:auto;height:100%; width:100%">
-                            <table width="100%" border="0" cellpadding="3" cellspacing="1" class="table1">
-                                <tr>
+                            <table width="100%" border="0" cellpadding="8" cellspacing="0" class="table1">
+                                <tr style="height: 40px">
                                     <th align="center"><input type="checkbox" name="checkbox" id="checkbox"></th>
                                     <th align="center">用户ID</th>
                                     <th align="center">用户账号</th>
@@ -151,7 +164,7 @@
                                     <th align="center">审核状态</th>
                                     <th width="160" align="center">操作</th>
                                 </tr>
-                                <tr th:each="list : ${userList}">
+                                <tr class="eachTable" th:each="list : ${userList}">
                                     <TD align="center"><input type="checkbox" name="checkbox2" id="checkbox2"></TD>
                                     <TD align="center" th:text="${list.userID}"></TD>
                                     <TD align="center" th:text="${list.userName}"></TD>
@@ -239,13 +252,13 @@
 
 
     <div class="right" id="li020">
-        <div class="right01"><img src="../../Houtai/images/04.gif" /> 视频信息查询 &gt; </div>
+        <div class="right01" style="height: 30px"><img src="../../Houtai/images/04.gif" /> 音乐信息查询 &gt; </div>
         <table width="100%" height="95%" border="0" cellspacing="0" cellpadding="3">
             <tr>
                 <td height="100%" valign="top">
                     <div style="overflow:auto;height:100%; width:100%">
-                        <table width="100%" border="0" cellpadding="3" cellspacing="1" class="table1">
-                            <tr>
+                        <table width="100%" border="0" cellpadding="8" cellspacing="0" class="table1">
+                            <tr style="height: 40px">
                                 <th align="center"><input type="checkbox" name="checkbox" id="checkbox3"></th>
                                 <th align="center" style="width: 100px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;">音乐ID</th>
                                 <th align="center">歌曲名</th>
@@ -255,16 +268,16 @@
                                 <th align="center">歌曲风格</th>
                                 <th align="center">点击量</th>
                                 <th align="center">评论量</th>
-                                <th width="160" align="center">操作</th>
+                                <th width="100" align="center">操作</th>
                             </tr>
-                            <tr th:each="music : ${musicList}">
+                            <tr class="eachTable" th:each="music : ${musicList}">
                                 <TD align="center"><input type="checkbox" name="checkbox2" id="checkbox4"></TD>
                                 <TD align="center" th:text="${music.getmusicID()}"></TD>
                                 <TD align="center" th:text="${music.getmusicName()}"></TD>
                                 <TD align="center" th:text="${music.getSinger()}"></TD>
                                 <TD align="center" th:text="${music.getmusicTime()}"></TD>
                                 <TD align="center" th:if="${music.getmusicState()=='1'}" th:text="非VIP"></TD>
-                                <TD align="center" th:if="${music.getmusicState()=='2'}" th:text="VIP歌曲"></TD>
+                                <TD align="center" th:if="${music.getmusicState()=='2'}" th:text="VIP"></TD>
                                 <div th:switch = "${music.getmusicCategory()}">
                                     <TD align="center" th:case="1" th:text="韩语"></TD>
                                     <TD align="center" th:case="2" th:text="华语"></TD>
@@ -274,7 +287,7 @@
                                 </div>
                                 <TD align="center" th:text="${music.getMusicClick()}"></TD>
                                 <TD align="center" th:text="${music.getMusicComment()}"></TD>
-                                <TD width="200px" align="center">
+                                <TD align="center">
                                     <a th:href="'/music?ID='+${music.getmusicID()}">
                                         <BUTTON style="height:21px; font-size:12px" >查看</BUTTON>
 
@@ -294,7 +307,7 @@
 
     <div class="right" id="li030">
         <div class="right01"><img src="../../Houtai/images/04.gif" /> 音乐上传 &gt; </div>
-        <form id="upload_form" style="background-color: white" enctype="multipart/form-data">
+        <form id="upload_form" style="background-color: white;border: #f6f6f6 1px solid;" enctype="multipart/form-data">
 
             <div>
                 <div><label style="color: black;">请选择音乐文件</label></div>

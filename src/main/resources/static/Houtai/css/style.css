@@ -70,7 +70,6 @@ body, html {
     height: 53px;
     width: 67px;
     margin-right: 15px;
-    background: url(../images/logo.gif);
 }
 
 /*----left---------------------------*/
@@ -234,9 +233,13 @@ body, html {
     height: 100%;
     margin-left: 20px !important;
     margin-left: 10px;
-    border: 1px solid #b4b4b4;
-    background: #fff;
     display: none;
+}
+.right>table{
+    border: #f6f6f6 1px solid;
+}
+.eachTable td{
+    border-top: #000000 1px solid;
 }
 
 .right span {

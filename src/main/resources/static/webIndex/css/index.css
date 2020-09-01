@@ -1069,6 +1069,7 @@ header {
 }
 
 .nav-list .item {
+    width: 60px;
     position: relative;
     float: left;
     padding: 0 11px 10px;
@@ -1089,19 +1090,19 @@ header {
     left: 0;
     top: 2px;
     width: 100%;
-    height: 14px;
-    line-height: 14px;
+    height: 30px;
+    line-height: 30px;
     text-align: center;
     color: #fff;
     background-color: #ffafc9;
-    border-radius: 4px;
+    border-radius: 10px;
     font-size: 11px;
 }
 
 .nav-list .num i {
     display: block;
     padding: 1px 3px;
-    line-height: 12px;
+    line-height: 30px;
     text-align: center;
     font-family: Calibri, Arial, Helvetica, sans-serifsans-serif;
 }
@@ -1115,14 +1116,11 @@ header {
 }
 
 .nav-list .item-square {
-    padding: 0;
-    padding-left: 13px;
-    padding-bottom: 6px;
+    width: 80px;
 }
 
 .nav-list .item-live {
-    padding: 0;
-    padding-bottom: 16px;
+
     margin-left: 27px;
 }
 

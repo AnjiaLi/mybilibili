@@ -80,7 +80,7 @@
         }
 
         .more-info {
-            display: none;
+            /* display: none; */
         }
 
         /*.no-display {*/
@@ -100,6 +100,9 @@
         .add-button {
         }
         .star-button {
+        }
+        #now-table{
+            background-color: goldenrod;
         }
         footer{
             width: 100%;
@@ -185,15 +188,17 @@
                                     <th>时长</th>
                                     <th class="more-info">操作</th>
                                 </tr>
-                                <tr th:each="music : ${musicList}">
-                                    <td th:text="${music.getmusicName()}"></td>
+                                <tr th:each="music,musicStat : ${musicList}">
+                                    <td><a th:href="@{'/music?ID='+${music.getmusicID()}}" th:text="${music.getmusicName()}"></a></td>
                                     <td th:text="${music.getSinger()}"></td>
                                     <td th:text="${music.getmusicTime()}"></td>
                                     <td class="more-info">
-                                        <span th:text="${music.getmusicID()}"></span>
-                                        <span th:text="${music.getmusicAddress()}"></span>
-                                        <!-- <a th:href="@{'/admin/music/del/'+${music.id}}">删除</a> -->
-                                        <!-- <a th:href="@{'/admin/music/upd/'+${music.id}}">修改</a> -->
+                                        <!-- <span th:text="${music.getmusicID()}"></span> -->
+                                        <!-- <span th:text="${music.getmusicAddress()}"></span> -->
+                                        <input type="button" value="播放" class="add-button"
+                                        th:onclick="addMusic([[${music}]])">
+                                        <input type="button" value="收藏" class="star-button"
+                                        th:onclick="starMusic([[${music.getmusicID()}]],[[${musicStat.index}]])">
                                     </td>
                                 </tr>
                             </table>
@@ -202,22 +207,24 @@
                 </div>
                 <div class="col-md-6 right">
                     <ul class="right-sectionB">
-                        <audio id="myAudio" th:src="@{music/水月陵 - それは、とある王国の物語.mp3}" controls autoplay></audio>
+                        <audio id="myAudio" controls autoplay></audio>
                     </ul>
                     <div class="right-sectionC">
+                        <p class="">正在播放：<span id="now-span"></span>
+                            <input type="button" value="清空播放列表" onclick="delAll()"></p>
                         <table class="table table-striped" style="width:80%; margin:auto; text-align: center;" id="play-list">
                             <tr>
                                 <th>歌名</th>
                                 <th>歌手</th>
                                 <th>时长</th>
                                 <th class="more-info">操作</th>
-                                <button class="add-button">
-                                    <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
-                                </button>
+<!--                                <button class="add-button">-->
+<!--                                    <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>-->
+<!--                                </button>-->
 
-                                <button class="star-button">
-                                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-                                </button>
+<!--                                <button class="star-button">-->
+<!--                                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>-->
+<!--                                </button>-->
                             </tr>
                         </table>
                     </div>

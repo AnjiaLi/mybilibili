@@ -1,40 +1,44 @@
+let firstStar = true
 window.onload = function () {
     let page = window.location.pathname.slice(1)
+    showPlayList()
     if (page == "list") {
+        firstStar = false
         initList()
     } else if (page == "music") {
         initMusic()
     }
-    showPlayList()
 }
 
 function initList() {
-    // let musicList = getMusicList();
     let myAudio = document.querySelector("#myAudio");
-    // localStorage.setItem("index", 0);
-    // localStorage.setItem("playList", JSON.stringify(musicList));
-    myAudio.addEventListener("ended", playMusic(true))
+    myAudio.addEventListener("ended", () => playMusic(true))
+    myAudio.addEventListener("abort", () => console.log("mp3 abort"))
+    myAudio.addEventListener("error", () => console.log("mp3 error"))
+    myAudio.addEventListener("stalled", () => console.log("mp3 stalled"))
+    playMusic(false)
 }
 
 function initMusic() {
     let addButton = document.querySelector(".add-button")
     let starButton = document.querySelector(".star-button")
-    addButton.addEventListener("click", addMusic(JSON.parse(document.querySelector(".music-info").textContent)))
+    addButton.addEventListener("click", () => addMusic(JSON.parse(document.querySelector(".music-info").textContent)))
     starButton.addEventListener("click", () => {
         let musicID = window.location.search
         musicID = musicID.slice(musicID.lastIndexOf("=") + 1)
-        starMusic(musicID, 0, true)
+        starMusic(musicID, 0)
     })
     starButton.click()
 }
 
-function showPlayList() {
+function showPlayList(newList, newIndex) {
     let table = document.querySelector("#play-list")
-    let playList = getPlayList()
-    for (let i = 0, tr, name, singer, time, add, star; i < playList.length; i++) {
+    if (table == null) return
+    let playList = newList
+    if (playList == undefined) playList = getPlayList()
+    for (let i = 0, tr, name, singer, time, add, star, del, aaa, opt; i < playList.length; i++) {
         tr = document.createElement("tr")
         name = document.createElement("td")
-        name.textContent = playList[i].name
         name.className = "music-name"
         singer = document.createElement("td")
         singer.textContent = playList[i].singer
@@ -47,20 +51,40 @@ function showPlayList() {
         add.value = "播放"
         add.className = "add-button"
         add.onclick = () => {
-            addMusic(playList[i])
+            if (newIndex == undefined)
+                addMusic(playList[i], i)
+            else
+                addMusic(playList[i], newIndex)
         }
-        star = document.createElement("input")
-        star.type = "button"
-        star.value = "收藏"
-        star.className = "star-button"
-        star.onclick = () => {
-            starMusic(playList[i].id, i, false)
+        // star = document.createElement("input")
+        // star.type = "button"
+        // star.value = "收藏"
+        // star.className = "star-button"
+        // star.onclick = () => {
+        //     starMusic(playList[i].id, i)
+        // }
+        del = document.createElement("input")
+        del.type = "button"
+        del.value = "删除"
+        del.className = "del-button"
+        del.onclick = () => {
+            if (newIndex == undefined)
+                delMusic(i)
+            else
+                delMusic(newIndex)
         }
+        opt = document.createElement("td")
+        opt.className = "music-opt"
+        aaa = document.createElement("a")
+        aaa.href = "/music?ID=" + playList[i].id
+        aaa.textContent = playList[i].name
+        name.appendChild(aaa)
+        opt.appendChild(add)
+        opt.appendChild(del)
         tr.appendChild(name)
         tr.appendChild(singer)
         tr.appendChild(time)
-        tr.appendChild(add)
-        tr.appendChild(star)
+        tr.appendChild(opt)
         table.children[0].appendChild(tr)
     }
 }
@@ -72,23 +96,6 @@ function getPlayList() {
     return playList
 }
 
-function getMusicList() {
-    let musicAddress = ["music/水月陵 - それは、とある王国の物語.mp3", "music/樋口秀樹 - 砂漠の花.mp3", "music/Metomate - nostalgia.mp3"
-        , "music/Peak A Soul+ - 町娘になれたら.mp3", "music/山下航生,rian,朝霧はやと - story.mp3"]
-    let musicList = []
-    // let prefix = "http://localhost:8080/"
-    let prefix = window.location.protocol + "//" + window.location.host + "/"
-    for (let i = 0, str; i < musicAddress.length; i++) {
-        str = musicAddress[i];
-        musicList.push({
-            name: str.slice(str.lastIndexOf("/") + 1, str.lastIndexOf(".")),
-            singer: "test",
-            address: prefix + str
-        })
-    }
-    return musicList
-}
-
 function playMusic(next) {
     let myAudio = document.querySelector("#myAudio");
     let playList = getPlayList()
@@ -97,16 +104,23 @@ function playMusic(next) {
         index = (index * 1 + 1) % playList.length
         localStorage.setItem("index", index)
     }
-    console.log(playList[index].address);
-    myAudio.src = playList[index].address
-    myAudio.load();
-    myAudio.play();
+    try {
+        console.log(playList[index].address);
+        myAudio.src = playList[index].address
+        myAudio.load();
+        myAudio.play();
+        showNowMusic(playList[index].name, index)
+    } catch (error) {
+        console.error(error);
+        myAudio.src = ""
+        showNowMusic("无", -1)
+    }
 }
 
-function addMusic(music) {
+function addMusic(music, existsIndex) {
     let playList = getPlayList()
     // let prefix = window.location.protocol + "//" + window.location.host + "/"
-    let newMusic
+    let newMusic, index
     if (music.musicName == undefined) {
         newMusic = music
     } else {
@@ -118,21 +132,28 @@ function addMusic(music) {
             address: music.musicAddress,
         }
     }
-    let index = playList.findIndex(e => e.id == newMusic.id)
+    if (existsIndex != undefined)
+        index = existsIndex
+    else
+        index = playList.findIndex(e => e.id == newMusic.id)
     if (index == -1) {
         playList.push(newMusic)
         localStorage.setItem("playList", JSON.stringify(playList))
         localStorage.setItem("index", playList.length - 1)
+        showPlayList([newMusic], playList.length - 1)
     } else {
         localStorage.setItem("index", index)
     }
     playMusic(false)
 }
 
-function starMusic(id, index, first) {
+function starMusic(id, index) {
     let starButton = document.querySelectorAll(".star-button")[index]
     let unFav = false
-    if (starButton.value == "已收藏") unFav = true
+    if (starButton.value == "已收藏")
+        if (confirm("删除收藏？"))
+            unFav = true
+        else return
     $.ajax({
         type: "post",
         url: "/music/starMusic",
@@ -142,18 +163,59 @@ function starMusic(id, index, first) {
         },
         success: function (result) {
             if (result == "false") {
-                if (!first)
-                    alert("请登录")
+                if (!firstStar)
+                    if (confirm("请登录"))
+                        window.location.href = "/clientLogin"
             } else {
                 if (unFav)
                     starButton.value = "收藏"
                 else
                     starButton.value = "已收藏"
             }
+            firstStar = false
         },
         error: function (e) {
             console.log(e.status);
             console.log(e.responseText);
         }
     });
+}
+
+function delMusic(delIndex) {
+    let playList = getPlayList()
+    playList.splice(delIndex, 1)
+    localStorage.setItem("playList", JSON.stringify(playList))
+    let index = localStorage.getItem("index")
+    index = index < delIndex ? index : index - 1
+    localStorage.setItem("index", index)
+    clearPlayList()
+    showPlayList()
+    if (index == -1) playMusic(false)
+    else if (index * 1 + 1 == delIndex)
+        if (index == playList.length - 1) playMusic(false)
+        else playMusic(true)
+}
+function clearPlayList() {
+    let table = document.querySelector("#play-list")
+    if (table == null) return
+    table.children[0].innerHTML = "<tr><th>歌名</th><th>歌手</th><th>时长</th><th class='more-info'>操作</th></tr>"
+}
+
+let oldIndex = 0
+function showNowMusic(name, index) {
+    document.querySelector("#now-span").textContent = name
+    let tc = document.querySelector("#play-list").children[0]
+    if (index != -1) {
+        if (tc.children[oldIndex] != undefined)
+            tc.children[oldIndex].id = ""
+        oldIndex = index * 1 + 1
+        tc.children[oldIndex].id = "now-table";
+    }
+}
+
+function delAll() {
+    clearPlayList()
+    localStorage.removeItem("playList")
+    localStorage.setItem("index", 0)
+    playMusic(false)
 }

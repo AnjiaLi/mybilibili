@@ -36,7 +36,7 @@ public class FavoriteController {
             else
                 favoriteService.save(new FavoriteEntity(0, userName, Integer.parseInt(request.getParameter("musicID"))));
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
             return "true";
         }
         return "true";

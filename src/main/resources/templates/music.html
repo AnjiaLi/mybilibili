@@ -487,7 +487,7 @@
                             <img th:src="${musicEntity.getmusicImage()}"/>
                             <div class="mask">
                                 <div class="music-start">
-                                    <div class="mplayer" onclick="play2()">
+                                    <div class="mplayer" th:onclick="play1([[${musicEntity.getmusicState()}]])">
                                         <i class="fa">
                                             <span class="before"></span>
 
@@ -553,9 +553,19 @@
             <div id="arc_toolbar_report" class="video-toolbar report-wrap-module report-scroll-module">
 
                 <div class="ops">
-	     			   	<button id="add-button" value="add"><i class="van-icon-videodetails_like"></i></button>
 
-                        <button id="star-button" value="star12545"><i class="van-icon-videodetails_collec"></i></button>
+                    <button class="add-button" style="margin-right: 10px">
+                        <img style="height: 24px;width: 24px;margin-right: 10px" src="webIndex/images/add.png">
+                        添加
+                    </button>
+
+
+
+                    <button class="star-button" style="margin-right: 10px">
+                        <img style="height: 24px;width: 24px;margin-right: 10px" src="webIndex/images/starbefore.png">
+                        收藏
+                    </button>
+
 
                 </div>
 

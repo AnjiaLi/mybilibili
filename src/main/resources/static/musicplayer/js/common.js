@@ -4,6 +4,44 @@ var durationTime = $(".mplayer_durtime");
 var circle = $('.m-circle .a')[0];
 var circumference = 2 * Math.PI * 160;
 var timer;
+function play1(string){
+  if (audio.paused){
+    if (string==1){
+      play2();
+    }else {
+      ifLogin();
+    }
+  }else {
+    play2(2)
+  }
+
+}
+
+function ifLogin(){
+  $.ajax({
+    type: "post",
+    url: "/ifLogin",
+    success: function (result) {
+      if (result == "false") {
+        if (confirm("请登录")){
+          window.location.href="/clientLogin";
+        }
+      } else {
+        if (result == "VIP"){
+          play2()
+        }else {
+          if (confirm("请购买VIP")){
+            window.location.href="/pay";
+          }
+        }
+      }
+    },
+    error: function (e) {
+      console.log(e.status);
+      console.log(e.responseText);
+    }
+  });
+}
 function play2() {
   if (audio.paused) {
     audio.play();

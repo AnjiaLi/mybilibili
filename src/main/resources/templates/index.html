@@ -242,7 +242,7 @@
                             <span class="time" th:text="'点击量: '+${list.getMusicClick()}"></span>
                         </a>
                         <div class="img-info">
-                            <a th:href="'video?dizhi='+${list.getmusicAddress()}+'&shipingID='+${list.getmusicID()}"
+                            <a th:href="'music?ID='+${list.getmusicID()}"
                                th:text="${list.getmusicName()}">
                             </a>
                             <div class="btm">
@@ -303,7 +303,7 @@
                             <span class="time" th:text="'点击量: '+${list2.getMusicClick()}"></span>
                         </a>
                         <div class="img-info">
-                            <a th:href="'video?dizhi='+${list2.getmusicAddress()}+'&shipingID='+${list2.getmusicID()}"
+                            <a th:href="'music?ID='+${list2.getmusicID()}"
                                th:text="${list2.getmusicName()}">
 
                             </a>

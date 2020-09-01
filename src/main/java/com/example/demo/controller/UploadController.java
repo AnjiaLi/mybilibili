@@ -44,7 +44,7 @@ public class UploadController {
                 e.printStackTrace();
                 model.addAttribute("uploadStatus", "上传失败：" + e.getMessage());
             }
-            request.getSession().setAttribute("fileName", "userHand_Top/upload/" + fileName);
+            request.getSession().setAttribute("fileName", fileName);
         }
         return "redirect:/Update_userHand";
     }

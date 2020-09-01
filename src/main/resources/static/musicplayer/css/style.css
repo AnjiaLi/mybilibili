@@ -773,7 +773,7 @@
 
 .video-toolbar {
     line-height: 30px;
-    height: 28px;
+    /*height: 28px;*/
     font-size: 14px;
     color: #505050;
     border-bottom: 1px solid #e5e9f0;

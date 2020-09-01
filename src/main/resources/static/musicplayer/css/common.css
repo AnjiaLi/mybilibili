@@ -48,6 +48,7 @@ body {
   display: inline;
   animation: spin 46s infinite linear;
   animation-play-state: paused;
+  position: absolute;
 }
 
 .music-box .mask {

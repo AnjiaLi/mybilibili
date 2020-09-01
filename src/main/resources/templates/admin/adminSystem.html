@@ -6,12 +6,11 @@
     <title>后台管理</title>
 
     <link th:href="@{../../Houtai/css/style.css}" rel="stylesheet"/>
+
     <link th:href="@{../../User_Data_Update/css/jiazaitoubu.css}" rel="stylesheet"/>
     <link th:href="@{../../User_Data_Update/css/shangchuan.css}" rel="stylesheet"/>
     <link th:href="@{../../User_Data_Update/css/center.css}" rel="stylesheet"/>
     <link th:href="@{../../Homepage/mycssAndimg/css.css}" rel="stylesheet"/>
-
-
 
     <script th:src="@{https://code.jquery.com/jquery-3.5.1.js}"></script>
 <!--    <script th:src="@{../../Homepage/js/jquery.min.js}"></script>-->
@@ -134,104 +133,107 @@
 
 
 
-    <div class="right" id="li010">
-        <div class="right01"><img src="../../Houtai/images/04.gif" /> 用户信息查询 &gt; </div>
-        <table width="100%" height="100%" border="0" cellspacing="0" cellpadding="3">
-            <tr>
-                <td height="100%" valign="top">
-                    <div style="overflow:auto;height:100%; width:100%">
-                        <table width="100%" border="0" cellpadding="3" cellspacing="1" class="table1">
-                            <tr>
-                                <th align="center"><input type="checkbox" name="checkbox" id="checkbox"></th>
-                                <th align="center">用户ID</th>
-                                <th align="center">用户账号</th>
-                                <th align="center">联系电话</th>
-                                <th align="center">地址</th>
-                                <th align="center">审核状态</th>
-                                <th width="160" align="center">操作</th>
-                            </tr>
-                            <tr th:each="list : ${userList}">
-                                <TD align="center"><input type="checkbox" name="checkbox2" id="checkbox2"></TD>
-                                <TD align="center" th:text="${list.userID}"></TD>
-                                <TD align="center" th:text="${list.userName}"></TD>
-                                <TD align="center" th:text="${list.userPhone}"></TD>
-                                <TD align="center" th:text="${list.userAddress}"></TD>
-                                <TD align="center" th:text="${list.userState}"></TD>
-                                <TD width="200px" align="center">
-                                    <a th:href="'javascript:showBg2(\''+${list.userName}+'\')'">
-                                        <BUTTON style="height:21px; font-size:12px" >查看</BUTTON>
-                                    </a>
-                                    <a th:href="'ban?userID='+${list.userID}">
-                                        <BUTTON style="height:21px; font-size:12px" >禁用</BUTTON>
-                                    </a>
-                                    <a th:href="'verify?userID='+${list.userID}">
-                                        <BUTTON style="height:21px; font-size:12px" >审核</BUTTON>
-                                    </a>
-                                    <a th:href="'delect?userID='+${list.userID}">
-                                        <BUTTON style="height:21px; font-size:12px" >删除</BUTTON>
-                                    </a>
-                                </TD>
-                                <div th:class="public_m1" th:classappend="${list.userName}" th:id="dialog2">
-                                    <p class="close" style="height: 15px;margin: 0">
-                                        <a onclick="closeBg2();" style="cursor: pointer">关闭</a>
-                                    </p>
 
-                                    <div class="public_m2">用户全部信息资料</div>
-                                    <div class="public_m4">
-                                        <p style="height: 40px;">
-                                            <em>用户姓名：</em>
-                                            <input type="text"
-                                                   style="height: 23px; border: 1px solid #eaeaea; width: 240px"
-                                                   th:value="${list.userMingzi}">
-                                        </p>
-                                        <p style="height: 40px;">
-                                            <em>用户名：</em>
-                                            <input type="text"
-                                                   style="height: 23px; border: 1px solid #eaeaea; width: 240px"
-                                                   th:value="${list.userName}">
-                                        </p>
-                                        <p style="height: 40px;">
-                                            <em>性别：</em>
-                                            <input type="text"
-                                                   style="height: 23px; border: 1px solid #eaeaea; width: 240px"
-                                                   th:value="${list.usersex}">
-                                        </p>
-                                        <p style="height: 40px;">
-                                            <em>密码：</em>
-                                            <input type="text"
-                                                   style="height: 23px; border: 1px solid #eaeaea; width: 240px"
-                                                   th:value="${list.passWord}">
-                                        </p>
-                                        <p style="height: 40px;">
-                                            <em>地址：</em>
-                                            <input type="text"
-                                                   style="height: 23px; border: 1px solid #eaeaea; width: 240px"
-                                                   th:value="${list.userAddress}">
-                                        </p>
-                                        <p style="height: 40px;">
-                                            <em>邮箱：</em>
-                                            <input type="text"
-                                                   style="height: 23px; border: 1px solid #eaeaea; width: 240px"
-                                                   th:value="${list.userEmial}">
-                                        </p>
-                                        <p style="height: 40px;">
-                                            <em>用户状态：</em>
-                                            <input type="text"
-                                                   style="height: 23px; border: 1px solid #eaeaea; width: 240px"
-                                                   th:value="${list.userState}">
+
+        <div class="right" id="li010">
+            <div class="right01"><img src="../../Houtai/images/04.gif" /> 用户信息查询 &gt; </div>
+            <table width="100%" height="100%" border="0" cellspacing="0" cellpadding="3">
+                <tr>
+                    <td height="100%" valign="top">
+                        <div style="overflow:auto;height:100%; width:100%">
+                            <table width="100%" border="0" cellpadding="3" cellspacing="1" class="table1">
+                                <tr>
+                                    <th align="center"><input type="checkbox" name="checkbox" id="checkbox"></th>
+                                    <th align="center">用户ID</th>
+                                    <th align="center">用户账号</th>
+                                    <th align="center">联系电话</th>
+                                    <th align="center">地址</th>
+                                    <th align="center">审核状态</th>
+                                    <th width="160" align="center">操作</th>
+                                </tr>
+                                <tr th:each="list : ${userList}">
+                                    <TD align="center"><input type="checkbox" name="checkbox2" id="checkbox2"></TD>
+                                    <TD align="center" th:text="${list.userID}"></TD>
+                                    <TD align="center" th:text="${list.userName}"></TD>
+                                    <TD align="center" th:text="${list.userPhone}"></TD>
+                                    <TD align="center" th:text="${list.userAddress}"></TD>
+                                    <TD align="center" th:text="${list.userState}"></TD>
+                                    <TD width="200px" align="center">
+                                        <a th:href="'javascript:showBg2(\''+${list.userName}+'\')'">
+                                            <BUTTON style="height:21px; font-size:12px" >查看</BUTTON>
+                                        </a>
+                                        <a th:href="'ban?userID='+${list.userID}">
+                                            <BUTTON style="height:21px; font-size:12px" >禁用</BUTTON>
+                                        </a>
+                                        <a th:href="'verify?userID='+${list.userID}">
+                                            <BUTTON style="height:21px; font-size:12px" >审核</BUTTON>
+                                        </a>
+                                        <a th:href="'delect?userID='+${list.userID}">
+                                            <BUTTON style="height:21px; font-size:12px" >删除</BUTTON>
+                                        </a>
+                                    </TD>
+                                    <div th:class="public_m1" th:classappend="${list.userName}" th:id="dialog2">
+                                        <p class="close" style="height: 15px;margin: 0">
+                                            <a onclick="closeBg2();" style="cursor: pointer">关闭</a>
                                         </p>
 
+                                        <div class="public_m2">用户全部信息资料</div>
+                                        <div class="public_m4">
+                                            <p style="height: 40px;">
+                                                <em>用户姓名：</em>
+                                                <input type="text"
+                                                       style="height: 23px; border: 1px solid #eaeaea; width: 240px"
+                                                       th:value="${list.userMingzi}">
+                                            </p>
+                                            <p style="height: 40px;">
+                                                <em>用户名：</em>
+                                                <input type="text"
+                                                       style="height: 23px; border: 1px solid #eaeaea; width: 240px"
+                                                       th:value="${list.userName}">
+                                            </p>
+                                            <p style="height: 40px;">
+                                                <em>性别：</em>
+                                                <input type="text"
+                                                       style="height: 23px; border: 1px solid #eaeaea; width: 240px"
+                                                       th:value="${list.usersex}">
+                                            </p>
+                                            <p style="height: 40px;">
+                                                <em>密码：</em>
+                                                <input type="text"
+                                                       style="height: 23px; border: 1px solid #eaeaea; width: 240px"
+                                                       th:value="${list.passWord}">
+                                            </p>
+                                            <p style="height: 40px;">
+                                                <em>地址：</em>
+                                                <input type="text"
+                                                       style="height: 23px; border: 1px solid #eaeaea; width: 240px"
+                                                       th:value="${list.userAddress}">
+                                            </p>
+                                            <p style="height: 40px;">
+                                                <em>邮箱：</em>
+                                                <input type="text"
+                                                       style="height: 23px; border: 1px solid #eaeaea; width: 240px"
+                                                       th:value="${list.userEmial}">
+                                            </p>
+                                            <p style="height: 40px;">
+                                                <em>用户状态：</em>
+                                                <input type="text"
+                                                       style="height: 23px; border: 1px solid #eaeaea; width: 240px"
+                                                       th:value="${list.userState}">
+                                            </p>
+
+                                        </div>
                                     </div>
-                                </div>
 
 
-                            </tr>
-                        </table>
-                    </div>
-                </td>
-            </tr>
-        </table>
-    </div>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
 
 
 
@@ -273,7 +275,7 @@
                                 <TD align="center" th:text="${music.getMusicClick()}"></TD>
                                 <TD align="center" th:text="${music.getMusicComment()}"></TD>
                                 <TD width="200px" align="center">
-                                    <a href="">
+                                    <a th:href="'/music?ID='+${music.getmusicID()}">
                                         <BUTTON style="height:21px; font-size:12px" >查看</BUTTON>
 
                                     </a>

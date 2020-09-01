@@ -2,7 +2,9 @@ package com.example.demo.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.demo.entity.FavoriteEntity;
+import com.example.demo.entity.UserEntity;
 import com.example.demo.service.impl.FavoriteServiceImpl;
+import com.example.demo.service.impl.UserListServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,13 +17,21 @@ public class FavoriteController {
 
     @Autowired
     FavoriteServiceImpl favoriteService;
+    @Autowired
+    UserListServiceImpl userListService;
 
-//    @GetMapping(value = "/favorite")
-//    public String showFavorite(HttpServletRequest request) {
-//        String userName = (String) request.getSession().getAttribute("userName");
-//
-//        return "favorite";
-//    }
+    @PostMapping(value = "/ifLogin")
+    @ResponseBody
+    public String showFavorite(HttpServletRequest request) {
+        String userName = (String) request.getSession().getAttribute("userName");
+        if (userName==null){
+            return "false";
+        }else {
+            UserEntity userEntity=userListService.getOne(new QueryWrapper<UserEntity>().eq("userName",userName));
+            System.out.println("userEntity.getUserState()：    "+userEntity.getUserState());
+            return userEntity.getUserState();
+        }
+    }
 
     @PostMapping(value = "/music/starMusic")
     @ResponseBody

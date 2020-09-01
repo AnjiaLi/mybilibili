@@ -7,6 +7,7 @@
     <link th:href="@{webIndex/css/common.css}" rel="stylesheet"/>
     <link th:href="@{webIndex/css/index.css}" rel="stylesheet"/>
 
+
     <script th:src="@{Homepage/js/jquery.min.js}"></script>
     <script th:src="@{webIndex/js/script.js}"></script>
     <script th:src="@{jquery-1.10.2/jquery.js}"></script>
@@ -46,7 +47,6 @@
 
         })
     </script>
-
 </head>
 <body>
 
@@ -65,7 +65,6 @@
                         <li class="item"><a th:href="@{/admin/adminSystem}">后台管理</a>
                     </ul>
                 </div>
-
                 <div class="header-top__user">
                     <!--/*@thymesVar id="userName" type="java"*/-->
                     <div class="login-box" th:if="!${session.userName}">
@@ -81,6 +80,21 @@
                         </ul>
                     </div>
                 </div>
+
+                <!------搜索框------>
+                <header style="text-align: center;">
+                    <ul class="ku">
+                        <form th:action="@{/list}" method="GET">
+                            <input type="hidden" name="type" value="search">
+                            <input type="search" name="key" id="inp1" style="border-radius:10px 0 0 10px;background: white;margin-top: 10px;height: 25px;width: 200px" placeholder="搜索音乐">
+                            <input type="submit" id="inp2" value="搜索" style="border-radius:0 10px 10px 0;background-color:#4e6ef2;margin-top: 10px;height: 25px;width:40px;color: white">
+                        </form>
+                    </ul>
+                </header>
+
+
+
+
             </div>
             <script type="text/javascript">
                 $(document).ready(function () {
@@ -228,7 +242,7 @@
                             <span class="time" th:text="'点击量: '+${list.getMusicClick()}"></span>
                         </a>
                         <div class="img-info">
-                            <a th:href="'video?dizhi='+${list.getmusicAddress()}+'&shipingID='+${list.getmusicID()}"
+                            <a th:href="'music?ID='+${list.getmusicID()}"
                                th:text="${list.getmusicName()}">
                             </a>
                             <div class="btm">
@@ -289,7 +303,7 @@
                             <span class="time" th:text="'点击量: '+${list2.getMusicClick()}"></span>
                         </a>
                         <div class="img-info">
-                            <a th:href="'video?dizhi='+${list2.getmusicAddress()}+'&shipingID='+${list2.getmusicID()}"
+                            <a th:href="'music?ID='+${list2.getmusicID()}"
                                th:text="${list2.getmusicName()}">
 
                             </a>

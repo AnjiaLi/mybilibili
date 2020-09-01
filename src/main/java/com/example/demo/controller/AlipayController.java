@@ -139,14 +139,14 @@ public class AlipayController {
         // 设置订单单号,需要保证唯一性
         AlipayEntity.setOut_trade_no(out_trade_no);
         // 设置支付金额
-        AlipayEntity.setTotal_amount("10");
+        AlipayEntity.setTotal_amount("399");
         // 设置支付标题
-        AlipayEntity.setSubject("购买VIP服务");
+        AlipayEntity.setSubject("购买终身VIP服务");
         // 设置订单有效时长(30分钟)
         AlipayEntity.setTimeout_express("30m");
         AlipayEntity.setProduct_code("FAST_INSTANT_TRADE_PAY");
         //备注
-        AlipayEntity.setBody("购买VIP服务");
+        AlipayEntity.setBody("购买终身VIP服务");
 
         AlipayEntity.setPassback_params("merchantBizType%3d3C%26merchantBizNo%3d2016010101111");
         // 对象转为json字符串

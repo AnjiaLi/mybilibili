@@ -12,7 +12,7 @@ public class MusicEntity {
     private String musicAddress;//地址
     private String singer;//歌手名字
     private String musicTime;//上传时间
-    private String musicState;//状态
+    private String musicState;//VIP
     private String musicCategory;//类别
     private Integer musicClick;//点击数
     private Integer musicComment;//评论数

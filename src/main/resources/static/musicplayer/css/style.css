@@ -773,7 +773,7 @@
 
 .video-toolbar {
     line-height: 30px;
-    height: 28px;
+    /*height: 28px;*/
     font-size: 14px;
     color: #505050;
     border-bottom: 1px solid #e5e9f0;
@@ -1150,7 +1150,7 @@
 
 .video-page-card .card-box .info .count {
     display: inline-block;
-    height: 16px;
+    height: 20px;
     width: 100%;
     color: #999;
     font-size: 12px
@@ -1161,8 +1161,7 @@
 }
 
 .video-page-card .card-box .info .count.up {
-    width: 160px;
-    margin-bottom: 4px;
+    width: 100%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis

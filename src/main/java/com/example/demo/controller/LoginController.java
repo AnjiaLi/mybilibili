@@ -70,9 +70,11 @@ public class LoginController {
                                       String passWord,
                                       HttpServletRequest request){
 
+
+        System.out.println(userName+passWord);
         // 从redis缓存中提取数据
         UserEntity userEntity=repository.findByUserNameAndPassWord(userName,passWord);
-                // 如果redis缓存中没有，则从Mysql数据库中查询并放入Redis缓存中
+        // 如果redis缓存中没有，则从Mysql数据库中查询并放入Redis缓存中
         if(userEntity == null)
         {
             System.out.println("Redis中没有命中,查询MySQL中......");

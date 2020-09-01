@@ -12,6 +12,8 @@
 
     <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link th:href="@{webIndex/css/index.css}" rel="stylesheet"/>
+    <link th:href="@{webIndex/css/common.css}" rel="stylesheet"/>
 
     <!-- 加载JQ -->
     <script th:src="@{bootstrap-3.3.7-dist/js/jquery-3.5.1.min.js}"></script>
@@ -166,16 +168,46 @@
 
 <section class="container-fluid">
     <div class="row1">
-        <div class="col-md-12 a"></div>
-        <div class="col-md-10 col-md-offset-1">
+        <div id="page_top">
+            <div class="bg-wrap">
+                <div class="bg"></div>
+                <div class="mask"></div>
+            </div>
+            <div class="header-top">
+                <div class="page-width clearfix">
+                    <div class="header-top__nav">
+                        <ul>
+                            <li class="item item-home" style="width: 70px"><a href="index"
+                                                                              style="width: 70px;padding: 0 0 0 20px;">主站</a>
+                            </li>
+                            <li class="item"><a href="admin/adminSystem">后台管理</a>
+                        </ul>
+                    </div>
+
+                    <div class="header-top__user">
+                        <div class="login-box" th:if="!${session.userName}">
+                            <a href="clientLogin">登录</a> <span></span> <a href="register">注册</a>
+                        </div>
+
+
+                        <div th:if="${session.userName}" class="login-box" onmouseover="project()">
+                            <ul style="display: inline-block ;position: relative;">
+                                <li class="item"><a href="user" th:text="${session.userName}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
             <div class="row2">
                 <div class="col-md-6 left">
                     <header style="text-align: center;">
                         <ul class="ku">
                             <form th:action="@{/list}" method="GET">
                                 <input type="hidden" name="type" value="search">
-                                <input type="search" name="key" id="inp1" placeholder="搜索音乐">
-                                <input type="submit" id="inp2" value="搜索">
+                                <input type="search" name="key" id="inp1" placeholder="搜索音乐" style="width:18vw;border-radius:20px 0 0 20px;">
+                                <input type="submit" id="inp2" value="搜索" style="border-radius:0 20px 20px 0;">
                             </form>
                         </ul>
                     </header>

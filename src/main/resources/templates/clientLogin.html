@@ -80,10 +80,29 @@
             <a href="javascript:showBg();">忘记密码 ?  </a>    <a href="register">立即注册? </a>
             <br>
             <a href="index">返回首页 </a>
-
             <button class="floating-btn" id="tijiao"><i class="icon-arrow"></i></button>
         </form>
     </div>
 </article>
 </body>
+
+
+<script>
+    $("#123").click(function () {
+        $.ajax({
+            type: "post",
+            url: "/loginservicebyRedis",
+            data: {userName:$("#userName").val(),passWord:$("#passWord").val()},
+            success: function (result) {
+                alert(result)
+                window.location.href="/index";
+
+            },
+            error: function (e) {
+                console.log(e.status);
+                console.log(e.responseText);
+            }
+        });
+    })
+</script>
 </html>

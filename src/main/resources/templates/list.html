@@ -56,7 +56,7 @@
         header .ku{
             position: absolute;
             top: 10vh;
-            left: 15%;
+            left: 5%;
             margin-top: -5vh ;
             text-align: center;
         }
@@ -247,6 +247,7 @@
                         </ul>
                     </header>
                     <div class="left-sectionA">
+
                         <div style="text-align: center;">
                             <table  class="table table-hover" style="width: 80%; margin:auto;">
                                 <tr>
@@ -265,7 +266,10 @@
                                         <button class="add-button" th:onclick="addMusic([[${music}]])">
                                             <img src="webIndex/images/add.png" alt=""></button>
                                         <button class="star-button" th:onclick="starMusic([[${music.getmusicID()}]],[[${musicStat.index}]])">
-                                            <img src="webIndex/images/starbefore.png" alt=""></button>
+                                            <img th:if="${#httpServletRequest.getQueryString()=='type=favorite' }" src="webIndex/images/starafter.png" alt="">
+                                            <img th:if="${#httpServletRequest.getQueryString()!='type=favorite' }" src="webIndex/images/starbefore.png" alt="">
+                                        </button>
+
                                     </td>
                                 </tr>
                             </table>

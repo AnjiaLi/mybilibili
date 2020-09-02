@@ -147,6 +147,8 @@ function addMusic(music, existsIndex) {
     } else {
         localStorage.setItem("index", index)
     }
+    let page = window.location.pathname.slice(1)
+    if (page=="list")
     playMusic(false)
 }
 
@@ -232,7 +234,7 @@ function delAll() {
 
 function changeTableTitle() {
     let type = window.location.search
-    type = type.slice(type.indexOf("=") + 1, type.indexOf("&"))
+    type = type.slice(type.indexOf("=") + 1)
     if (type=="favorite") 
-        document.querySelector("table").children[0].children[0].children[0].textContent="歌名   （已收藏）"
+        document.querySelector("table").children[0].children[0].children[0].textContent="歌名   （我的收藏）"
 }

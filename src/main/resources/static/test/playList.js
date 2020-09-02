@@ -36,7 +36,7 @@ function showPlayList(newList, newIndex) {
     if (table == null) return
     let playList = newList
     if (playList == undefined) playList = getPlayList()
-    for (let i = 0, tr, name, singer, time, add, star, del, aaa, opt; i < playList.length; i++) {
+    for (let i = 0, tr, name, singer, time, add, star, del, aaa, opt, imggg; i < playList.length; i++) {
         tr = document.createElement("tr")
         name = document.createElement("td")
         name.className = "music-name"
@@ -46,9 +46,7 @@ function showPlayList(newList, newIndex) {
         time = document.createElement("td")
         time.textContent = playList[i].time
         time.className = "music-time"
-        add = document.createElement("input")
-        add.type = "button"
-        add.value = "播放"
+        add = document.createElement("button")
         add.className = "add-button"
         add.onclick = () => {
             if (newIndex == undefined)
@@ -56,6 +54,9 @@ function showPlayList(newList, newIndex) {
             else
                 addMusic(playList[i], newIndex)
         }
+        imggg = document.createElement("img")
+        imggg.src = imgSrccc.add
+        add.appendChild(imggg)
         // star = document.createElement("input")
         // star.type = "button"
         // star.value = "收藏"
@@ -63,9 +64,7 @@ function showPlayList(newList, newIndex) {
         // star.onclick = () => {
         //     starMusic(playList[i].id, i)
         // }
-        del = document.createElement("input")
-        del.type = "button"
-        del.value = "删除"
+        del = document.createElement("button")
         del.className = "del-button"
         del.onclick = () => {
             if (newIndex == undefined)
@@ -73,6 +72,9 @@ function showPlayList(newList, newIndex) {
             else
                 delMusic(newIndex)
         }
+        imggg = document.createElement("img")
+        imggg.src = imgSrccc.del
+        del.appendChild(imggg)
         opt = document.createElement("td")
         opt.className = "music-opt"
         aaa = document.createElement("a")
@@ -147,10 +149,16 @@ function addMusic(music, existsIndex) {
     playMusic(false)
 }
 
+var imgSrccc = {
+    add: "webIndex/images/add.png",
+    star: "webIndex/images/starbefore.png",
+    starred: "webIndex/images/starafter.png",
+    del: "webIndex/images/delete.png",
+}
 function starMusic(id, index) {
-    let starButton = document.querySelectorAll(".star-button")[index]
+    let starButton = document.querySelectorAll(".star-button")[index].children[0]
     let unFav = false
-    if (starButton.value == "已收藏")
+    if (starButton.src.slice(starButton.src.indexOf("webI")) == imgSrccc.starred)
         if (confirm("删除收藏？"))
             unFav = true
         else return
@@ -168,9 +176,9 @@ function starMusic(id, index) {
                         window.location.href = "/clientLogin"
             } else {
                 if (unFav)
-                    starButton.value = "收藏"
+                    starButton.src = imgSrccc.star
                 else
-                    starButton.value = "已收藏"
+                    starButton.src = imgSrccc.starred
             }
             firstStar = false
         },
@@ -195,6 +203,7 @@ function delMusic(delIndex) {
         if (index == playList.length - 1) playMusic(false)
         else playMusic(true)
 }
+
 function clearPlayList() {
     let table = document.querySelector("#play-list")
     if (table == null) return

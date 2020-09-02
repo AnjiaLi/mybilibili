@@ -42,6 +42,9 @@ public class ListController {
                     .or().like("singer", key));
         } else if (type.equals("singer") && hasKey) {
             musicList = musicService.list(new QueryWrapper<MusicEntity>().like("singer", key));
+        } else if (type.equals("category") && hasKey) {
+            musicList = musicService.list(new QueryWrapper<MusicEntity>().eq("musicCategory",
+                    Integer.parseInt(key)));
         } else musicList = new ArrayList<>();
 
         model.addAttribute("musicList", musicList);

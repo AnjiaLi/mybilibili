@@ -99,12 +99,42 @@
         /*    width: 50%;*/
         /*}*/
 
-        .add-button {
+        .add-button,.star-button,.del-button,#now-ppp>button{
+            background-color: transparent;
+            border: none;
+            height: 20px;
+            width: 20px;
+            padding: 0;
         }
-        .star-button {
+        .add-button>img,.star-button>img,.del-button>img{
+            height: 100%;width: 100%;
+        }
+        #now-div button:focus{
+            outline:none!important
         }
         #now-table{
-            background-color: goldenrod;
+            background-color: #A5DEE4;
+        }
+        #now-ppp{
+            width: 80%;
+            margin: 0 auto;
+        }
+        #now-ppp>button{
+            height: 24px;
+            width: auto;
+            float:right;
+        }
+        #now-span{
+            /* overflow: hidden; */
+            /* text-overflow: ellipsis; */
+            /* display:-webkit-inline-box; */
+            /* -webkit-line-clamp: 2; */
+            /* -webkit-box-orient: vertical; */
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap; 
+            width: 50%;
+            display:inline-flex;
         }
         footer{
             width: 100%;
@@ -227,10 +257,10 @@
                                     <td class="more-info">
                                         <!-- <span th:text="${music.getmusicID()}"></span> -->
                                         <!-- <span th:text="${music.getmusicAddress()}"></span> -->
-                                        <input type="button" value="播放" class="add-button"
-                                        th:onclick="addMusic([[${music}]])">
-                                        <input type="button" value="收藏" class="star-button"
-                                        th:onclick="starMusic([[${music.getmusicID()}]],[[${musicStat.index}]])">
+                                        <button class="add-button" th:onclick="addMusic([[${music}]])">
+                                            <img src="webIndex/images/add.png" alt=""></button>
+                                        <button class="star-button" th:onclick="starMusic([[${music.getmusicID()}]],[[${musicStat.index}]])">
+                                            <img src="webIndex/images/starbefore.png" alt=""></button>
                                     </td>
                                 </tr>
                             </table>
@@ -242,23 +272,28 @@
                         <audio id="myAudio" controls autoplay></audio>
                     </ul>
                     <div class="right-sectionC">
-                        <p class="">正在播放：<span id="now-span"></span>
-                            <input type="button" value="清空播放列表" onclick="delAll()"></p>
-                        <table class="table table-striped" style="width:80%; margin:auto; text-align: center;" id="play-list">
-                            <tr>
-                                <th>歌名</th>
-                                <th>歌手</th>
-                                <th>时长</th>
-                                <th class="more-info">操作</th>
-<!--                                <button class="add-button">-->
-<!--                                    <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>-->
-<!--                                </button>-->
+                        <div id="now-div">
+                            <p id="now-ppp">正在播放：<span id="now-span"></span>
+                                <button onclick="delAll()"><img style="height: 100%;width: auto;" 
+                                    src="webIndex/images/delete.png" alt="">清空</button>
+                                <!-- <input type="button" value="清空" onclick="delAll()"> -->
+                            </p>
+                            <table class="table table-striped" style="width:80%; margin:auto; text-align: center;" id="play-list">
+                                <tr>
+                                    <th>歌名</th>
+                                    <th>歌手</th>
+                                    <th>时长</th>
+                                    <th class="more-info">操作</th>
+    <!--                                <button class="add-button">-->
+    <!--                                    <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>-->
+    <!--                                </button>-->
 
-<!--                                <button class="star-button">-->
-<!--                                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>-->
-<!--                                </button>-->
-                            </tr>
-                        </table>
+    <!--                                <button class="star-button">-->
+    <!--                                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>-->
+    <!--                                </button>-->
+                                </tr>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

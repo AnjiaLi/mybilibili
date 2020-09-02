@@ -26,11 +26,6 @@ public class TestController {
     @Autowired
     UserListServiceImpl userListService;
 
-    @GetMapping(value = "/music-collection")
-    public String collect() {
-        return "music-collection";
-    }
-
     @GetMapping(value = "/test")
     @ResponseBody
     public String test() {

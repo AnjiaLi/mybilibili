@@ -1,7 +1,5 @@
 package com.example.demo.service;
 
-import com.example.demo.entity.OrdertableEntity;
-
 public interface LoginService {
 	public boolean loginuser(String userName,String passWord);
 	
@@ -27,49 +25,5 @@ public interface LoginService {
 	
 	
 	
-	
-	/**
-	 * 用户下单之后 将订单存储到数据库
-	 * @param ordertable
-	 * @return
-	 */
-	
-	public boolean ordertable(OrdertableEntity ordertable);
-	
-	
-	
-	/**
-	 * 根据商品ID 确认收货
-	 * @param orderID
-	 * @return
-	 */
-	public boolean confirmorder(String orderID);
-	
-	
-	
-	/**
-	 * 根据商品ID 取消订单
-	 * @param orderID
-	 * @return
-	 */
-	public boolean cancellationoforder(String orderID);
-	
-	
-	
-	/**
-	 * 根据商品ID 删除订单
-	 * @param orderID
-	 * @return
-	 */
-	public boolean delordertable(String orderID);
-	
-	
-	
-	
-	/**
-	 * 根据商品ID 立即发货
-	 * @param orderID
-	 * @return
-	 */
-	public boolean Delivergoods(String OrderStat,String orderID);
+
 }

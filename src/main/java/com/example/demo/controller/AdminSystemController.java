@@ -2,7 +2,6 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.MusicEntity;
 import com.example.demo.entity.UserEntity;
-import com.example.demo.entity.VideoEntity;
 import com.example.demo.redis.UserEntityRepository;
 import com.example.demo.service.impl.MusicServiceImpl;
 import com.example.demo.service.impl.UpdateServiceImpl;
@@ -38,9 +37,7 @@ public class AdminSystemController {
     public ModelAndView adminSystem(HttpServletRequest request) {
         int test = 0;
         List<UserEntity> userList = userListServiceImpl.userlistpage(test);
-        List<VideoEntity> videoList = userListServiceImpl.allvideolist();
         List<MusicEntity> musicList = musicServiceImpl.list();
-        System.out.println(videoList.size());
         Map model = new HashMap();
         model.put("userList", userList);
         model.put("musicList", musicList);

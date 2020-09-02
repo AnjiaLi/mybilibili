@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.demo.entity.MessageEntity;
 import com.example.demo.entity.MusicEntity;
 import com.example.demo.entity.UserEntity;
-import com.example.demo.service.impl.DanmuServiceImpl;
 import com.example.demo.service.impl.MessageServiceImpl;
 import com.example.demo.service.impl.MusicServiceImpl;
 import com.example.demo.service.impl.UserListServiceImpl;
@@ -27,8 +26,6 @@ public class MusicController {
 
     @Autowired
     UserListServiceImpl userListServiceImpl;
-    @Autowired
-    DanmuServiceImpl danmuServiceImpl;
     @Autowired
     MessageServiceImpl messageServiceImpl;
     @Autowired

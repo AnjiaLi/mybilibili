@@ -22,47 +22,6 @@ public interface UserListService extends IService<UserEntity> {
 
 
 	/**
-	 * 根据ID查询出此条论坛的全部信息
-	 * @param forumID
-	 * @return
-	 */
-	public ForumEntity forumentitymmp(String forumID);
-
-	/**
-	 * 根据ID查询出当前视频的所有留言
-	 * @return
-	 */
-	public List<ForumreplyEntity> forumreply(String forumreplyID);
-
-	public List<VideoEntity> videolist(String videocAtegory);
-
-
-	public VideoEntity selectVideo(String videoID);
-
-	/**
-	 * 随机在video 里面查询出5条记录
-	 * @return
-	 */
-	public List<VideoEntity> videolistimit7();
-
-	/**
-	 * 随机在video 里面查询出6条记录
-	 * @return
-	 */
-	public List<VideoEntity> videolistimit6MAD();
-
-
-	/**
-	 * 随机在video 里面查询出5条记录
-	 * @return
-	 */
-	public List<VideoEntity> videolistimit5MAD();
-
-
-
-	List<VideoEntity> allvideolist();
-
-	/**
 	 * 根据ID查询出当前视频的所有留言
 	 * @return
 	 */
@@ -102,15 +61,6 @@ public interface UserListService extends IService<UserEntity> {
 	public List<UserEntity> xiaoheiwu(String  userStat);
 
 
-	/**
-	 * 根据当前页查询出6条记录
-	 * @param dangqianye  页面传过来的当前页
-	 * @param State			需要查询的视频列别
-	 * @param meiyexianshiduoshaoge 每页显示多少个视频
-	 * @return
-	 */
-	public List<VideoEntity> Pagevideolist(String State, int dangqianye, int meiyexianshiduoshaoge);
-
 
 	/**
 	 * 根据标记 查询出一共有多少条记录
@@ -119,78 +69,6 @@ public interface UserListService extends IService<UserEntity> {
 	 */
 	public int videocoun(String countvideo);
 
-	/**
-	 * 将商品全部信息查询出来
-	 * @return
-	 */
-	public List<GridsEntity> gridslist();
 
 
-
-	/**
-	 * 根据商品ID查询出商品信息
-	 * @param gridsID
-	 * @return
-	 */
-	public GridsEntity gridsIDlist(String gridsID);
-
-
-	/**
-	 * 根据登录的用户名 查询出购物车里面的商品
-	 * @param userName
-	 * @return
-	 */
-	public List<ShoppingCart> shoppingcart(String userName);
-
-
-
-
-	/**
-	 *  根据用户名查询出所有的订单
-	 *
-	 */
-	public List<OrdertableEntity> ordertable(String userName);
-
-
-
-
-	/**
-	 *  查询出所有的订单
-	 *
-	 */
-	public List<OrdertableEntity> ordertablelist();
-
-
-
-
-	/**
-	 *  查询出标记的订单
-	 *
-	 */
-	public List<OrdertableEntity> orderStat(String orderStat);
-
-
-
-	/**
-	 * 查询出订单表里面有多少条记录
-	 * @return
-	 */
-	public int countordertable();
-
-
-	/**
-	 * 根据论坛类型查询出符合条件的论坛
-	 * @param forumliebie
-	 * @return
-	 */
-	public List<ForumEntity> forumEnt(String forumliebie);
-
-
-
-	/**
-	 * 根据表名查询出有多少记录
-	 * @param tableName
-	 * @return
-	 */
-	public int counttable(String tableName);
 }

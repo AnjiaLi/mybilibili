@@ -2,7 +2,6 @@ package com.example.demo.controller;
 
 
 import com.example.demo.entity.MusicEntity;
-import com.example.demo.entity.VideoEntity;
 import com.example.demo.service.impl.MusicServiceImpl;
 import com.example.demo.service.impl.UserListServiceImpl;
 import com.google.gson.Gson;
@@ -48,11 +47,7 @@ public class IndexController {
         List<MusicEntity> list3 = musicServiceImpl.hotMusicList(18);
         model.put("lists3", list3);
         // 随机查6条数据出来
-        List<VideoEntity> videolistimit6MAD = userListServiceImpl.videolistimit6MAD();
-        model.put("videolistimit6MAD", videolistimit6MAD);
 
-        List<VideoEntity> videolistimit7MAD = userListServiceImpl.videolistimit7();
-        model.put("videolistimit7MAD", videolistimit7MAD);
 
 
         return new ModelAndView("index", model);
@@ -69,14 +64,11 @@ public class IndexController {
     // AJAX 提交
     @RequestMapping(value = "ajaxTuiJian", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
     public @ResponseBody void ajaxTuiJian(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        List<VideoEntity> list = userListServiceImpl.videolistimit7();
         // 设置编码
         response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
         Gson gson = new Gson();
-        String sbb = gson.toJson(list);
-        out.write(sbb);
     }
 
     @ResponseBody

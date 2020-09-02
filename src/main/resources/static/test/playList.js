@@ -17,6 +17,7 @@ function initList() {
     myAudio.addEventListener("error", () => console.log("mp3 error"))
     myAudio.addEventListener("stalled", () => console.log("mp3 stalled"))
     playMusic(false)
+    changeTableTitle()
 }
 
 function initMusic() {
@@ -227,4 +228,11 @@ function delAll() {
     localStorage.removeItem("playList")
     localStorage.setItem("index", 0)
     playMusic(false)
+}
+
+function changeTableTitle() {
+    let type = window.location.search
+    type = type.slice(type.indexOf("=") + 1, type.indexOf("&"))
+    if (type=="favorite") 
+        document.querySelector("table").children[0].children[0].children[0].textContent="歌名   （已收藏）"
 }

@@ -125,8 +125,8 @@ public class UploadController {
         MusicEntity musicEntity=new MusicEntity();
         musicEntity.setmusicID(0);
         musicEntity.setmusicName(musicName);
-        musicEntity.setmusicImage("/music/musicImg/"+photoFileName);
-        musicEntity.setmusicAddress("/music/"+musicFileName);
+        musicEntity.setmusicImage("music/musicImg/"+photoFileName);
+        musicEntity.setmusicAddress("music/"+musicFileName);
         musicEntity.setMusicClick(0);
         musicEntity.setSinger(singer);
         musicEntity.setmusicTime(MusicUtil.getMusicDuration(new File(musicFileDirPath + musicFileName)));

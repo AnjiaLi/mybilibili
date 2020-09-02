@@ -4,6 +4,7 @@
     <base href="<%=basePath%>">
     <meta charset="UTF-8">
     <title>后台管理</title>
+    <link rel="icon" href="../../webIndex/images/webLogo.ico" type="image/x-icon">
 
     <link th:href="@{../../Houtai/css/style.css}" rel="stylesheet"/>
     <link th:href="@{../../Houtai/css/style2.css}" rel="stylesheet"/>
@@ -366,7 +367,7 @@
 
 <script type="text/javascript">
     $("#fanhui").click(function () {
-        location.href = "index";
+        location.href = "../index";
     })
 
 </script>
@@ -411,12 +412,7 @@
 
 
     $("#submit").click(function () {
-        alert("1111")
-        alert($("#musicName").val())
-        alert($("#singer").val())
-
         var formData = new FormData();
-
         formData.append("music", $('#music')[0].files[0]);
         formData.append("musicImg", $('#musicImg')[0].files[0]);
 

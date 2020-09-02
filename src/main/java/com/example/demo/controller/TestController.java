@@ -37,7 +37,7 @@ public class TestController {
 //            delete();
 //            update();
 //            select();
-            updateMusic();
+//            updateMusic();
         } catch (Exception e) {
 //            e.printStackTrace();
         }

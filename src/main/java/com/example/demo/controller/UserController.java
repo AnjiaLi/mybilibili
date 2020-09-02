@@ -51,7 +51,6 @@ public class UserController {
     @RequestMapping("image")
     public void getImage(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
-        System.out.println("123456789");
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
         String musicFileDirPath = "src/main/resources/static/userHand_Top/upload/";

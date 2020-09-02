@@ -30,6 +30,12 @@
             width: 100%;
             background: #e6dede;
         }
+        .a{
+            padding: 0;
+            width: 100%;
+            height: 10vh;
+            background: #530a15;
+        }
         .row2{
             padding: 0;
             overflow:auto;
@@ -55,23 +61,29 @@
             text-align: center;
         }
 
-
         .right{
             padding: 0;
         }
-        .Bf-right{
-            height: 120vh;
+        .right-sectionB{
+            top: 30%;
+            height: 15vh;
             background: #FFFFFF;
         }
         audio{
             position: absolute;
-            top:10%;
+            top:10vh;
             left: 10%;
             margin-top: -5vh ;
         }
+        .right-sectionC{
+            overflow:auto;
+            height: 80vh;
+            width:100%;
+            background: #FFFFFF;
+        }
 
         .more-info {
-            display: none;
+            /* display: none; */
         }
 
          #inp1{
@@ -92,6 +104,43 @@
             text-align: center;
         }
 
+        .add-button,.star-button,.del-button,#now-ppp>button{
+            background-color: transparent;
+            border: none;
+            height: 20px;
+            width: 20px;
+            padding: 0;
+        }
+        .add-button>img,.star-button>img,.del-button>img{
+            height: 100%;width: 100%;
+        }
+        #now-div button:focus{
+            outline:none!important
+        }
+        #now-table{
+            background-color: #A5DEE4;
+        }
+        #now-ppp{
+            width: 80%;
+            margin: 0 auto;
+        }
+        #now-ppp>button{
+            height: 24px;
+            width: auto;
+            float:right;
+        }
+        #now-span{
+            /* overflow: hidden; */
+            /* text-overflow: ellipsis; */
+            /* display:-webkit-inline-box; */
+            /* -webkit-line-clamp: 2; */
+            /* -webkit-box-orient: vertical; */
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
+            width: 50%;
+            display:inline-flex;
+        }
         footer{
             width: 100%;
             height: 10vh;
@@ -187,7 +236,7 @@
         </div>
         <div class="col-md-8 col-md-offset-2">
             <div class="row2">
-                <div class="col-md-7 left">
+                <div class="col-md-6 left">
                     <header style="text-align: center;">
                         <ul class="ku">
                             <form th:action="@{/list}" method="GET">
@@ -206,25 +255,51 @@
                                     <th>时长</th>
                                     <th class="more-info">操作</th>
                                 </tr>
-                                <tr th:each="music : ${musicList}">
-                                    <td th:text="${music.getmusicName()}"></td>
+                                <tr th:each="music,musicStat : ${musicList}">
+                                    <td><a th:href="@{'/music?ID='+${music.getmusicID()}}" th:text="${music.getmusicName()}"></a></td>
                                     <td th:text="${music.getSinger()}"></td>
                                     <td th:text="${music.getmusicTime()}"></td>
                                     <td class="more-info">
-                                        <span th:text="${music.getmusicID()}"></span>
-                                        <span th:text="${music.getmusicAddress()}"></span>
-                                        <!-- <a th:href="@{'/admin/music/del/'+${music.id}}">删除</a> -->
-                                        <!-- <a th:href="@{'/admin/music/upd/'+${music.id}}">修改</a> -->
+                                        <!-- <span th:text="${music.getmusicID()}"></span> -->
+                                        <!-- <span th:text="${music.getmusicAddress()}"></span> -->
+                                        <button class="add-button" th:onclick="addMusic([[${music}]])">
+                                            <img src="webIndex/images/add.png" alt=""></button>
+                                        <button class="star-button" th:onclick="starMusic([[${music.getmusicID()}]],[[${musicStat.index}]])">
+                                            <img src="webIndex/images/starbefore.png" alt=""></button>
                                     </td>
                                 </tr>
                             </table>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-5 right">
-                    <ul class="Bf-right">
-                        <audio id="myAudio" th:src="@{music/水月陵 - それは、とある王国の物語.mp3}" controls autoplay></audio>
+                <div class="col-md-6 right">
+                    <ul class="right-sectionB">
+                        <audio id="myAudio" controls autoplay></audio>
                     </ul>
+                    <div class="right-sectionC">
+                        <div id="now-div">
+                            <p id="now-ppp">正在播放：<span id="now-span"></span>
+                                <button onclick="delAll()"><img style="height: 100%;width: auto;"
+                                    src="webIndex/images/delete.png" alt="">清空</button>
+                                <!-- <input type="button" value="清空" onclick="delAll()"> -->
+                            </p>
+                            <table class="table table-striped" style="width:80%; margin:auto; text-align: center;" id="play-list">
+                                <tr>
+                                    <th>歌名</th>
+                                    <th>歌手</th>
+                                    <th>时长</th>
+                                    <th class="more-info">操作</th>
+    <!--                                <button class="add-button">-->
+    <!--                                    <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>-->
+    <!--                                </button>-->
+
+    <!--                                <button class="star-button">-->
+    <!--                                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>-->
+    <!--                                </button>-->
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

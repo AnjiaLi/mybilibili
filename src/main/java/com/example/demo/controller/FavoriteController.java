@@ -39,7 +39,16 @@ public class FavoriteController {
         String userName = (String) request.getSession().getAttribute("userName");
         if (userName == null)
             return "false";
-        favoriteService.save(new FavoriteEntity(0, userName, Integer.parseInt(request.getParameter("musicID"))));
+        try {
+            if (Boolean.parseBoolean(request.getParameter("unFav")))
+                favoriteService.remove(new QueryWrapper<FavoriteEntity>().eq("userName", userName)
+                        .eq("musicID", Integer.parseInt(request.getParameter("musicID"))));
+            else
+                favoriteService.save(new FavoriteEntity(0, userName, Integer.parseInt(request.getParameter("musicID"))));
+        } catch (Exception e) {
+//            e.printStackTrace();
+            return "true";
+        }
         return "true";
     }
 

@@ -100,6 +100,7 @@ public class MusicController {
         Integer num=musicEntity.getMusicComment()+1;
         musicEntity.setMusicComment(num);
         musicServiceImpl.updateById(musicEntity);
+
         return "redirect:/music?ID="+musicID;
     }
 

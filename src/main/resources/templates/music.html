@@ -5,11 +5,8 @@
     <title>U-music</title>
     <link rel="icon" href="webIndex/images/webLogo.ico" type="image/x-icon">
 
-    <!--    <link th:href="@{Homepage/videoPlay/font/iconfont.css}" rel="stylesheet"/>-->
     <link th:href="@{Homepage/video/css/bootstrap.min.css}" rel="stylesheet"/>
-    <!--    <link th:href="@{Homepage/video/css/dashboard.css}" rel="stylesheet"/>-->
-    <!--    <link th:href="@{Homepage/video/css/popuo-box.css}" rel="stylesheet"/>-->
-    <!--    <link th:href="@{Homepage/videoPlay/css/DPlayer.min.css}" rel="stylesheet"/>-->
+
     <link th:href="@{musicplayer/css/common.css}" rel="stylesheet"/>
     <link th:href="@{webIndex/css/reset.css}" rel="stylesheet"/>
     <link th:href="@{webIndex/css/common.css}" rel="stylesheet"/>
@@ -17,9 +14,7 @@
     <link th:href="@{musicplayer/css/style.css}" rel="stylesheet"/>
 
     <script th:src="@{test/jquery-3.5.1.js}"></script>
-<!--    <script th:src="@{Homepage/js/jquery.min.js}"></script>-->
-    <!--    <script th:src="@{jquery-1.10.2/jquery.js}"></script>-->
-<!--    <script th:src="@{webIndex/js/script.js}"></script>-->
+
 
     <script th:src="@{test/jquery-3.5.1.js}"></script>
     <script th:src="@{test/playList.js}"></script>
@@ -431,6 +426,7 @@
         #inp2{
             background: url('./webIndex/images/search.png') no-repeat center;
             border-radius:0 10px 10px 0;
+            background-color: whitesmoke;
             margin-top: 9px;
             height: 25px;
             width:40px;
@@ -757,7 +753,7 @@
                                                              th:text="${list.getSinger()}"></a>
                                     </div>
                                     <div class="count">
-                                        <span th:text="'热度： '+${list.getMusicClick()}+${list.getMusicComment()*10}"></span>
+                                        <span th:text="'热度： '+(${list.getMusicClick()}*1+${list.getMusicComment()*10})"></span>
                                     </div>
                                 </div>
                             </div>
